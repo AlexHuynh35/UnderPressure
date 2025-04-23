@@ -514,25 +514,12 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 696635543959204,
+							"sid": 703056762546238,
 							"parameters": {
 								"object-to-create": "AOE",
 								"layer": "2",
-								"x": "int(tokenat(AOEInfo.Get(Player.Direction), 0, \",\"))",
-								"y": "int(tokenat(AOEInfo.Get(Player.Direction), 1, \",\"))",
-								"create-hierarchy": false,
-								"template-name": "\"\""
-							}
-						},
-						{
-							"id": "create-object",
-							"objectClass": "System",
-							"sid": 360585603534588,
-							"parameters": {
-								"object-to-create": "Strike",
-								"layer": "2",
-								"x": "int(tokenat(AOEInfo.Get(Player.Direction), 0, \",\"))",
-								"y": "int(tokenat(AOEInfo.Get(Player.Direction), 1, \",\"))",
+								"x": "Player.X + int(tokenat(AOEInfo.Get(Player.Direction), 0, \",\"))",
+								"y": "Player.Y + int(tokenat(AOEInfo.Get(Player.Direction), 1, \",\"))",
 								"create-hierarchy": false,
 								"template-name": "\"\""
 							}
@@ -552,6 +539,14 @@
 							"parameters": {
 								"animation": "Player.CurrentWeapon & \"Combo\" & str(Player.ComboCount)",
 								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-animation-speed",
+							"objectClass": "Strike",
+							"sid": 950002973964598,
+							"parameters": {
+								"speed": "(5 * PlayerStats.Get(Player.CurrentWeapon & \"NumCombo\")) / PlayerStats.Get(Player.CurrentWeapon & \"Cooldown\")"
 							}
 						}
 					],
