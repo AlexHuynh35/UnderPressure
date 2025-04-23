@@ -37,90 +37,17 @@
 					],
 					"actions": [
 						{
-							"id": "set-key",
-							"objectClass": "PlayerStats",
-							"sid": 745970467845126,
-							"parameters": {
-								"key": "\"Level\"",
-								"value": "1"
-							}
+							"callFunction": "LoadPlayerStats",
+							"sid": 566364920826014
 						},
 						{
-							"id": "set-key",
-							"objectClass": "PlayerStats",
-							"sid": 332323948357404,
-							"parameters": {
-								"key": "\"Experience\"",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-key",
-							"objectClass": "PlayerStats",
-							"sid": 779192325186899,
-							"parameters": {
-								"key": "\"ExperienceUntilNextLevel\"",
-								"value": "10"
-							}
-						},
-						{
-							"id": "set-key",
-							"objectClass": "PlayerStats",
-							"sid": 565072670026702,
-							"parameters": {
-								"key": "\"MaxHealth\"",
-								"value": "100"
-							}
-						},
-						{
-							"id": "set-key",
-							"objectClass": "PlayerStats",
-							"sid": 764380898300887,
-							"parameters": {
-								"key": "\"CurrentHealth\"",
-								"value": "100"
-							}
-						},
-						{
-							"id": "set-key",
-							"objectClass": "PlayerStats",
-							"sid": 297127458682913,
-							"parameters": {
-								"key": "\"MovementSpeed\"",
-								"value": "1"
-							}
-						},
-						{
-							"id": "set-key",
-							"objectClass": "PlayerStats",
-							"sid": 241862394174951,
-							"parameters": {
-								"key": "\"AttackSpeed\"",
-								"value": "1"
-							}
-						},
-						{
-							"id": "set-key",
-							"objectClass": "PlayerStats",
-							"sid": 609930924485133,
-							"parameters": {
-								"key": "\"SwordDamage\"",
-								"value": "20"
-							}
-						},
-						{
-							"id": "add-key",
-							"objectClass": "PlayerStats",
-							"sid": 878320206256946,
-							"parameters": {
-								"key": "\"MaxSwordCooldown\"",
-								"value": "1"
-							}
+							"callFunction": "LoadAOEInfo",
+							"sid": 811136837751104
 						},
 						{
 							"id": "set-boolean-instvar",
 							"objectClass": "PlayerStats",
-							"sid": 247582679807338,
+							"sid": 233753768499775,
 							"parameters": {
 								"instance-variable": "Loaded",
 								"value": "true"
@@ -175,6 +102,169 @@
 				}
 			],
 			"sid": 275318262895611
+		},
+		{
+			"functionName": "LoadPlayerStats",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-key",
+					"objectClass": "PlayerStats",
+					"sid": 804995952147269,
+					"parameters": {
+						"key": "\"Level\"",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-key",
+					"objectClass": "PlayerStats",
+					"sid": 606649236735600,
+					"parameters": {
+						"key": "\"Experience\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-key",
+					"objectClass": "PlayerStats",
+					"sid": 569947752284154,
+					"parameters": {
+						"key": "\"ExperienceUntilNextLevel\"",
+						"value": "10"
+					}
+				},
+				{
+					"id": "set-key",
+					"objectClass": "PlayerStats",
+					"sid": 900021213986327,
+					"parameters": {
+						"key": "\"MaxHealth\"",
+						"value": "100"
+					}
+				},
+				{
+					"id": "set-key",
+					"objectClass": "PlayerStats",
+					"sid": 611439524456286,
+					"parameters": {
+						"key": "\"CurrentHealth\"",
+						"value": "100"
+					}
+				},
+				{
+					"id": "set-key",
+					"objectClass": "PlayerStats",
+					"sid": 748089287215179,
+					"parameters": {
+						"key": "\"MovementSpeed\"",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-key",
+					"objectClass": "PlayerStats",
+					"sid": 567253004681004,
+					"parameters": {
+						"key": "\"AttackSpeed\"",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-key",
+					"objectClass": "PlayerStats",
+					"sid": 540268575246945,
+					"parameters": {
+						"key": "\"SwordDamage\"",
+						"value": "20"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "PlayerStats",
+					"sid": 183955978685306,
+					"parameters": {
+						"key": "\"SwordCooldown\"",
+						"value": "1"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "PlayerStats",
+					"sid": 593409346020648,
+					"parameters": {
+						"key": "\"SwordNumCombo\"",
+						"value": "2"
+					}
+				}
+			],
+			"sid": 366786021907823
+		},
+		{
+			"functionName": "LoadAOEInfo",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "add-key",
+					"objectClass": "AOEInfo",
+					"sid": 188281856668724,
+					"parameters": {
+						"key": "\"Right\"",
+						"value": "\"16,0,0\""
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "AOEInfo",
+					"sid": 348433292495411,
+					"parameters": {
+						"key": "\"Left\"",
+						"value": "\"-16,0,180\""
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "AOEInfo",
+					"sid": 279675094938227,
+					"parameters": {
+						"key": "\"Up\"",
+						"value": "\"0,16,90\""
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "AOEInfo",
+					"sid": 734651553980437,
+					"parameters": {
+						"key": "\"Down\"",
+						"value": "\"0,-16,270\""
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "AOEInfo",
+					"sid": 255100939234923,
+					"parameters": {
+						"key": "\"Size\"",
+						"value": "\"32,32\""
+					}
+				}
+			],
+			"sid": 663191917005833
 		}
 	],
 	"sid": 503020761701761

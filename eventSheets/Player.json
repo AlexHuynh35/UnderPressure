@@ -211,7 +211,7 @@
 								{
 									"id": "key-is-down",
 									"objectClass": "Keyboard",
-									"sid": 480296458477399,
+									"sid": 675177375946483,
 									"parameters": {
 										"key": 83
 									}
@@ -221,14 +221,14 @@
 								{
 									"id": "simulate-control",
 									"objectClass": "Player",
-									"sid": 905806897530716,
+									"sid": 217992965813372,
 									"behaviorType": "8Direction",
 									"parameters": {
 										"control": "down"
 									}
 								}
 							],
-							"sid": 239115983743247,
+							"sid": 998194954150781,
 							"children": [
 								{
 									"eventType": "block",
@@ -236,7 +236,7 @@
 										{
 											"id": "key-is-down",
 											"objectClass": "Keyboard",
-											"sid": 957022878332075,
+											"sid": 866046479020835,
 											"parameters": {
 												"key": 16
 											},
@@ -247,65 +247,65 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "Player",
-											"sid": 821319566666340,
+											"sid": 593877471761936,
 											"parameters": {
 												"instance-variable": "Direction",
 												"value": "\"Down\""
 											}
 										}
 									],
-									"sid": 578868543338114
+									"sid": 872575115440702
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-moving",
+									"objectClass": "Player",
+									"sid": 260632831235505,
+									"behaviorType": "8Direction"
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "Player",
+									"sid": 690462871614394,
+									"parameters": {
+										"animation": "\"Moving\" & Player.Direction",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 337605885065805
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-moving",
+									"objectClass": "Player",
+									"sid": 366458268416235,
+									"behaviorType": "8Direction",
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "Player",
+									"sid": 497857764516246,
+									"parameters": {
+										"animation": "\"Idle\" & Player.Direction",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 772713246017109
 						}
 					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-moving",
-							"objectClass": "Player",
-							"sid": 594871362891146,
-							"behaviorType": "8Direction"
-						}
-					],
-					"actions": [
-						{
-							"id": "set-animation",
-							"objectClass": "Player",
-							"sid": 599507829456296,
-							"parameters": {
-								"animation": "\"Moving\" & Player.Direction",
-								"from": "beginning"
-							}
-						}
-					],
-					"sid": 252205431067924
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-moving",
-							"objectClass": "Player",
-							"sid": 132996791255278,
-							"behaviorType": "8Direction",
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"id": "set-animation",
-							"objectClass": "Player",
-							"sid": 649137935178442,
-							"parameters": {
-								"animation": "\"Idle\" & Player.Direction",
-								"from": "beginning"
-							}
-						}
-					],
-					"sid": 418776849316862
 				}
 			],
 			"sid": 986205070100772
@@ -330,26 +330,232 @@
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 363962007363937,
+					"children": [
 						{
-							"id": "set-animation",
-							"objectClass": "Player",
-							"sid": 390963228321950,
-							"parameters": {
-								"animation": "Player.CurrentWeapon & Player.Direction",
-								"from": "beginning"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-timer-running",
+									"objectClass": "Player",
+									"sid": 764519692434598,
+									"behaviorType": "Timer",
+									"parameters": {
+										"tag": "\"AtkCooldown\""
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Player",
+									"sid": 601054744885810,
+									"parameters": {
+										"instance-variable": "IsAttacking",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "Player",
+									"sid": 339330348684683,
+									"parameters": {
+										"animation": "Player.CurrentWeapon & Player.Direction",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "start-timer",
+									"objectClass": "Player",
+									"sid": 162730079108935,
+									"behaviorType": "Timer",
+									"parameters": {
+										"duration": "PlayerStats.Get(Player.CurrentWeapon & \"Cooldown\")",
+										"type": "once",
+										"tag": "\"AtkCooldown\""
+									}
+								}
+							],
+							"sid": 265391425919267
 						},
 						{
-							"id": "set-animation-frame",
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Player",
+									"sid": 235591632792104,
+									"parameters": {
+										"instance-variable": "ComboCount",
+										"comparison": 2,
+										"value": "PlayerStats.Get(Player.CurrentWeapon & \"NumCombo\")"
+									}
+								},
+								{
+									"id": "is-timer-running",
+									"objectClass": "Player",
+									"sid": 583908311684363,
+									"behaviorType": "Timer",
+									"parameters": {
+										"tag": "\"ComboTimer\""
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "Player",
+									"sid": 488952137893204,
+									"parameters": {
+										"frame-number": "Player.ComboCount"
+									}
+								},
+								{
+									"id": "start-timer",
+									"objectClass": "Player",
+									"sid": 346606433120851,
+									"behaviorType": "Timer",
+									"parameters": {
+										"duration": "PlayerStats.Get(Player.CurrentWeapon & \"Cooldown\") / (PlayerStats.Get(Player.CurrentWeapon & \"NumCombo\") * 2)",
+										"type": "once",
+										"tag": "\"ComboTimer\""
+									}
+								},
+								{
+									"callFunction": "SpawnAOE",
+									"sid": 600410738886184
+								},
+								{
+									"id": "add-to-instvar",
+									"objectClass": "Player",
+									"sid": 671181951537628,
+									"parameters": {
+										"instance-variable": "ComboCount",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 754211986129278
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
 							"objectClass": "Player",
-							"sid": 366175742912596,
+							"sid": 521654210576095,
+							"behaviorType": "Timer",
 							"parameters": {
-								"frame-number": "Player.ComboCount"
+								"tag": "\"AtkCooldown\""
 							}
 						}
 					],
-					"sid": 363962007363937
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Player",
+							"sid": 543018700314508,
+							"parameters": {
+								"instance-variable": "IsAttacking",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 978960278653848,
+							"parameters": {
+								"instance-variable": "ComboCount",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 547608644206705
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-animation-finished",
+							"objectClass": "Strike",
+							"sid": 407068032131878
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "AOE",
+							"sid": 594227570785508
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Strike",
+							"sid": 196489100016031
+						}
+					],
+					"sid": 727406252537072
+				},
+				{
+					"functionName": "SpawnAOE",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 696635543959204,
+							"parameters": {
+								"object-to-create": "AOE",
+								"layer": "2",
+								"x": "int(tokenat(AOEInfo.Get(Player.Direction), 0, \",\"))",
+								"y": "int(tokenat(AOEInfo.Get(Player.Direction), 1, \",\"))",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 360585603534588,
+							"parameters": {
+								"object-to-create": "Strike",
+								"layer": "2",
+								"x": "int(tokenat(AOEInfo.Get(Player.Direction), 0, \",\"))",
+								"y": "int(tokenat(AOEInfo.Get(Player.Direction), 1, \",\"))",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "rotate-counter-clockwise",
+							"objectClass": "Strike",
+							"sid": 631977933437555,
+							"parameters": {
+								"degrees": "int(tokenat(AOEInfo.Get(Player.Direction), 2, \",\"))"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Strike",
+							"sid": 601539392469195,
+							"parameters": {
+								"animation": "Player.CurrentWeapon & \"Combo\" & str(Player.ComboCount)",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 612477203196636
 				}
 			],
 			"sid": 154873923748461

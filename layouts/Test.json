@@ -475,6 +475,14 @@
 			"instanceVariables": {
 				"Loaded": false
 			}
+		},
+		{
+			"type": "AOEInfo",
+			"properties": {},
+			"uid": 10,
+			"sid": 714625560839080,
+			"tags": "",
+			"instanceVariables": {}
 		}
 	],
 	"effectTypes": [],

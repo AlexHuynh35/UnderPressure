@@ -85,7 +85,17 @@
 					"Camera",
 					"PlayerStats"
 				],
-				"subfolders": [],
+				"subfolders": [
+					{
+						"items": [
+							"AOE",
+							"AOEInfo",
+							"Strike"
+						],
+						"subfolders": [],
+						"name": "Attack"
+					}
+				],
 				"name": "Player"
 			}
 		]
@@ -96,6 +106,12 @@
 			"members": [
 				"Camera",
 				"Player"
+			]
+		},
+		{
+			"members": [
+				"AOE",
+				"Strike"
 			]
 		}
 	],
