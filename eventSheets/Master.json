@@ -1,0 +1,14 @@
+{
+	"name": "Master",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "Initialization"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "Player"
+		}
+	],
+	"sid": 780951856463289
+}

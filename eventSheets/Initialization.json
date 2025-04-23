@@ -1,0 +1,181 @@
+{
+	"name": "Initialization",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 728418306796280
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layout-scale",
+					"objectClass": "System",
+					"sid": 508272834908953,
+					"parameters": {
+						"scale": "2.0"
+					}
+				}
+			],
+			"sid": 130515776556850,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "PlayerStats",
+							"sid": 615445015953736,
+							"parameters": {
+								"instance-variable": "Loaded"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-key",
+							"objectClass": "PlayerStats",
+							"sid": 745970467845126,
+							"parameters": {
+								"key": "\"Level\"",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "PlayerStats",
+							"sid": 332323948357404,
+							"parameters": {
+								"key": "\"Experience\"",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "PlayerStats",
+							"sid": 779192325186899,
+							"parameters": {
+								"key": "\"ExperienceUntilNextLevel\"",
+								"value": "10"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "PlayerStats",
+							"sid": 565072670026702,
+							"parameters": {
+								"key": "\"MaxHealth\"",
+								"value": "100"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "PlayerStats",
+							"sid": 764380898300887,
+							"parameters": {
+								"key": "\"CurrentHealth\"",
+								"value": "100"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "PlayerStats",
+							"sid": 297127458682913,
+							"parameters": {
+								"key": "\"MovementSpeed\"",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "PlayerStats",
+							"sid": 241862394174951,
+							"parameters": {
+								"key": "\"AttackSpeed\"",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "PlayerStats",
+							"sid": 609930924485133,
+							"parameters": {
+								"key": "\"SwordDamage\"",
+								"value": "20"
+							}
+						},
+						{
+							"id": "add-key",
+							"objectClass": "PlayerStats",
+							"sid": 878320206256946,
+							"parameters": {
+								"key": "\"MaxSwordCooldown\"",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "PlayerStats",
+							"sid": 247582679807338,
+							"parameters": {
+								"instance-variable": "Loaded",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 146442431934764
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "PlayerStats",
+							"sid": 972090479151475,
+							"parameters": {
+								"instance-variable": "Loaded"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "load",
+							"objectClass": "PlayerStats",
+							"sid": 904816278038104,
+							"parameters": {
+								"json": "\"PlayerStats.json\""
+							}
+						}
+					],
+					"sid": 921045744119073
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-end-of-layout",
+					"objectClass": "System",
+					"sid": 148473510975880
+				}
+			],
+			"actions": [
+				{
+					"id": "download",
+					"objectClass": "PlayerStats",
+					"sid": 314216004482297,
+					"parameters": {
+						"filename": "\"PlayerStats.json\""
+					}
+				}
+			],
+			"sid": 275318262895611
+		}
+	],
+	"sid": 503020761701761
+}
