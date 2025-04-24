@@ -1,0 +1,102 @@
+{
+	"name": "Shield",
+	"plugin-id": "Sprite",
+	"sid": 483732561369238,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "IsBroken",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 634274659921983
+		},
+		{
+			"name": "IsOn",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 657126905171078
+		},
+		{
+			"name": "Uses",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 867370463317511
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4142648,
+						"collisionPoly": {
+							"points": [
+								0.375,
+								0.125,
+								0.625,
+								0.125,
+								0.75,
+								0.1875,
+								0.8125,
+								0.25,
+								0.875,
+								0.375,
+								0.875,
+								0.625,
+								0.8125,
+								0.75,
+								0.75,
+								0.8125,
+								0.6875,
+								0.84375,
+								0.59375,
+								0.875,
+								0.40625,
+								0.875,
+								0.3125,
+								0.84375,
+								0.25,
+								0.8125,
+								0.1875,
+								0.75,
+								0.125,
+								0.625,
+								0.125,
+								0.375,
+								0.1875,
+								0.25,
+								0.25,
+								0.1875
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 112093383398844,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

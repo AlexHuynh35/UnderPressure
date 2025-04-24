@@ -1,0 +1,91 @@
+{
+	"name": "Inventory",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Weapon",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 166921224496199,
+							"parameters": {
+								"key": 49
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 552345340933495,
+							"parameters": {
+								"instance-variable": "CurrentWeapon",
+								"value": "\"Sword\""
+							}
+						}
+					],
+					"sid": 215287587225546
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 984027371758644,
+							"parameters": {
+								"key": 50
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 655822945082010,
+							"parameters": {
+								"instance-variable": "CurrentWeapon",
+								"value": "\"Bow\""
+							}
+						}
+					],
+					"sid": 234681250034383
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 878209537498267,
+							"parameters": {
+								"key": 51
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 186801270953574,
+							"parameters": {
+								"instance-variable": "CurrentWeapon",
+								"value": "\"Axe\""
+							}
+						}
+					],
+					"sid": 578381374739530
+				}
+			],
+			"sid": 988318578649842
+		}
+	],
+	"sid": 983294029435010
+}

@@ -193,6 +193,24 @@
 				{
 					"id": "add-key",
 					"objectClass": "PlayerStats",
+					"sid": 160377563055367,
+					"parameters": {
+						"key": "\"ShieldCooldown\"",
+						"value": "10"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "PlayerStats",
+					"sid": 211923962731394,
+					"parameters": {
+						"key": "\"ShieldUses\"",
+						"value": "1"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "PlayerStats",
 					"sid": 680888033916462,
 					"parameters": {
 						"key": "\"AttackSpeed\"",

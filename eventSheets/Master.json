@@ -8,6 +8,10 @@
 		{
 			"eventType": "include",
 			"includeSheet": "Player"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "Inventory"
 		}
 	],
 	"sid": 780951856463289

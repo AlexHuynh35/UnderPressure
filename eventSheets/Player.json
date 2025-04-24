@@ -21,10 +21,10 @@
 						{
 							"id": "set-position",
 							"objectClass": "Camera",
-							"sid": 950361865068275,
+							"sid": 593568821931757,
 							"parameters": {
-								"x": "lerp(Self.X, Player.X, 0.2)",
-								"y": "lerp(Self.Y, Player.Y, 0.2)"
+								"x": "Player.X",
+								"y": "Player.Y"
 							}
 						}
 					],
@@ -731,6 +731,226 @@
 				}
 			],
 			"sid": 269218264892583
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Shield",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 311225173879084
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "Shield",
+							"sid": 125461121727947,
+							"parameters": {
+								"x": "Player.X",
+								"y": "Player.Y"
+							}
+						}
+					],
+					"sid": 971809933570646
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 811692765950989,
+							"parameters": {
+								"key": 16
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-max-speed",
+							"objectClass": "Player",
+							"sid": 575895068114820,
+							"behaviorType": "8Direction",
+							"parameters": {
+								"max-speed": "Player.8Direction.MaxSpeed / 4"
+							}
+						}
+					],
+					"sid": 146506225452855
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 931930139692958,
+							"parameters": {
+								"key": 16
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Shield",
+							"sid": 948731085189592,
+							"parameters": {
+								"instance-variable": "Uses",
+								"comparison": 4,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "Shield",
+							"sid": 714451786055638,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Shield",
+							"sid": 373340198993502,
+							"parameters": {
+								"instance-variable": "IsOn",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 245409761106175
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-released",
+							"objectClass": "Keyboard",
+							"sid": 738223698615339,
+							"parameters": {
+								"key": 16
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "Shield",
+							"sid": 827152332167503,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Shield",
+							"sid": 832198813945359,
+							"parameters": {
+								"instance-variable": "IsOn",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-max-speed",
+							"objectClass": "Player",
+							"sid": 983218514164936,
+							"behaviorType": "8Direction",
+							"parameters": {
+								"max-speed": "Player.8Direction.MaxSpeed * 4"
+							}
+						}
+					],
+					"sid": 208510063922863,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Shield",
+							"sid": 710458429375179,
+							"parameters": {
+								"instance-variable": "Uses",
+								"comparison": 0,
+								"value": "0"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 531579457403392
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "Shield",
+							"sid": 865056923147861,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Shield",
+							"sid": 745535876975105,
+							"parameters": {
+								"instance-variable": "IsOn",
+								"value": "false"
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "Player",
+							"sid": 830292009642974,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "PlayerStats.Get(\"ShieldCooldown\")",
+								"type": "once",
+								"tag": "\"ShieldCooldown\""
+							}
+						}
+					],
+					"sid": 732503998884776
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "Player",
+							"sid": 235169030471909,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"ShieldCooldown\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Shield",
+							"sid": 240516678748381,
+							"parameters": {
+								"instance-variable": "Uses",
+								"value": "PlayerStats.Get(\"ShieldUses\")"
+							}
+						}
+					],
+					"sid": 431722789788801
+				}
+			],
+			"sid": 303625856337793
 		}
 	],
 	"sid": 819117800053090

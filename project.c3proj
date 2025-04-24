@@ -119,7 +119,8 @@
 							"AOE",
 							"Directions",
 							"Strike",
-							"AOEInfo"
+							"AOEInfo",
+							"Shield"
 						],
 						"subfolders": [],
 						"name": "Attack"
@@ -141,7 +142,8 @@
 		{
 			"members": [
 				"Camera",
-				"Player"
+				"Player",
+				"Shield"
 			]
 		},
 		{
@@ -165,7 +167,8 @@
 		"items": [
 			"Player",
 			"Initialization",
-			"Master"
+			"Master",
+			"Inventory"
 		],
 		"subfolders": []
 	},
