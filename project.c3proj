@@ -36,6 +36,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Text",
+			"name": "Text",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Tilemap",
 			"name": "Tilemap",
 			"author": "Scirra",
@@ -43,8 +50,22 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Anchor",
+			"name": "Anchor",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "EightDir",
 			"name": "8 Direction",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "LOS",
+			"name": "Line of sight",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -59,6 +80,13 @@
 			"type": "behavior",
 			"id": "scrollto",
 			"name": "Scroll To",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "solid",
+			"name": "Solid",
 			"author": "Scirra",
 			"bundled": false
 		}
@@ -89,14 +117,22 @@
 					{
 						"items": [
 							"AOE",
-							"AOEInfo",
-							"Strike"
+							"Directions",
+							"Strike",
+							"AOEInfo"
 						],
 						"subfolders": [],
 						"name": "Attack"
 					}
 				],
 				"name": "Player"
+			},
+			{
+				"items": [
+					"Dashes"
+				],
+				"subfolders": [],
+				"name": "HUD"
 			}
 		]
 	},

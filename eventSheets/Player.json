@@ -21,10 +21,10 @@
 						{
 							"id": "set-position",
 							"objectClass": "Camera",
-							"sid": 952999709307376,
+							"sid": 950361865068275,
 							"parameters": {
-								"x": "lerp(Self.X, Player.X, 0.3)",
-								"y": "lerp(Self.Y, Player.Y, 0.3)"
+								"x": "lerp(Self.X, Player.X, 0.2)",
+								"y": "lerp(Self.Y, Player.Y, 0.2)"
 							}
 						}
 					],
@@ -514,14 +514,23 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 703056762546238,
+							"sid": 903882834927999,
 							"parameters": {
 								"object-to-create": "AOE",
 								"layer": "2",
-								"x": "Player.X + int(tokenat(AOEInfo.Get(Player.Direction), 0, \",\"))",
-								"y": "Player.Y + int(tokenat(AOEInfo.Get(Player.Direction), 1, \",\"))",
+								"x": "Player.X + (int(tokenat(Directions.Get(Player.Direction), 0, \",\")) * AOEInfo.Get(\"Offset\"))",
+								"y": "Player.Y + (int(tokenat(Directions.Get(Player.Direction), 1, \",\")) * AOEInfo.Get(\"Offset\"))",
 								"create-hierarchy": false,
 								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "AOE",
+							"sid": 843942914750970,
+							"parameters": {
+								"width": "int(tokenat(AOEInfo.Get(\"Size\"), 0, \",\"))",
+								"height": "int(tokenat(AOEInfo.Get(\"Size\"), 1, \",\"))"
 							}
 						},
 						{
@@ -529,7 +538,7 @@
 							"objectClass": "Strike",
 							"sid": 631977933437555,
 							"parameters": {
-								"degrees": "int(tokenat(AOEInfo.Get(Player.Direction), 2, \",\"))"
+								"degrees": "int(tokenat(Directions.Get(Player.Direction), 2, \",\"))"
 							}
 						},
 						{
@@ -554,6 +563,174 @@
 				}
 			],
 			"sid": 154873923748461
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Dash",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 103997777112269,
+							"parameters": {
+								"key": 32
+							}
+						},
+						{
+							"id": "has-los-to-position",
+							"objectClass": "Player",
+							"sid": 601069119719487,
+							"behaviorType": "LineOfSight",
+							"parameters": {
+								"x": "Player.X + (int(tokenat(Directions.Get(Player.Direction), 0, \",\")) * PlayerStats.Get(\"DashDistance\"))",
+								"y": "Player.Y + (int(tokenat(Directions.Get(Player.Direction), 1, \",\")) * PlayerStats.Get(\"DashDistance\"))"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 166447011219718,
+							"parameters": {
+								"instance-variable": "NumDashRemaining",
+								"comparison": 4,
+								"value": "0"
+							}
+						},
+						{
+							"id": "is-timer-running",
+							"objectClass": "Player",
+							"sid": 664803661259353,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"DashBreak\""
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "Player",
+							"sid": 105971163083106,
+							"parameters": {
+								"x": "Player.X + (int(tokenat(Directions.Get(Player.Direction), 0, \",\")) * PlayerStats.Get(\"DashDistance\"))",
+								"y": "Player.Y + (int(tokenat(Directions.Get(Player.Direction), 1, \",\")) * PlayerStats.Get(\"DashDistance\"))"
+							}
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 927133226514912,
+							"parameters": {
+								"instance-variable": "NumDashRemaining",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "Dashes",
+							"sid": 619257648744126,
+							"parameters": {
+								"text": "\"Dashes: \" & Player.NumDashRemaining"
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "Player",
+							"sid": 967634948309583,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "1.0",
+								"type": "once",
+								"tag": "\"DashBreak\""
+							}
+						},
+						{
+							"id": "stop-timer",
+							"objectClass": "Player",
+							"sid": 791754792111804,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"DashCooldown\""
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "Player",
+							"sid": 207167080595750,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "PlayerStats.Get(\"DashCooldown\")",
+								"type": "once",
+								"tag": "\"DashCooldown\""
+							}
+						}
+					],
+					"sid": 816732057971716
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "Player",
+							"sid": 953757121632616,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"DashCooldown\""
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 378518784467321,
+							"parameters": {
+								"instance-variable": "NumDashRemaining",
+								"comparison": 2,
+								"value": "PlayerStats.Get(\"DashAmount\")"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 887508234668126,
+							"parameters": {
+								"instance-variable": "NumDashRemaining",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "Dashes",
+							"sid": 941244104174203,
+							"parameters": {
+								"text": "\"Dashes: \" & Player.NumDashRemaining"
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "Player",
+							"sid": 827076712707417,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "PlayerStats.Get(\"DashCooldown\")",
+								"type": "once",
+								"tag": "\"DashCooldown\""
+							}
+						}
+					],
+					"sid": 421607271463952
+				}
+			],
+			"sid": 269218264892583
 		}
 	],
 	"sid": 819117800053090
