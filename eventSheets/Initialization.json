@@ -12,103 +12,235 @@
 			],
 			"actions": [
 				{
-					"id": "set-layout-scale",
-					"objectClass": "System",
-					"sid": 508272834908953,
+					"id": "set-boolean-instvar",
+					"objectClass": "PlayerStats",
+					"sid": 254137741366314,
 					"parameters": {
-						"scale": "2.0"
+						"instance-variable": "Loaded",
+						"value": "false"
 					}
-				}
-			],
-			"sid": 130515776556850,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-boolean-instance-variable-set",
-							"objectClass": "PlayerStats",
-							"sid": 615445015953736,
-							"parameters": {
-								"instance-variable": "Loaded"
-							},
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "LoadPlayerStats",
-							"sid": 566364920826014
-						},
-						{
-							"callFunction": "LoadDirection",
-							"sid": 811136837751104
-						},
-						{
-							"callFunction": "LoadAOEInfo",
-							"sid": 304690874964828
-						},
-						{
-							"id": "set-boolean-instvar",
-							"objectClass": "PlayerStats",
-							"sid": 233753768499775,
-							"parameters": {
-								"instance-variable": "Loaded",
-								"value": "true"
-							}
-						}
-					],
-					"sid": 146442431934764
 				},
 				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-boolean-instance-variable-set",
-							"objectClass": "PlayerStats",
-							"sid": 972090479151475,
-							"parameters": {
-								"instance-variable": "Loaded"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "load",
-							"objectClass": "PlayerStats",
-							"sid": 904816278038104,
-							"parameters": {
-								"json": "\"PlayerStats.json\""
-							}
-						}
-					],
-					"sid": 921045744119073
+					"id": "set-boolean-instvar",
+					"objectClass": "AbilityStats",
+					"sid": 961606953116655,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "WeaponStats",
+					"sid": 743275018497947,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Direction",
+					"sid": 484766623681406,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "false"
+					}
+				},
+				{
+					"callFunction": "RequestJSON",
+					"sid": 833749028445673
 				}
-			]
+			],
+			"sid": 130515776556850
 		},
 		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-end-of-layout",
+					"id": "every-tick",
 					"objectClass": "System",
-					"sid": 148473510975880
+					"sid": 720894556700163
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "PlayerStats",
+					"sid": 917055625422619,
+					"parameters": {
+						"instance-variable": "Loaded"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "AbilityStats",
+					"sid": 506963306943414,
+					"parameters": {
+						"instance-variable": "Loaded"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "WeaponStats",
+					"sid": 216755418717081,
+					"parameters": {
+						"instance-variable": "Loaded"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Direction",
+					"sid": 555964551208072,
+					"parameters": {
+						"instance-variable": "Loaded"
+					}
 				}
 			],
 			"actions": [
 				{
-					"id": "download",
-					"objectClass": "PlayerStats",
-					"sid": 314216004482297,
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 964114315384461,
 					"parameters": {
-						"filename": "\"PlayerStats.json\""
+						"layout": "Test"
 					}
 				}
 			],
-			"sid": 275318262895611
+			"sid": 491651295536268
 		},
 		{
-			"functionName": "LoadPlayerStats",
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 201994938391875,
+					"parameters": {
+						"tag": "\"PlayerStats\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "load",
+					"objectClass": "PlayerStats",
+					"sid": 383478087077573,
+					"parameters": {
+						"json": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "PlayerStats",
+					"sid": 822526275301662,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 154201294237008
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 378494118046900,
+					"parameters": {
+						"tag": "\"AbilityStats\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "load",
+					"objectClass": "AbilityStats",
+					"sid": 444912061838175,
+					"parameters": {
+						"json": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "AbilityStats",
+					"sid": 102449571966373,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 309596842545463
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 887174157375170,
+					"parameters": {
+						"tag": "\"WeaponStats\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "load",
+					"objectClass": "WeaponStats",
+					"sid": 533106688205294,
+					"parameters": {
+						"json": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "WeaponStats",
+					"sid": 519296645370529,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 192804712082380
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 628438093583683,
+					"parameters": {
+						"tag": "\"Direction\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "parse",
+					"objectClass": "Direction",
+					"sid": 466206173599487,
+					"parameters": {
+						"data": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Direction",
+					"sid": 224823699731950,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 931854376782782
+		},
+		{
+			"functionName": "RequestJSON",
 			"functionDescription": "",
 			"functionCategory": "",
 			"functionReturnType": "none",
@@ -119,215 +251,43 @@
 			"conditions": [],
 			"actions": [
 				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 236803446332611,
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 872893114399420,
 					"parameters": {
-						"key": "\"Level\"",
-						"value": "1"
+						"tag": "\"PlayerStats\"",
+						"file": "PlayerStats.json"
 					}
 				},
 				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 966925112766884,
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 820125160901501,
 					"parameters": {
-						"key": "\"Experience\"",
-						"value": "0"
+						"tag": "\"AbilityStats\"",
+						"file": "AbilityStats.json"
 					}
 				},
 				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 259414290729465,
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 837069491362847,
 					"parameters": {
-						"key": "\"ExperienceUntilNextLevel\"",
-						"value": "10"
+						"tag": "\"WeaponStats\"",
+						"file": "WeaponStats.json"
 					}
 				},
 				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 974801537428069,
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 360132340704891,
 					"parameters": {
-						"key": "\"MaxHealth\"",
-						"value": "100"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 954275721342754,
-					"parameters": {
-						"key": "\"MovementSpeed\"",
-						"value": "1"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 808912107465926,
-					"parameters": {
-						"key": "\"DashDistance\"",
-						"value": "64"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 190646609474047,
-					"parameters": {
-						"key": "\"DashCooldown\"",
-						"value": "3"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 432735730552439,
-					"parameters": {
-						"key": "\"DashAmount\"",
-						"value": "3"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 160377563055367,
-					"parameters": {
-						"key": "\"ShieldCooldown\"",
-						"value": "10"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 211923962731394,
-					"parameters": {
-						"key": "\"ShieldUses\"",
-						"value": "1"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 680888033916462,
-					"parameters": {
-						"key": "\"AttackSpeed\"",
-						"value": "1"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 130812446146770,
-					"parameters": {
-						"key": "\"SwordDamage\"",
-						"value": "20"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 183955978685306,
-					"parameters": {
-						"key": "\"SwordCooldown\"",
-						"value": "1"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "PlayerStats",
-					"sid": 593409346020648,
-					"parameters": {
-						"key": "\"SwordNumCombo\"",
-						"value": "2"
+						"tag": "\"Direction\"",
+						"file": "Direction.json"
 					}
 				}
 			],
-			"sid": 366786021907823
-		},
-		{
-			"functionName": "LoadDirection",
-			"functionDescription": "",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
-				{
-					"id": "add-key",
-					"objectClass": "Directions",
-					"sid": 874919225687099,
-					"parameters": {
-						"key": "\"Right\"",
-						"value": "\"1,0,0\""
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "Directions",
-					"sid": 736186896496751,
-					"parameters": {
-						"key": "\"Left\"",
-						"value": "\"-1,0,180\""
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "Directions",
-					"sid": 232943538206265,
-					"parameters": {
-						"key": "\"Up\"",
-						"value": "\"0,-1,90\""
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "Directions",
-					"sid": 268275459167074,
-					"parameters": {
-						"key": "\"Down\"",
-						"value": "\"0,1,270\""
-					}
-				}
-			],
-			"sid": 663191917005833
-		},
-		{
-			"functionName": "LoadAOEInfo",
-			"functionDescription": "",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
-				{
-					"id": "add-key",
-					"objectClass": "AOEInfo",
-					"sid": 770970330430353,
-					"parameters": {
-						"key": "\"Size\"",
-						"value": "\"32,32\""
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "AOEInfo",
-					"sid": 243741936391856,
-					"parameters": {
-						"key": "\"Offset\"",
-						"value": "16"
-					}
-				}
-			],
-			"sid": 428895494206994
+			"sid": 291869303931497
 		}
 	],
 	"sid": 503020761701761

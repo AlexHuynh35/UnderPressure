@@ -1,0 +1,16 @@
+{
+	"name": "Direction",
+	"plugin-id": "Json",
+	"sid": 422392205262292,
+	"isGlobal": true,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "Loaded",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 182061277184186
+		}
+	]
+}

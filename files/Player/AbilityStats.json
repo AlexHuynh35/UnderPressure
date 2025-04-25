@@ -1,0 +1,10 @@
+{
+    "c2dictionary": true,
+    "data": {
+        "DashDistance": 64,
+        "DashCooldown": 3,
+        "DashUses": 3,
+        "ShieldCooldown": 10,
+        "ShieldUses": 1
+    }
+}

@@ -369,10 +369,10 @@
 								{
 									"id": "start-timer",
 									"objectClass": "Player",
-									"sid": 162730079108935,
+									"sid": 485507000139082,
 									"behaviorType": "Timer",
 									"parameters": {
-										"duration": "PlayerStats.Get(Player.CurrentWeapon & \"Cooldown\")",
+										"duration": "WeaponStats.Get(Player.CurrentWeapon & \"Cooldown\")",
 										"type": "once",
 										"tag": "\"AtkCooldown\""
 									}
@@ -386,11 +386,11 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "Player",
-									"sid": 235591632792104,
+									"sid": 836741592717595,
 									"parameters": {
 										"instance-variable": "ComboCount",
 										"comparison": 2,
-										"value": "PlayerStats.Get(Player.CurrentWeapon & \"NumCombo\")"
+										"value": "WeaponStats.Get(Player.CurrentWeapon & \"NumCombo\")"
 									}
 								},
 								{
@@ -416,10 +416,10 @@
 								{
 									"id": "start-timer",
 									"objectClass": "Player",
-									"sid": 346606433120851,
+									"sid": 903012574579366,
 									"behaviorType": "Timer",
 									"parameters": {
-										"duration": "PlayerStats.Get(Player.CurrentWeapon & \"Cooldown\") / (PlayerStats.Get(Player.CurrentWeapon & \"NumCombo\") * 2)",
+										"duration": "WeaponStats.Get(Player.CurrentWeapon & \"Cooldown\") / (WeaponStats.Get(Player.CurrentWeapon & \"NumCombo\") * 2)",
 										"type": "once",
 										"tag": "\"ComboTimer\""
 									}
@@ -514,12 +514,12 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 903882834927999,
+							"sid": 869339396392293,
 							"parameters": {
 								"object-to-create": "AOE",
 								"layer": "2",
-								"x": "Player.X + (int(tokenat(Directions.Get(Player.Direction), 0, \",\")) * AOEInfo.Get(\"Offset\"))",
-								"y": "Player.Y + (int(tokenat(Directions.Get(Player.Direction), 1, \",\")) * AOEInfo.Get(\"Offset\"))",
+								"x": "Player.X + Direction.Get(Player.Direction & \".0\") * WeaponStats.Get(Player.CurrentWeapon & \"AOEOffset\")",
+								"y": "Player.Y + Direction.Get(Player.Direction & \".1\") * WeaponStats.Get(Player.CurrentWeapon & \"AOEOffset\")",
 								"create-hierarchy": false,
 								"template-name": "\"\""
 							}
@@ -527,18 +527,18 @@
 						{
 							"id": "set-size",
 							"objectClass": "AOE",
-							"sid": 843942914750970,
+							"sid": 534980303880934,
 							"parameters": {
-								"width": "int(tokenat(AOEInfo.Get(\"Size\"), 0, \",\"))",
-								"height": "int(tokenat(AOEInfo.Get(\"Size\"), 1, \",\"))"
+								"width": "WeaponStats.Get(Player.CurrentWeapon & \"AOESizeX\")",
+								"height": "WeaponStats.Get(Player.CurrentWeapon & \"AOESizeY\")"
 							}
 						},
 						{
 							"id": "rotate-counter-clockwise",
 							"objectClass": "Strike",
-							"sid": 631977933437555,
+							"sid": 510919789889996,
 							"parameters": {
-								"degrees": "int(tokenat(Directions.Get(Player.Direction), 2, \",\"))"
+								"degrees": "Direction.Get(Player.Direction & \".2\")"
 							}
 						},
 						{
@@ -553,9 +553,9 @@
 						{
 							"id": "set-animation-speed",
 							"objectClass": "Strike",
-							"sid": 950002973964598,
+							"sid": 137917480332212,
 							"parameters": {
-								"speed": "(5 * PlayerStats.Get(Player.CurrentWeapon & \"NumCombo\")) / PlayerStats.Get(Player.CurrentWeapon & \"Cooldown\")"
+								"speed": "(5 * WeaponStats.Get(Player.CurrentWeapon & \"NumCombo\")) / WeaponStats.Get(Player.CurrentWeapon & \"Cooldown\")"
 							}
 						}
 					],
@@ -585,11 +585,11 @@
 						{
 							"id": "has-los-to-position",
 							"objectClass": "Player",
-							"sid": 601069119719487,
+							"sid": 156306729655664,
 							"behaviorType": "LineOfSight",
 							"parameters": {
-								"x": "Player.X + (int(tokenat(Directions.Get(Player.Direction), 0, \",\")) * PlayerStats.Get(\"DashDistance\"))",
-								"y": "Player.Y + (int(tokenat(Directions.Get(Player.Direction), 1, \",\")) * PlayerStats.Get(\"DashDistance\"))"
+								"x": "Player.X + Direction.Get(Player.Direction & \".0\") * AbilityStats.Get(\"DashDistance\")",
+								"y": "Player.Y + Direction.Get(Player.Direction & \".1\") * AbilityStats.Get(\"DashDistance\")"
 							}
 						},
 						{
@@ -617,10 +617,10 @@
 						{
 							"id": "set-position",
 							"objectClass": "Player",
-							"sid": 105971163083106,
+							"sid": 999197819287342,
 							"parameters": {
-								"x": "Player.X + (int(tokenat(Directions.Get(Player.Direction), 0, \",\")) * PlayerStats.Get(\"DashDistance\"))",
-								"y": "Player.Y + (int(tokenat(Directions.Get(Player.Direction), 1, \",\")) * PlayerStats.Get(\"DashDistance\"))"
+								"x": "Player.X + Direction.Get(Player.Direction & \".0\") * AbilityStats.Get(\"DashDistance\")",
+								"y": "Player.Y + Direction.Get(Player.Direction & \".1\") * AbilityStats.Get(\"DashDistance\")"
 							}
 						},
 						{
@@ -663,10 +663,10 @@
 						{
 							"id": "start-timer",
 							"objectClass": "Player",
-							"sid": 207167080595750,
+							"sid": 915389977745487,
 							"behaviorType": "Timer",
 							"parameters": {
-								"duration": "PlayerStats.Get(\"DashCooldown\")",
+								"duration": "AbilityStats.Get(\"DashCooldown\")",
 								"type": "once",
 								"tag": "\"DashCooldown\""
 							}
@@ -689,11 +689,11 @@
 						{
 							"id": "compare-instance-variable",
 							"objectClass": "Player",
-							"sid": 378518784467321,
+							"sid": 253015389232767,
 							"parameters": {
 								"instance-variable": "NumDashRemaining",
 								"comparison": 2,
-								"value": "PlayerStats.Get(\"DashAmount\")"
+								"value": "AbilityStats.Get(\"DashUses\")"
 							}
 						}
 					],
@@ -718,10 +718,10 @@
 						{
 							"id": "start-timer",
 							"objectClass": "Player",
-							"sid": 827076712707417,
+							"sid": 952134676893393,
 							"behaviorType": "Timer",
 							"parameters": {
-								"duration": "PlayerStats.Get(\"DashCooldown\")",
+								"duration": "AbilityStats.Get(\"DashCooldown\")",
 								"type": "once",
 								"tag": "\"DashCooldown\""
 							}
@@ -912,10 +912,10 @@
 						{
 							"id": "start-timer",
 							"objectClass": "Player",
-							"sid": 830292009642974,
+							"sid": 987000724669371,
 							"behaviorType": "Timer",
 							"parameters": {
-								"duration": "PlayerStats.Get(\"ShieldCooldown\")",
+								"duration": "AbilityStats.Get(\"ShieldCooldown\")",
 								"type": "once",
 								"tag": "\"ShieldCooldown\""
 							}
@@ -940,10 +940,10 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "Shield",
-							"sid": 240516678748381,
+							"sid": 291190304899207,
 							"parameters": {
 								"instance-variable": "Uses",
-								"value": "PlayerStats.Get(\"ShieldUses\")"
+								"value": "AbilityStats.Get(\"ShieldUses\")"
 							}
 						}
 					],

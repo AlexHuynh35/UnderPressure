@@ -1,0 +1,16 @@
+{
+	"name": "AbilityStats",
+	"plugin-id": "Dictionary",
+	"sid": 193209386505913,
+	"isGlobal": true,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "Loaded",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 649923368288068
+		}
+	]
+}

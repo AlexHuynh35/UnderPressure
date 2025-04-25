@@ -3,10 +3,6 @@
 	"events": [
 		{
 			"eventType": "include",
-			"includeSheet": "Initialization"
-		},
-		{
-			"eventType": "include",
 			"includeSheet": "Player"
 		},
 		{

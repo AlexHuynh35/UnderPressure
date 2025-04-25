@@ -606,20 +606,34 @@
 			}
 		},
 		{
-			"type": "Directions",
-			"properties": {},
-			"uid": 10,
-			"sid": 714625560839080,
-			"tags": "",
-			"instanceVariables": {}
-		},
-		{
-			"type": "AOEInfo",
+			"type": "WeaponStats",
 			"properties": {},
 			"uid": 11,
 			"sid": 533265784662883,
 			"tags": "",
-			"instanceVariables": {}
+			"instanceVariables": {
+				"Loaded": false
+			}
+		},
+		{
+			"type": "Direction",
+			"properties": {},
+			"uid": 15,
+			"sid": 355025564814049,
+			"tags": "",
+			"instanceVariables": {
+				"Loaded": false
+			}
+		},
+		{
+			"type": "AbilityStats",
+			"properties": {},
+			"uid": 16,
+			"sid": 290381742064077,
+			"tags": "",
+			"instanceVariables": {
+				"Loaded": false
+			}
 		}
 	],
 	"effectTypes": [],

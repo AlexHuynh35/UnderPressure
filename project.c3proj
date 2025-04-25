@@ -8,8 +8,29 @@
 	"usedAddons": [
 		{
 			"type": "plugin",
+			"id": "AJAX",
+			"name": "AJAX",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Browser",
+			"name": "Browser",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Dictionary",
 			"name": "Dictionary",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Json",
+			"name": "JSON",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -95,7 +116,11 @@
 	"objectTypes": {
 		"items": [
 			"Keyboard",
-			"Mouse"
+			"Mouse",
+			"AJAX",
+			"Camera",
+			"Direction",
+			"Browser"
 		],
 		"subfolders": [
 			{
@@ -109,18 +134,17 @@
 			},
 			{
 				"items": [
-					"Player",
-					"Camera",
-					"PlayerStats"
+					"PlayerStats",
+					"Player"
 				],
 				"subfolders": [
 					{
 						"items": [
 							"AOE",
-							"Directions",
 							"Strike",
-							"AOEInfo",
-							"Shield"
+							"WeaponStats",
+							"Shield",
+							"AbilityStats"
 						],
 						"subfolders": [],
 						"name": "Attack"
@@ -159,7 +183,8 @@
 	},
 	"layouts": {
 		"items": [
-			"Test"
+			"Test",
+			"DataLoader"
 		],
 		"subfolders": []
 	},
@@ -168,7 +193,8 @@
 			"Player",
 			"Initialization",
 			"Master",
-			"Inventory"
+			"Inventory",
+			"SoldierEnemy"
 		],
 		"subfolders": []
 	},
@@ -255,8 +281,48 @@
 			"subfolders": []
 		},
 		"general": {
-			"items": [],
-			"subfolders": []
+			"items": [
+				{
+					"name": "Direction.json",
+					"type": "application/json",
+					"sid": 363078084921315,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "PlayerStats.json",
+							"type": "application/json",
+							"sid": 793679482759046,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "AbilityStats.json",
+							"type": "application/json",
+							"sid": 702532656732406,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "WeaponStats.json",
+							"type": "application/json",
+							"sid": 584399074289255,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "Player"
+				}
+			]
 		}
 	},
 	"timelines": {
@@ -331,5 +397,5 @@
 	},
 	"viewportWidth": 854,
 	"viewportHeight": 480,
-	"firstLayout": null
+	"firstLayout": "DataLoader"
 }

@@ -1,0 +1,11 @@
+{
+    "c2dictionary": true,
+    "data": {
+        "SwordDamage": 20,
+        "SwordCooldown": 1,
+        "SwordNumCombo": 2,
+        "SwordAOESizeX": 32,
+        "SwordAOESizeY": 32,
+        "SwordAOEOffset": 16
+    }
+}

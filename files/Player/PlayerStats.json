@@ -1,0 +1,11 @@
+{
+    "c2dictionary": true,
+    "data": {
+        "Level": 1,
+        "Experience": 0,
+        "ExperienceUntilNextLevel": 10,
+        "MaxHealth": 100,
+        "MovementSpeedMultiplier": 1,
+        "AttackSpeedMultiplier": 1
+    }
+}
