@@ -1,0 +1,44 @@
+{
+	"name": "SoldierEnemies",
+	"plugin-id": "Sprite",
+	"sid": 335738059829241,
+	"instanceVariables": [
+		{
+			"name": "Health",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 947150674366072
+		},
+		{
+			"name": "Damage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 908229792638281
+		},
+		{
+			"name": "Weight",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 135707847972304
+		},
+		{
+			"name": "Armor",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 133113632152576
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"SoldierMoura",
+		"LarvaeScide",
+		"SoldierArmoredScide",
+		"SoldierRot",
+		"SoldierScide"
+	]
+}

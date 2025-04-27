@@ -48,6 +48,15 @@
 					}
 				},
 				{
+					"id": "set-boolean-instvar",
+					"objectClass": "SoldierEnemyStats",
+					"sid": 761483004087622,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "false"
+					}
+				},
+				{
 					"callFunction": "RequestJSON",
 					"sid": 833749028445673
 				}
@@ -90,6 +99,14 @@
 					"id": "is-boolean-instance-variable-set",
 					"objectClass": "Direction",
 					"sid": 555964551208072,
+					"parameters": {
+						"instance-variable": "Loaded"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "SoldierEnemyStats",
+					"sid": 866473279677313,
 					"parameters": {
 						"instance-variable": "Loaded"
 					}
@@ -240,6 +257,39 @@
 			"sid": 931854376782782
 		},
 		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 100727486333546,
+					"parameters": {
+						"tag": "\"SoldierEnemyStats\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "parse",
+					"objectClass": "SoldierEnemyStats",
+					"sid": 299498921793439,
+					"parameters": {
+						"data": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "SoldierEnemyStats",
+					"sid": 376361455800381,
+					"parameters": {
+						"instance-variable": "Loaded",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 826587867164324
+		},
+		{
 			"functionName": "RequestJSON",
 			"functionDescription": "",
 			"functionCategory": "",
@@ -284,6 +334,15 @@
 					"parameters": {
 						"tag": "\"Direction\"",
 						"file": "Direction.json"
+					}
+				},
+				{
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 214341562697551,
+					"parameters": {
+						"tag": "\"SoldierEnemyStats\"",
+						"file": "SoldierEnemyStats.json"
 					}
 				}
 			],

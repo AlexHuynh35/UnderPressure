@@ -1,0 +1,40 @@
+{
+	"LarvaeScide": {
+        "Health": 100,
+        "Damage": 5,
+        "Weight": 10,
+        "Armor": 0,
+        "Speed": 64
+    },
+    "SoldierScide": {
+        "Health": 200,
+        "Damage": 5,
+        "Weight": 20,
+        "Armor": 0,
+        "Speed": 96,
+        "AttackCooldown": 5,
+        "JumpCooldown": 10
+    },
+    "SoldierArmoredScide": {
+        "Health": 10,
+        "Damage": 5,
+        "Weight": 20,
+        "Armor": 1,
+        "Speed": 64
+    },
+    "SoldierRot": {
+        "Health": 100,
+        "Damage": 5,
+        "Weight": 10,
+        "Armor": 0,
+        "Speed": 128,
+        "AttackCooldown": 10
+    },
+    "SoldierMoura": {
+        "Health": 300,
+        "Damage": 5,
+        "Weight": 100,
+        "Armor": 0,
+        "AttackCooldown": 3
+    }
+}

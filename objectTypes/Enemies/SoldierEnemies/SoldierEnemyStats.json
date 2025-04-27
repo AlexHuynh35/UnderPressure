@@ -1,0 +1,16 @@
+{
+	"name": "SoldierEnemyStats",
+	"plugin-id": "Json",
+	"sid": 267458246792470,
+	"isGlobal": true,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "Loaded",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 798688748867200
+		}
+	]
+}

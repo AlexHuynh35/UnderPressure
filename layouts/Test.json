@@ -634,6 +634,16 @@
 			"instanceVariables": {
 				"Loaded": false
 			}
+		},
+		{
+			"type": "SoldierEnemyStats",
+			"properties": {},
+			"uid": 17,
+			"sid": 992375241813307,
+			"tags": "",
+			"instanceVariables": {
+				"Loaded": false
+			}
 		}
 	],
 	"effectTypes": [],

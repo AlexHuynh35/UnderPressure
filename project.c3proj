@@ -92,6 +92,13 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Sin",
+			"name": "Sine",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "Timer",
 			"name": "Timer",
 			"author": "Scirra",
@@ -158,6 +165,24 @@
 				],
 				"subfolders": [],
 				"name": "HUD"
+			},
+			{
+				"items": [],
+				"subfolders": [
+					{
+						"items": [
+							"LarvaeScide",
+							"SoldierScide",
+							"SoldierArmoredScide",
+							"SoldierRot",
+							"SoldierMoura",
+							"SoldierEnemyStats"
+						],
+						"subfolders": [],
+						"name": "SoldierEnemies"
+					}
+				],
+				"name": "Enemies"
 			}
 		]
 	},
@@ -178,7 +203,10 @@
 		}
 	],
 	"families": {
-		"items": [],
+		"items": [
+			"SoldierEnemies",
+			"SolidObstacles"
+		],
 		"subfolders": []
 	},
 	"layouts": {
@@ -321,6 +349,20 @@
 					],
 					"subfolders": [],
 					"name": "Player"
+				},
+				{
+					"items": [
+						{
+							"name": "SoldierEnemyStats.json",
+							"type": "application/json",
+							"sid": 738941166050703,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "Enemy"
 				}
 			]
 		}

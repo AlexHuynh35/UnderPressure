@@ -1,0 +1,17 @@
+{
+	"name": "SolidObstacles",
+	"plugin-id": "Tilemap",
+	"sid": 151537686387454,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "solid",
+			"name": "Solid",
+			"sid": 132076214865175
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"CaveWallTileSheet"
+	]
+}
