@@ -8,6 +8,10 @@
 		{
 			"eventType": "include",
 			"includeSheet": "Inventory"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "SoldierEnemy"
 		}
 	],
 	"sid": 780951856463289

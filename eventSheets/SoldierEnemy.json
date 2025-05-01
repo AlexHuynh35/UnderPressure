@@ -354,9 +354,163 @@
 							]
 						}
 					]
+				},
+				{
+					"functionName": "SetUpSoldierScideStats",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "EnemyName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 564512644115476
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 900312378942934,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 433943203608306,
+									"parameters": {
+										"object": "SoldierArmoredScide"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 542658620240889,
+									"parameters": {
+										"instance-variable": "Armor",
+										"value": "SoldierEnemyStats.Get(EnemyName & \".Armor\")"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 716122874256019,
+									"parameters": {
+										"instance-variable": "Damage",
+										"value": "SoldierEnemyStats.Get(EnemyName & \".Damage\")"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 486265282764250,
+									"parameters": {
+										"instance-variable": "Health",
+										"value": "SoldierEnemyStats.Get(EnemyName & \".Health\")"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 718609542816941,
+									"parameters": {
+										"instance-variable": "Weight",
+										"value": "SoldierEnemyStats.Get(EnemyName & \".Weight\")"
+									}
+								},
+								{
+									"id": "set-max-speed",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 827700183779842,
+									"behaviorType": "8Direction",
+									"parameters": {
+										"max-speed": "SoldierEnemyStats.Get(EnemyName & \".Speed\")"
+									}
+								},
+								{
+									"id": "set-acceleration",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 988434726420724,
+									"behaviorType": "8Direction",
+									"parameters": {
+										"acceleration": "10000"
+									}
+								},
+								{
+									"id": "set-deceleration",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 417486535303268,
+									"behaviorType": "8Direction",
+									"parameters": {
+										"deceleration": "10000"
+									}
+								}
+							],
+							"sid": 328439652354649
+						}
+					]
 				}
 			],
 			"sid": 521878718355977
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "SoldierRot",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 902057753701927
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "SoldierRot",
+							"sid": 795720278314048,
+							"behaviorType": "Bullet",
+							"parameters": {
+								"angle": "angle(SoldierRot.X, SoldierRot.Y, Player.X, Player.Y)"
+							}
+						}
+					],
+					"sid": 438393344907106
+				}
+			],
+			"sid": 776999634444325
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 746965940976317
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "SetUpSoldierScideStats",
+					"sid": 237277399510051,
+					"parameters": [
+						"\"SoldierArmoredScide\""
+					]
+				}
+			],
+			"sid": 871706180588018
 		}
 	],
 	"sid": 173171497003014

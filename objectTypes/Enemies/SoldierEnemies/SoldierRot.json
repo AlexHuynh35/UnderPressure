@@ -4,8 +4,22 @@
 	"sid": 457315149830451,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [],
-	"behaviorTypes": [],
+	"instanceVariables": [
+		{
+			"name": "Speed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 898322606292924
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Bullet",
+			"name": "Bullet",
+			"sid": 586016708243892
+		}
+	],
 	"effectTypes": [],
 	"animations": {
 		"items": [

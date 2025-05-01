@@ -1,0 +1,8 @@
+{
+	"name": "HelperDictionary",
+	"plugin-id": "Dictionary",
+	"sid": 550416138695171,
+	"isGlobal": true,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": []
+}

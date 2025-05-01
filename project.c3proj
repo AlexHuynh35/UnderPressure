@@ -78,6 +78,13 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Bullet",
+			"name": "Bullet",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "EightDir",
 			"name": "8 Direction",
 			"author": "Scirra",
@@ -127,7 +134,8 @@
 			"AJAX",
 			"Camera",
 			"Direction",
-			"Browser"
+			"Browser",
+			"HelperDictionary"
 		],
 		"subfolders": [
 			{

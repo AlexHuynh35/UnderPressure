@@ -11,6 +11,13 @@
 			"desc": "",
 			"show": true,
 			"sid": 649202163863233
+		},
+		{
+			"name": "Speed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 985305333312556
 		}
 	],
 	"behaviorTypes": [

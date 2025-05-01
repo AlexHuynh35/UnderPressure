@@ -644,6 +644,14 @@
 			"instanceVariables": {
 				"Loaded": false
 			}
+		},
+		{
+			"type": "HelperDictionary",
+			"properties": {},
+			"uid": 19,
+			"sid": 553985372478541,
+			"tags": "",
+			"instanceVariables": {}
 		}
 	],
 	"effectTypes": [],
