@@ -35,17 +35,7 @@
 									}
 								}
 							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "SoldierArmoredScide",
-									"sid": 671590589896212,
-									"parameters": {
-										"animation": "\"Vertical\"",
-										"from": "beginning"
-									}
-								}
-							],
+							"actions": [],
 							"sid": 810694381633731,
 							"children": [
 								{
@@ -101,17 +91,7 @@
 									"sid": 825343251546965
 								}
 							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "SoldierArmoredScide",
-									"sid": 567087127601899,
-									"parameters": {
-										"animation": "\"Horizontal\"",
-										"from": "beginning"
-									}
-								}
-							],
+							"actions": [],
 							"sid": 744097176927396,
 							"children": [
 								{
@@ -244,8 +224,8 @@
 										{
 											"id": "set-active",
 											"objectClass": "SoldierArmoredScide",
-											"sid": 297682673665932,
-											"behaviorType": "Sine",
+											"sid": 711887367093808,
+											"behaviorType": "SineV",
 											"parameters": {
 												"state": "inactive"
 											}
@@ -253,8 +233,8 @@
 										{
 											"id": "set-active",
 											"objectClass": "SoldierArmoredScide",
-											"sid": 567028158179968,
-											"behaviorType": "Sine2",
+											"sid": 779996933014348,
+											"behaviorType": "SineH",
 											"parameters": {
 												"state": "active"
 											}
@@ -333,8 +313,8 @@
 										{
 											"id": "set-active",
 											"objectClass": "SoldierArmoredScide",
-											"sid": 297652826310647,
-											"behaviorType": "Sine2",
+											"sid": 780538765547911,
+											"behaviorType": "SineH",
 											"parameters": {
 												"state": "inactive"
 											}
@@ -342,8 +322,8 @@
 										{
 											"id": "set-active",
 											"objectClass": "SoldierArmoredScide",
-											"sid": 197238446508531,
-											"behaviorType": "Sine",
+											"sid": 965869258839236,
+											"behaviorType": "SineV",
 											"parameters": {
 												"state": "active"
 											}
@@ -451,9 +431,103 @@
 									"parameters": {
 										"deceleration": "10000"
 									}
+								},
+								{
+									"id": "set-default-controls",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 567187807769617,
+									"behaviorType": "8Direction",
+									"parameters": {
+										"default-controls": false
+									}
+								},
+								{
+									"id": "set-movement",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 833852639570581,
+									"behaviorType": "SineH",
+									"parameters": {
+										"movement": "horizontal"
+									}
+								},
+								{
+									"id": "set-magnitude",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 184922650121933,
+									"behaviorType": "SineH",
+									"parameters": {
+										"magnitude": "4"
+									}
+								},
+								{
+									"id": "set-movement",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 142209410394045,
+									"behaviorType": "SineV",
+									"parameters": {
+										"movement": "vertical"
+									}
+								},
+								{
+									"id": "set-magnitude",
+									"objectClass": "SoldierArmoredScide",
+									"sid": 189931515633664,
+									"behaviorType": "SineV",
+									"parameters": {
+										"magnitude": "4"
+									}
 								}
 							],
-							"sid": 328439652354649
+							"sid": 328439652354649,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "SoldierArmoredScide",
+											"sid": 386971814504700,
+											"parameters": {
+												"instance-variable": "IsVertical"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "SoldierArmoredScide",
+											"sid": 612610251589581,
+											"parameters": {
+												"animation": "\"Vertical\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 344720363942468
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 187215359409634
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "SoldierArmoredScide",
+											"sid": 609685370221940,
+											"parameters": {
+												"animation": "\"Horizontal\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 699514847001556
+								}
+							]
 						}
 					]
 				}

@@ -28,12 +28,12 @@
 		},
 		{
 			"behaviorId": "Sin",
-			"name": "Sine",
+			"name": "SineH",
 			"sid": 545588964758716
 		},
 		{
 			"behaviorId": "Sin",
-			"name": "Sine2",
+			"name": "SineV",
 			"sid": 877121571814020
 		}
 	],
