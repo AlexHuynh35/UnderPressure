@@ -19,7 +19,7 @@ public class EntityManager : MonoBehaviour
     /* Lifecycle */
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
