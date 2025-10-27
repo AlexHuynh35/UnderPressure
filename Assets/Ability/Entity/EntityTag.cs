@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Flags]
-public enum ObjectTag
+public enum EntityTag
 {
     None = 0,
     Player = 1 << 0,
@@ -12,4 +12,5 @@ public enum ObjectTag
     Soldier = 1 << 5,
     SoftHitbox = 1 << 6,
     HardHitbox = 1 << 7,
+    PierceHitbox = 1 << 8,
 }

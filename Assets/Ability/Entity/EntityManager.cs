@@ -3,10 +3,12 @@ using UnityEngine;
 public class EntityManager : MonoBehaviour
 {
     [Header("Entity Metadata")]
-    public ObjectTag tags;
+    public EntityTag tags;
 
     [Header("Cached Components")]
     public Rigidbody2D rb;
+    public AbilityManager abilityManager;
+    public EffectManager effectManager;
 
     [Header("Combat Stats")]
     public float health;
@@ -19,7 +21,7 @@ public class EntityManager : MonoBehaviour
     /* Lifecycle */
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
     }
 
     void Update()

@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 64923296}
   - component: {fileID: 64923299}
+  - component: {fileID: 64923301}
   - component: {fileID: 64923300}
   - component: {fileID: 64923298}
   - component: {fileID: 64923297}
@@ -242,7 +243,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: 1
-  rb: {fileID: 0}
+  rb: {fileID: 64923298}
+  abilityManager: {fileID: 0}
+  effectManager: {fileID: 64923301}
   health: 10
   maxHealth: 10
   speed: 5
@@ -259,6 +262,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18681695c576c4658bc0fd0187d9d60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &64923301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64923295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2ba2f91910b47baa835049565a629c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &191027454
