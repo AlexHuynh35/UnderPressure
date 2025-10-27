@@ -1,17 +1,16 @@
+using Unity.IntegerTime;
 using UnityEngine;
 
 public abstract class EffectInstance
 {
-    public int maxStacks;
     public EntityManager source;
 
-    protected EffectInstance(int maxStacks, EntityManager source)
+    protected EffectInstance(EntityManager source)
     {
-        this.maxStacks = maxStacks;
         this.source = source;
     }
 
-    public virtual void OnTick(EntityManager target, float deltaTime, int index) { }
+    public virtual void OnTick(EntityManager target, float deltaTime) { }
 
     public virtual void Apply(EntityManager target) { }
 
@@ -26,21 +25,18 @@ public abstract class AreaEffectInstance : EffectInstance
     protected float timeUntilTick;
     protected bool isExpired = false;
 
-    protected AreaEffectInstance(float rate, int maxStacks, EntityManager source) : base(maxStacks, source)
+    protected AreaEffectInstance(float rate, EntityManager source) : base(source)
     {
         this.rate = rate;
         timeUntilTick = rate;
     }
 
-    public override void OnTick(EntityManager target, float deltaTime, int index)
+    public override void OnTick(EntityManager target, float deltaTime)
     {
         timeUntilTick -= deltaTime;
         if (timeUntilTick <= 0)
         {
-            if (index < maxStacks)
-            {
-                Apply(target);
-            }
+            Apply(target);
             timeUntilTick = rate;
         }
     }
@@ -63,23 +59,20 @@ public abstract class StatusEffectInstance : EffectInstance
     protected float timeUntilTick;
     protected float elapsedTime = 0;
 
-    protected StatusEffectInstance(float rate, float duration, int maxStacks, EntityManager source) : base(maxStacks, source)
+    protected StatusEffectInstance(float rate, float duration, EntityManager source) : base(source)
     {
         this.rate = rate;
         this.duration = duration;
         timeUntilTick = rate;
     }
 
-    public override void OnTick(EntityManager target, float deltaTime, int index)
+    public override void OnTick(EntityManager target, float deltaTime)
     {
         elapsedTime += deltaTime;
         timeUntilTick -= deltaTime;
         if (timeUntilTick <= 0)
         {
-            if (index < maxStacks)
-            {
-                Apply(target);
-            }
+            Apply(target);
             timeUntilTick = rate;
         }
     }

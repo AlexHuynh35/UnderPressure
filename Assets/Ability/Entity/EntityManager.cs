@@ -1,3 +1,4 @@
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class EntityManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class EntityManager : MonoBehaviour
     [Header("Combat Stats")]
     public float health;
     public float maxHealth;
+    public int armor;
     public float speed;
     public float maxSpeed;
     public int stunned;
@@ -21,17 +23,23 @@ public class EntityManager : MonoBehaviour
     /* Lifecycle */
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
     /* Combat */
     public void ApplyDamage(float amount)
     {
+        if (armor > 0)
+        {
+            armor--;
+            return;
+        }
+        
         health = Mathf.Max(0, health - amount);
 
         if (health <= 0)
@@ -63,9 +71,9 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    public void ApplyHeal(float amount, float capMultiplier)
+    public void ApplyHeal(float amount)
     {
-        health = Mathf.Max(health, Mathf.Min(maxHealth * capMultiplier, health + amount));
+        health = Mathf.Min(maxHealth, health + amount);
     }
 
     public void ChangeMovement(float amount)

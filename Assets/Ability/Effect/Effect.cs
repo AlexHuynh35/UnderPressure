@@ -25,13 +25,7 @@ public abstract class Effect
 public abstract class AreaEffect : Effect
 {
     public float rate;
-    protected int maxStacks = int.MaxValue;
-    public virtual int MaxStacks
-    {
-        get => maxStacks;
-        protected set => maxStacks = value;
-    }
-    protected Dictionary<EntityManager, AreaEffectInstance> activeTicks = new();
+    private Dictionary<EntityManager, AreaEffectInstance> activeTicks = new();
 
     protected AreaEffect(float rate, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
     {
@@ -40,9 +34,9 @@ public abstract class AreaEffect : Effect
 
     public override void OnEnter(EntityManager target)
     {
-        AreaEffectInstance ticking = CreateTickingEffect(target);
+        AreaEffectInstance ticking = CreateTickingEffect();
         activeTicks[target] = ticking;
-        if (target.effectManager.AddEffect(ticking, maxStacks)) OnMaxStack(target);
+        target.effectManager.AddEffect(ticking);
     }
 
     public override void OnLeave(EntityManager target)
@@ -60,40 +54,25 @@ public abstract class AreaEffect : Effect
         }
     }
 
-    protected virtual void OnMaxStack(EntityManager target) { }
-
-    protected abstract AreaEffectInstance CreateTickingEffect(EntityManager target);
+    protected abstract AreaEffectInstance CreateTickingEffect();
 }
 
 public abstract class StatusEffect : Effect
 {
     public float rate;
     public float duration;
-    public float chance;
-    protected int maxStacks = int.MaxValue;
-    public virtual int MaxStacks
-    {
-        get => maxStacks;
-        protected set => maxStacks = value;
-    }
 
-    protected StatusEffect(float rate, float duration, float chance, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
+    protected StatusEffect(float rate, float duration, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
     {
         this.rate = rate;
         this.duration = duration;
-        this.chance = chance;
     }
 
     public override void OnEnter(EntityManager target)
     {
-        if (Random.value < chance)
-        {
-            StatusEffectInstance ticking = CreateTickingEffect(target);
-            if (target.effectManager.AddEffect(ticking, maxStacks)) OnMaxStack(target);
-        }
+        StatusEffectInstance ticking = CreateTickingEffect();
+        target.effectManager.AddEffect(ticking);
     }
 
-    protected virtual void OnMaxStack(EntityManager target) { }
-
-    protected abstract StatusEffectInstance CreateTickingEffect(EntityManager target);
+    protected abstract StatusEffectInstance CreateTickingEffect();
 }
