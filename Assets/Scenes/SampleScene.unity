@@ -248,6 +248,7 @@ MonoBehaviour:
   effectManager: {fileID: 64923301}
   health: 10
   maxHealth: 10
+  armor: 0
   speed: 5
   maxSpeed: 5
   stunned: 1
