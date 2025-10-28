@@ -21,7 +21,6 @@ public struct AbilityTimer
     public float cooldownTimer;
     public float sustainTimer;
     public float castTimer;
-    public Vector2 lockedOrientation;
 }
 
 [System.Serializable]
@@ -35,9 +34,11 @@ public class AbilitySlot
 public class AbilityManager : MonoBehaviour
 {
     public List<AbilitySlot> slots;
-    private List<AbilityTimer> timers;
-    private EntityManager caster;
-    private int numSlots;
+    protected List<AbilityTimer> timers;
+    protected EntityManager caster;
+    protected int numSlots;
+    protected Vector2 aimLocation;
+    protected Vector2 lockedAimLocation;
 
     void Start()
     {
@@ -61,14 +62,20 @@ public class AbilityManager : MonoBehaviour
 
     void Update()
     {
+        SetAimLocation();
+        
         UpdateAbilities();
         if (caster.stunned == 0 || caster.silenced == 0)
         {
             InterruptAbilities();
             return;
         }
+
+        StartAbility();
+        ReleaseAbility();
     }
 
+    protected virtual void SetAimLocation() { }
     protected virtual void StartAbility() { }
     protected virtual void ReleaseAbility() { }
     protected virtual void UpdateAbilities() { }
