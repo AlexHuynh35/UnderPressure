@@ -11,7 +11,7 @@ public class HitboxManager : MonoBehaviour
     private bool targetSelf;
     private bool destroyOnHit;
 
-    public void Initialize(GameObject owner, List<Effect> effects, HitboxShape shape, HitboxMovement movement, float lifetime, bool targetSelf, bool destroyOnHit, Vector2 position, Quaternion rotation)
+    public void Initialize(GameObject owner, List<Effect> effects, HitboxShape shape, HitboxMovement movement, float lifetime, bool targetSelf, bool destroyOnHit)
     {
         this.owner = owner;
         this.effects = effects;
@@ -20,8 +20,6 @@ public class HitboxManager : MonoBehaviour
         this.lifetime = lifetime;
         this.targetSelf = targetSelf;
         this.destroyOnHit = destroyOnHit;
-        transform.position = position;
-        transform.rotation = rotation;
     }
 
     void Start()
@@ -80,6 +78,6 @@ public class HitboxManager : MonoBehaviour
 
     public void DestroyHitbox()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

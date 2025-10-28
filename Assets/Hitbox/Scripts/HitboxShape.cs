@@ -90,6 +90,10 @@ public class ConeShape : HitboxShape
         {
             circle.radius = radius;
         }
+        if (renderer != null)
+        {
+            renderer.transform.localScale = new Vector2(radius * 2f, radius * 2f);
+        }
         else
         {
             Debug.LogError("ConeShape needs a CircleCollider2D!");

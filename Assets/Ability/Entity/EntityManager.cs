@@ -19,6 +19,7 @@ public class EntityManager : MonoBehaviour
     public float maxSpeed;
     public int stunned;
     public int silenced;
+    public Vector2 orientation;
 
     /* Lifecycle */
     void Start()

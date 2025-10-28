@@ -44,9 +44,10 @@ public class AbilityManager : MonoBehaviour
     {
         numSlots = slots.Count;
         caster = GetComponent<EntityManager>();
+        timers = new List<AbilityTimer>(slots.Count);
         for (int i = 0; i < numSlots; i++)
         {
-            var timer = new AbilityTimer
+            AbilityTimer timer = new AbilityTimer
             {
                 state = AbilityState.Ready,
                 chargeTimer = 0,
@@ -56,7 +57,7 @@ public class AbilityManager : MonoBehaviour
                 sustainTimer = 0,
                 castTimer = 0
             };
-            timers[i] = timer;
+            timers.Add(timer);
         }
     }
 

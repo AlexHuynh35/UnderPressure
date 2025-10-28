@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 64923296}
   - component: {fileID: 64923299}
   - component: {fileID: 64923301}
+  - component: {fileID: 64923302}
   - component: {fileID: 64923300}
   - component: {fileID: 64923298}
   - component: {fileID: 64923297}
@@ -244,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags: 1
   rb: {fileID: 64923298}
-  abilityManager: {fileID: 0}
+  abilityManager: {fileID: 64923302}
   effectManager: {fileID: 64923301}
   health: 10
   maxHealth: 10
@@ -277,6 +278,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2ba2f91910b47baa835049565a629c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &64923302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64923295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97f85186bd0c48208bd4d3de81412e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots:
+  - inputKey: 323
+    abilities:
+    - {fileID: 11400000, guid: 1a6d8473c6bac4465b117fe255fa3ad0, type: 2}
+    - {fileID: 11400000, guid: f67733c157de94df397488ded07effe2, type: 2}
+    - {fileID: 11400000, guid: dfdb6a08199dc4a309b16343a0e160ed, type: 2}
+    mode: 0
 --- !u!1 &191027454
 GameObject:
   m_ObjectHideFlags: 0
