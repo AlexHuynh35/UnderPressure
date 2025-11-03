@@ -254,6 +254,7 @@ MonoBehaviour:
   maxSpeed: 5
   stunned: 1
   silenced: 1
+  orientation: {x: 0, y: 0}
 --- !u!114 &64923300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +297,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1a6d8473c6bac4465b117fe255fa3ad0, type: 2}
     - {fileID: 11400000, guid: f67733c157de94df397488ded07effe2, type: 2}
     - {fileID: 11400000, guid: dfdb6a08199dc4a309b16343a0e160ed, type: 2}
+    mode: 0
+  - inputKey: 324
+    abilities:
+    - {fileID: 11400000, guid: ddbe5e663e1164003981e6c79c112d76, type: 2}
+    - {fileID: 11400000, guid: b40ab5e39d133481c99753deb17ddc0c, type: 2}
     mode: 0
 --- !u!1 &191027454
 GameObject:
