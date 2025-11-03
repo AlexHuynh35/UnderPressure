@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     
     private Vector2 GetMovementDirection()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.W))
             player.orientation = Vector2.up;

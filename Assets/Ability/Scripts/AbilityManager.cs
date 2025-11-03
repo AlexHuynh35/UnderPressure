@@ -23,14 +23,6 @@ public struct AbilityTimer
     public float castTimer;
 }
 
-[System.Serializable]
-public class AbilitySlot
-{
-    public KeyCode inputKey;
-    public List<Ability> abilities;
-    public int mode;
-}
-
 public class AbilityManager : MonoBehaviour
 {
     public List<AbilitySlot> slots;
