@@ -6,6 +6,7 @@ public class AxeFinal : Ability
 {
     [Header("Ability Stats")]
     public float damage;
+    public bool piercing;
 
     [Header("Hitboxes")]
     public float radius;
@@ -13,13 +14,13 @@ public class AxeFinal : Ability
 
     public override void OnPress(EntityManager caster, Vector2 direction)
     {
-        Effect movementEffect = new MovementEffect(magnitude: 0f, source: caster, allowedTags: EntityTag.Player);
+        Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }
 
     public override void OnRelease(EntityManager caster, Vector2 direction)
     {
-        Effect movementEffect = new MovementEffect(magnitude: 1f, source: caster, allowedTags: EntityTag.Player);
+        Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }
 
@@ -27,7 +28,7 @@ public class AxeFinal : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageAreaEffect(magnitude: damage, rate: 0.25f, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy)
+            new DamageAreaEffect(damage: damage, piercing: piercing, rate: 0.25f, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy)
         };
         HitboxShape shape = new CircleShape(radius: radius);
         HitboxMovement movement = new FollowMovement(following: caster, offset: Vector2.zero);

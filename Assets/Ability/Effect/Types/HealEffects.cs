@@ -2,75 +2,75 @@ using UnityEngine;
 
 public class HealEffect : Effect
 {
-    public float magnitude;
+    public float heal;
 
-    public HealEffect(float magnitude, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
+    public HealEffect(float heal, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.heal = heal;
     }
 
     public override void OnEnter(EntityManager target)
     {
-        target.ApplyHeal(magnitude);
+        target.ApplyHeal(heal);
     }
 }
 
 public class HealAreaEffect : AreaEffect
 {
-    public float magnitude;
+    public float heal;
 
-    public HealAreaEffect(float magnitude, float rate, EntityManager source, EntityTag allowedTags) : base(rate, source, allowedTags)
+    public HealAreaEffect(float heal, float rate, EntityManager source, EntityTag allowedTags) : base(rate, source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.heal = heal;
     }
 
     protected override AreaEffectInstance CreateTickingEffect()
     {
-        return new HealAreaEffectInstance(magnitude, rate, source);
+        return new HealAreaEffectInstance(heal, rate, source);
     }
 }
 
 public class HealAreaEffectInstance : AreaEffectInstance
 {
-    public float magnitude;
+    public float heal;
 
-    public HealAreaEffectInstance(float magnitude, float rate, EntityManager source) : base(rate, source)
+    public HealAreaEffectInstance(float heal, float rate, EntityManager source) : base(rate, source)
     {
-        this.magnitude = magnitude;
+        this.heal = heal;
     }
 
     public override void Apply(EntityManager target)
     {
-        target.ApplyHeal(magnitude);
+        target.ApplyHeal(heal);
     }
 }
 
 public class HealStatusEffect : StatusEffect
 {
-    public float magnitude;
+    public float heal;
     
-    public HealStatusEffect(float magnitude, float rate, float duration, EntityManager source, EntityTag allowedTags) : base(rate, duration, source, allowedTags)
+    public HealStatusEffect(float heal, float rate, float duration, EntityManager source, EntityTag allowedTags) : base(rate, duration, source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.heal = heal;
     }
 
     protected override StatusEffectInstance CreateTickingEffect()
     {
-        return new HealStatusEffectInstance(magnitude, rate, duration, source);
+        return new HealStatusEffectInstance(heal, rate, duration, source);
     }
 }
 
 public class HealStatusEffectInstance : StatusEffectInstance
 {
-    public float magnitude;
+    public float heal;
 
-    public HealStatusEffectInstance(float magnitude, float rate, float duration, EntityManager source) : base(rate, duration, source)
+    public HealStatusEffectInstance(float heal, float rate, float duration, EntityManager source) : base(rate, duration, source)
     {
-        this.magnitude = magnitude;
+        this.heal = heal;
     }
 
     public override void Apply(EntityManager target)
     {
-        target.ApplyHeal(magnitude);
+        target.ApplyHeal(heal);
     }
 }

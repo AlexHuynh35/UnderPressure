@@ -6,6 +6,7 @@ public class AxeAttack : Ability
 {
     [Header("Ability Stats")]
     public float damage;
+    public bool piercing;
 
     [Header("Hitboxes")]
     public float width;
@@ -14,7 +15,7 @@ public class AxeAttack : Ability
 
     public override void OnPress(EntityManager caster, Vector2 direction)
     {
-        Effect movementEffect = new MovementEffect(magnitude: 0f, source: caster, allowedTags: EntityTag.Player);
+        Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }
 
@@ -22,7 +23,7 @@ public class AxeAttack : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageEffect(magnitude: damage, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy)
+            new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy)
         };
         HitboxShape shape = new BoxShape(x: width, y: height);
         HitboxMovement movement = new FollowMovement(following: caster, offset: Vector2.zero);
@@ -41,7 +42,7 @@ public class AxeAttack : Ability
     
     public override void EndActive(EntityManager caster)
     {
-        Effect movementEffect = new MovementEffect(magnitude: 1f, source: caster, allowedTags: EntityTag.Player);
+        Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }
 }

@@ -2,75 +2,85 @@ using UnityEngine;
 
 public class DamageEffect : Effect
 {
-    public float magnitude;
+    public float damage;
+    public bool piercing;
     
-    public DamageEffect(float magnitude, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
+    public DamageEffect(float damage, bool piercing, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.damage = damage;
+        this.piercing = piercing;
     }
 
     public override void OnEnter(EntityManager target)
     {
-        target.ApplyDamage(magnitude);
+        target.ApplyDamage(damage, piercing);
     }
 }
 
 public class DamageAreaEffect : AreaEffect
 {
-    public float magnitude;
+    public float damage;
+    public bool piercing;
 
-    public DamageAreaEffect(float magnitude, float rate, EntityManager source, EntityTag allowedTags) : base(rate, source, allowedTags)
+    public DamageAreaEffect(float damage, bool piercing, float rate, EntityManager source, EntityTag allowedTags) : base(rate, source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.damage = damage;
+        this.piercing = piercing;
     }
 
     protected override AreaEffectInstance CreateTickingEffect()
     {
-        return new DamageAreaEffectInstance(magnitude, rate, source);
+        return new DamageAreaEffectInstance(damage, piercing, rate, source);
     }
 }
 
 public class DamageAreaEffectInstance : AreaEffectInstance
 {
-    public float magnitude;
+    public float damage;
+    public bool piercing;
 
-    public DamageAreaEffectInstance(float magnitude, float rate, EntityManager source) : base(rate, source)
+    public DamageAreaEffectInstance(float damage, bool piercing, float rate, EntityManager source) : base(rate, source)
     {
-        this.magnitude = magnitude;
+        this.damage = damage;
+        this.piercing = piercing;
     }
 
     public override void Apply(EntityManager target)
     {
-        target.ApplyDamage(magnitude);
+        target.ApplyDamage(damage, piercing);
     }
 }
 
 public class DamageStatusEffect : StatusEffect
 {
-    public float magnitude;
+    public float damage;
+    public bool piercing;
 
-    public DamageStatusEffect(float magnitude, float rate, float duration, EntityManager source, EntityTag allowedTags) : base(rate, duration, source, allowedTags)
+    public DamageStatusEffect(float damage, bool piercing, float rate, float duration, EntityManager source, EntityTag allowedTags) : base(rate, duration, source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.damage = damage;
+        this.piercing = piercing;
     }
 
     protected override StatusEffectInstance CreateTickingEffect()
     {
-        return new DamageStatusEffectInstance(magnitude, rate, duration, source);
+        return new DamageStatusEffectInstance(damage, piercing, rate, duration, source);
     }
 }
 
 public class DamageStatusEffectInstance : StatusEffectInstance
 {
-    public float magnitude;
+    public float damage;
+    public bool piercing;
 
-    public DamageStatusEffectInstance(float magnitude, float rate, float duration, EntityManager source) : base(rate, duration, source)
+    public DamageStatusEffectInstance(float damage, bool piercing, float rate, float duration, EntityManager source) : base(rate, duration, source)
     {
-        this.magnitude = magnitude;
+        this.damage = damage;
+        this.piercing = piercing;
     }
 
     public override void Apply(EntityManager target)
     {
-        target.ApplyDamage(magnitude);
+        target.ApplyDamage(damage, piercing);
     }
 }

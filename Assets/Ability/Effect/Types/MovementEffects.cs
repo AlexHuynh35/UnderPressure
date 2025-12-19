@@ -2,87 +2,87 @@ using UnityEngine;
 
 public class MovementEffect : Effect
 {
-    public float magnitude;
+    public float boost;
     
-    public MovementEffect(float magnitude, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
+    public MovementEffect(float boost, EntityManager source, EntityTag allowedTags) : base(source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.boost = boost;
     }
 
     public override void OnEnter(EntityManager target)
     {
-        target.ChangeMovement(magnitude);
+        target.ChangeMovement(boost);
     }
 }
 
 public class MovementAreaEffect : AreaEffect
 {
-    public float magnitude;
+    public float boost;
 
-    public MovementAreaEffect(float magnitude, float rate, EntityManager source, EntityTag allowedTags) : base(rate, source, allowedTags)
+    public MovementAreaEffect(float boost, float rate, EntityManager source, EntityTag allowedTags) : base(rate, source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.boost = boost;
     }
 
     public override void OnEnter(EntityManager target)
     {
         base.OnEnter(target);
-        target.ChangeMovement(magnitude);
+        target.ChangeMovement(boost);
     }
 
     protected override AreaEffectInstance CreateTickingEffect()
     {
-        return new MovementAreaEffectInstance(magnitude, rate, source);
+        return new MovementAreaEffectInstance(boost, rate, source);
     }
 }
 
 public class MovementAreaEffectInstance : AreaEffectInstance
 {
-    public float magnitude;
+    public float boost;
 
-    public MovementAreaEffectInstance(float magnitude, float rate, EntityManager source) : base(rate, source)
+    public MovementAreaEffectInstance(float boost, float rate, EntityManager source) : base(rate, source)
     {
-        this.magnitude = magnitude;
+        this.boost = boost;
     }
     
     public override void Revert(EntityManager target)
     {
-        target.ChangeMovement(1 / magnitude);
+        target.ChangeMovement(1 / boost);
     }
 }
 
 public class MovementStatusEffect : StatusEffect
 {
-    public float magnitude;
+    public float boost;
 
-    public MovementStatusEffect(float magnitude, float rate, float duration, EntityManager source, EntityTag allowedTags) : base(rate, duration, source, allowedTags)
+    public MovementStatusEffect(float boost, float rate, float duration, EntityManager source, EntityTag allowedTags) : base(rate, duration, source, allowedTags)
     {
-        this.magnitude = magnitude;
+        this.boost = boost;
     }
 
     public override void OnEnter(EntityManager target)
     {
         base.OnEnter(target);
-        target.ChangeMovement(magnitude);
+        target.ChangeMovement(boost);
     }
 
     protected override StatusEffectInstance CreateTickingEffect()
     {
-        return new MovementStatusEffectInstance(magnitude, rate, duration, source);
+        return new MovementStatusEffectInstance(boost, rate, duration, source);
     }
 }
 
 public class MovementStatusEffectInstance : StatusEffectInstance
 {
-    public float magnitude;
+    public float boost;
 
-    public MovementStatusEffectInstance(float magnitude, float rate, float duration, EntityManager source) : base(rate, duration, source)
+    public MovementStatusEffectInstance(float boost, float rate, float duration, EntityManager source) : base(rate, duration, source)
     {
-        this.magnitude = magnitude;
+        this.boost = boost;
     }
 
     public override void Revert(EntityManager target)
     {
-        target.ChangeMovement(1f / magnitude);
+        target.ChangeMovement(1f / boost);
     }
 }

@@ -33,9 +33,9 @@ public class EntityManager : MonoBehaviour
     }
 
     /* Combat */
-    public void ApplyDamage(float amount)
+    public void ApplyDamage(float amount, bool ignoreArmor)
     {
-        if (armor > 0)
+        if (armor > 0 && !ignoreArmor)
         {
             armor--;
             return;

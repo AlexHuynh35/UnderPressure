@@ -6,6 +6,7 @@ public class SwordFinal : Ability
 {
     [Header("Ability Stats")]
     public float damage;
+    public bool piercing;
     public float knockback;
 
     [Header("Hitboxes")]
@@ -16,7 +17,7 @@ public class SwordFinal : Ability
 
     public override void OnPress(EntityManager caster, Vector2 direction)
     {
-        Effect movementEffect = new MovementEffect(magnitude: 0f, source: caster, allowedTags: EntityTag.Player);
+        Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }
 
@@ -24,8 +25,8 @@ public class SwordFinal : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageEffect(magnitude: damage * chargeTime, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
-            new KnockbackEffect(magnitude: knockback, source: caster, allowedTags: EntityTag.Soldier),
+            new DamageEffect(damage: damage * chargeTime, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
+            new KnockbackEffect(force: knockback, source: caster, allowedTags: EntityTag.Soldier),
 
         };
         HitboxShape shape = new BoxShape(x: width, y: height);
@@ -45,7 +46,7 @@ public class SwordFinal : Ability
 
     public override void EndActive(EntityManager caster)
     {
-        Effect movementEffect = new MovementEffect(magnitude: 1f, source: caster, allowedTags: EntityTag.Player);
+        Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }
 }
