@@ -217,7 +217,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 15
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -250,11 +250,11 @@ MonoBehaviour:
   health: 10
   maxHealth: 10
   armor: 0
-  speed: 5
-  maxSpeed: 5
+  speed: 100
+  maxSpeed: 100
   stunned: 1
   silenced: 1
-  orientation: {x: 0, y: 0}
+  orientation: {x: 1, y: 0}
 --- !u!114 &64923300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +301,14 @@ MonoBehaviour:
   - inputKey: 324
     abilities:
     - {fileID: 11400000, guid: ddbe5e663e1164003981e6c79c112d76, type: 2}
+    - {fileID: 11400000, guid: 96f568d319c19476bbbd70763a1124a4, type: 2}
     - {fileID: 11400000, guid: b40ab5e39d133481c99753deb17ddc0c, type: 2}
+    mode: 0
+  - inputKey: 326
+    abilities:
+    - {fileID: 11400000, guid: 86af8d74db46d4aa48638e9e6cca23bc, type: 2}
+    - {fileID: 11400000, guid: 6d703c79a15114bf9917b29f48078d3f, type: 2}
+    - {fileID: 11400000, guid: 30794c293971649d29560f8c89e8d51e, type: 2}
     mode: 0
 --- !u!1 &191027454
 GameObject:

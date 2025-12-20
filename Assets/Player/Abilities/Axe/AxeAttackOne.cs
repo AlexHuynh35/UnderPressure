@@ -1,18 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "SwordFinal", menuName = "Abilities/Justine/SwordFinal", order = 2)]
-public class SwordFinal : Ability
+[CreateAssetMenu(fileName = "AxeAttackOne", menuName = "Abilities/Justine/AxeAttackOne", order = 3)]
+public class AxeAttackOne : Ability
 {
     [Header("Ability Stats")]
     public float damage;
     public bool piercing;
-    public float knockback;
 
     [Header("Hitboxes")]
     public float width;
     public float height;
-    public float speed;
     public GameObject hitboxPrefab;
 
     public override void OnPress(EntityManager caster, Vector2 direction)
@@ -25,13 +23,11 @@ public class SwordFinal : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageEffect(damage: damage * chargeTime, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
-            new KnockbackEffect(force: knockback, source: caster, allowedTags: EntityTag.Soldier),
-
+            new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy)
         };
         HitboxShape shape = new BoxShape(x: width, y: height);
-        HitboxMovement movement = new StraightMovement(speed: speed, direction: caster.orientation);
-        HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(caster.orientation.y, caster.orientation.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+        HitboxMovement movement = new FollowMovement(following: caster, offset: (Vector3)caster.orientation * 0.5f * width);
+        HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position + ((Vector3)caster.orientation * 0.5f * width), Quaternion.Euler(0, 0, Mathf.Atan2(caster.orientation.y, caster.orientation.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
         attack.Initialize
         (
             owner: caster.gameObject,
@@ -43,7 +39,7 @@ public class SwordFinal : Ability
             destroyOnHit: false
         );
     }
-
+    
     public override void EndActive(EntityManager caster)
     {
         Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);

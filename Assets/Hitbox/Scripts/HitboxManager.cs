@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class HitboxManager : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class HitboxManager : MonoBehaviour
             }
         }
 
-        if (destroyOnHit)
+        if (destroyOnHit && effects.Select(effect => effect.CanApplyTo(target)).Any(x => x))
         {
             DestroyHitbox();
         }

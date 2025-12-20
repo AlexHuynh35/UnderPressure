@@ -1,16 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "AxeAttack", menuName = "Abilities/Justine/AxeAttack", order = 3)]
-public class AxeAttack : Ability
+[CreateAssetMenu(fileName = "BowAttackOne", menuName = "Abilities/Justine/BowAttackOne", order = 6)]
+public class BowAttackOne: Ability
 {
     [Header("Ability Stats")]
     public float damage;
     public bool piercing;
 
     [Header("Hitboxes")]
-    public float width;
-    public float height;
+    public float radius;
+    public float speed;
+    public float lifetime;
     public GameObject hitboxPrefab;
 
     public override void OnPress(EntityManager caster, Vector2 direction)
@@ -23,10 +24,10 @@ public class AxeAttack : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy)
+            new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
         };
-        HitboxShape shape = new BoxShape(x: width, y: height);
-        HitboxMovement movement = new FollowMovement(following: caster, offset: Vector2.zero);
+        HitboxShape shape = new CircleShape(radius: radius);
+        HitboxMovement movement = new StraightMovement(speed: speed, direction: caster.orientation);
         HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(caster.orientation.y, caster.orientation.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
         attack.Initialize
         (
@@ -34,12 +35,12 @@ public class AxeAttack : Ability
             effects: effects,
             shape: shape,
             movement: movement,
-            lifetime: 0.25f,
+            lifetime: lifetime,
             targetSelf: false,
-            destroyOnHit: false
+            destroyOnHit: true
         );
     }
-    
+
     public override void EndActive(EntityManager caster)
     {
         Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);
