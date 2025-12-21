@@ -64,7 +64,8 @@ public class AbilityManager : MonoBehaviour
             return;
         }
 
-        StartAbility();
+        if (!IsActive()) StartAbility();
+
         ReleaseAbility();
     }
 
@@ -73,4 +74,8 @@ public class AbilityManager : MonoBehaviour
     protected virtual void ReleaseAbility() { }
     protected virtual void UpdateAbilities() { }
     protected virtual void InterruptAbilities() { }
+    protected virtual bool IsActive()
+    {
+        return false;
+    }
 }

@@ -21,7 +21,8 @@ MonoBehaviour:
   castSpeed: 0
   damage: 15
   piercing: 1
-  knockback: 15
+  knockback: 30
+  charge: 5
   width: 3
   height: 2
   speed: 15

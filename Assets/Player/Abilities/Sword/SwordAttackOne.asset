@@ -20,7 +20,9 @@ MonoBehaviour:
   sustainSpeed: 0
   castSpeed: 0
   damage: 5
-  knockback: 5
+  piercing: 0
+  knockback: 10
+  charge: 5
   radius: 2
   angle: 90
   hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}

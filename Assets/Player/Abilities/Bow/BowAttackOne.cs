@@ -16,6 +16,33 @@ public class BowAttackOne: Ability
 
     public override void OnPress(EntityManager caster, Vector2 direction)
     {
+        Effect movementEffect = new MovementEffect(boost: 0.5f, source: caster, allowedTags: EntityTag.Player);
+        movementEffect.OnEnter(caster);
+    }
+
+    public override void WhileHold(EntityManager caster, Vector2 direction)
+    {
+        List<Effect> effects = new List<Effect>()
+        {
+            new DamageEffect(damage: damage / 2, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
+        };
+        HitboxShape shape = new CircleShape(radius: radius);
+        HitboxMovement movement = new StraightMovement(speed: speed, direction: caster.orientation);
+        HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(caster.orientation.y, caster.orientation.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+        attack.Initialize
+        (
+            owner: caster.gameObject,
+            effects: effects,
+            shape: shape,
+            movement: movement,
+            lifetime: lifetime,
+            targetSelf: false,
+            destroyOnHit: true
+        );
+    }
+
+    public override void OnRelease(EntityManager caster, Vector2 direction)
+    {
         Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }

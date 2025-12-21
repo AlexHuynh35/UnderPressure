@@ -8,6 +8,7 @@ public class SwordAttack : Ability
     public float damage;
     public bool piercing;
     public float knockback;
+    public float charge;
 
     [Header("Hitboxes")]
     public float radius;
@@ -38,6 +39,9 @@ public class SwordAttack : Ability
             targetSelf: false,
             destroyOnHit: false
         );
+
+        Effect chargeEffect = new ChargeEffect(force: charge, direction: caster.orientation, source: caster, allowedTags: EntityTag.Player);
+        chargeEffect.OnEnter(caster);
     }
 
     public override void EndActive(EntityManager caster)

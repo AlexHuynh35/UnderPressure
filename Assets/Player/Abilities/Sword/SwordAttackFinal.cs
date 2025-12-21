@@ -8,6 +8,7 @@ public class SwordAttackFinal : Ability
     public float damage;
     public bool piercing;
     public float knockback;
+    public float charge;
 
     [Header("Hitboxes")]
     public float width;
@@ -27,7 +28,6 @@ public class SwordAttackFinal : Ability
         {
             new DamageEffect(damage: damage * chargeTime, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
             new KnockbackEffect(force: knockback, source: caster, allowedTags: EntityTag.Soldier),
-
         };
         HitboxShape shape = new BoxShape(x: width, y: height);
         HitboxMovement movement = new StraightMovement(speed: speed, direction: caster.orientation);
@@ -42,6 +42,9 @@ public class SwordAttackFinal : Ability
             targetSelf: false,
             destroyOnHit: false
         );
+
+        Effect chargeEffect = new ChargeEffect(force: charge, direction: caster.orientation, source: caster, allowedTags: EntityTag.Player);
+        chargeEffect.OnEnter(caster);
     }
 
     public override void EndActive(EntityManager caster)

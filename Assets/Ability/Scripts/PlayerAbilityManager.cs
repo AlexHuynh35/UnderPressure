@@ -1,7 +1,14 @@
 using UnityEngine;
 
-public class PlayerAbilityManager: AbilityManager
+public class PlayerAbilityManager : AbilityManager
 {
+    public int maxModes;
+    public float timeBetweenMode;
+
+    private bool canQueueNext;
+    private int mode;
+    private float timerBetweenMode;
+
     protected override void SetAimLocation()
     {
         aimLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -16,13 +23,21 @@ public class PlayerAbilityManager: AbilityManager
 
             if (timer.state == AbilityState.Ready && Input.GetKeyDown(slot.inputKey))
             {
+                if (canQueueNext)
+                {
+                    canQueueNext = false;
+                    mode++;
+
+                    if (mode >= maxModes) mode = 0;
+                }
+
                 timer.state = AbilityState.Charge;
                 timer.chargeTimer = 0;
-                timer.sustainTimer = slot.abilities[slot.mode].sustainSpeed;
+                timer.sustainTimer = slot.abilities[mode].sustainSpeed;
 
                 timers[i] = timer;
 
-                slot.abilities[slot.mode].OnPress(caster, aimLocation);
+                slot.abilities[mode].OnPress(caster, aimLocation);
             }
         }
     }
@@ -37,12 +52,12 @@ public class PlayerAbilityManager: AbilityManager
             if (timer.state == AbilityState.Charge && Input.GetKeyUp(slot.inputKey))
             {
                 timer.state = AbilityState.Windup;
-                timer.windupTimer = slot.abilities[slot.mode].windupTime;
+                timer.windupTimer = slot.abilities[mode].windupTime;
 
                 timers[i] = timer;
                 lockedAimLocation = aimLocation;
 
-                slot.abilities[slot.mode].OnRelease(caster, aimLocation);
+                slot.abilities[mode].OnRelease(caster, aimLocation);
             }
         }
     }
@@ -54,7 +69,7 @@ public class PlayerAbilityManager: AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
-            Ability slot = slots[i].abilities[slots[i].mode];
+            Ability slot = slots[i].abilities[mode];
 
             switch (timer.state)
             {
@@ -92,6 +107,8 @@ public class PlayerAbilityManager: AbilityManager
                         timer.state = AbilityState.Cooldown;
                         timer.cooldownTimer = slot.cooldownTime;
                         slot.EndActive(caster);
+                        canQueueNext = true;
+                        timerBetweenMode = timeBetweenMode;
                     }
                     break;
 
@@ -106,6 +123,16 @@ public class PlayerAbilityManager: AbilityManager
 
             timers[i] = timer;
         }
+
+        if (canQueueNext)
+        {
+            timerBetweenMode -= dt;
+            if (timerBetweenMode <= 0)
+            {
+                canQueueNext = false;
+                mode = 0;
+            }
+        }
     }
 
     protected override void InterruptAbilities()
@@ -113,7 +140,7 @@ public class PlayerAbilityManager: AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
-            Ability slot = slots[i].abilities[slots[i].mode];
+            Ability slot = slots[i].abilities[mode];
 
             switch (timer.state)
             {
@@ -137,5 +164,15 @@ public class PlayerAbilityManager: AbilityManager
 
             timers[i] = timer;
         }
+    }
+
+    protected override bool IsActive()
+    {
+        bool isActive = false;
+        foreach (AbilityTimer timer in timers)
+        {
+            isActive = isActive || timer.state == AbilityState.Charge || timer.state == AbilityState.Windup || timer.state == AbilityState.Active;
+        }
+        return isActive;
     }
 }

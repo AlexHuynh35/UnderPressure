@@ -297,19 +297,18 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1a6d8473c6bac4465b117fe255fa3ad0, type: 2}
     - {fileID: 11400000, guid: f67733c157de94df397488ded07effe2, type: 2}
     - {fileID: 11400000, guid: dfdb6a08199dc4a309b16343a0e160ed, type: 2}
-    mode: 0
   - inputKey: 324
     abilities:
     - {fileID: 11400000, guid: ddbe5e663e1164003981e6c79c112d76, type: 2}
     - {fileID: 11400000, guid: 96f568d319c19476bbbd70763a1124a4, type: 2}
     - {fileID: 11400000, guid: b40ab5e39d133481c99753deb17ddc0c, type: 2}
-    mode: 0
   - inputKey: 326
     abilities:
     - {fileID: 11400000, guid: 86af8d74db46d4aa48638e9e6cca23bc, type: 2}
     - {fileID: 11400000, guid: 6d703c79a15114bf9917b29f48078d3f, type: 2}
     - {fileID: 11400000, guid: 30794c293971649d29560f8c89e8d51e, type: 2}
-    mode: 0
+  maxModes: 3
+  timeBetweenMode: 0.5
 --- !u!1 &191027454
 GameObject:
   m_ObjectHideFlags: 0

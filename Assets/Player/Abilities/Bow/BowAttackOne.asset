@@ -17,7 +17,7 @@ MonoBehaviour:
   windupTime: 0
   activeTime: 0.5
   cooldownTime: 0
-  sustainSpeed: 0
+  sustainSpeed: 1
   castSpeed: 0
   damage: 10
   piercing: 0
