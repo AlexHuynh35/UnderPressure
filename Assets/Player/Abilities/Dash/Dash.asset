@@ -9,18 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c57d99854c4b48668b37c7a49fe730b, type: 3}
-  m_Name: AxeAttackFinal
+  m_Script: {fileID: 11500000, guid: 0e9847deba4944e1db3135916a82ddb3, type: 3}
+  m_Name: Dash
   m_EditorClassIdentifier: 
-  name: Axe Final
-  maxChargeTime: 4
+  name: Dash
+  maxChargeTime: 0
   windupTime: 0
-  activeTime: 2
+  activeTime: 0.25
   cooldownTime: 0
   sustainSpeed: 0
   castSpeed: 0
-  damage: 5
-  piercing: 0
-  radius: 2
-  lifetime: 0.5
-  hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}
+  charge: 50

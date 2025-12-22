@@ -307,6 +307,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 86af8d74db46d4aa48638e9e6cca23bc, type: 2}
     - {fileID: 11400000, guid: 6d703c79a15114bf9917b29f48078d3f, type: 2}
     - {fileID: 11400000, guid: 30794c293971649d29560f8c89e8d51e, type: 2}
+  - inputKey: 32
+    abilities:
+    - {fileID: 11400000, guid: a15e9a69635064d099daaefb34f102c0, type: 2}
   maxModes: 3
   timeBetweenMode: 0.5
 --- !u!1 &191027454

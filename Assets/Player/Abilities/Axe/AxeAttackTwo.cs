@@ -14,7 +14,7 @@ public class AxeAttackTwo : Ability
     public float angle;
     public GameObject hitboxPrefab;
 
-    public override void OnPress(EntityManager caster, Vector2 direction)
+    public override void OnRelease(EntityManager caster, Vector2 direction)
     {
         Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);

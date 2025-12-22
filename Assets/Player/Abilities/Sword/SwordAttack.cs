@@ -15,11 +15,14 @@ public class SwordAttack : Ability
     public float angle;
     public GameObject hitboxPrefab;
 
-    public override void StartActive(EntityManager caster, Vector2 direction, float chargeTime)
+    public override void OnRelease(EntityManager caster, Vector2 direction)
     {
         Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
+    }
 
+    public override void StartActive(EntityManager caster, Vector2 direction, float chargeTime)
+    {
         List<Effect> effects = new List<Effect>()
         {
             new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),

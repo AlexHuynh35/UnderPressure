@@ -10,6 +10,7 @@ public class AxeAttackFinal : Ability
 
     [Header("Hitboxes")]
     public float radius;
+    public float lifetime;
     public GameObject hitboxPrefab;
 
     public override void OnPress(EntityManager caster, Vector2 direction)
@@ -39,7 +40,7 @@ public class AxeAttackFinal : Ability
             effects: effects,
             shape: shape,
             movement: movement,
-            lifetime: 0.25f * chargeTime,
+            lifetime: lifetime * chargeTime,
             targetSelf: false,
             destroyOnHit: false
         );
