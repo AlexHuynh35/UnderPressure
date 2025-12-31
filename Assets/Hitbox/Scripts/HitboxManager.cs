@@ -81,4 +81,9 @@ public class HitboxManager : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public HitboxMovement GetMovement()
+    {
+        return movement;
+    }
 }
