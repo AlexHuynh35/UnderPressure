@@ -13,6 +13,8 @@ public class Ability : ScriptableObject
     public float sustainSpeed;
     public float castSpeed;
 
+    [Header("Ability Range")]
+    public float range;
 
     public virtual bool ActivationCriteriaMet(EntityManager caster)
     {
