@@ -140,6 +140,7 @@ public class EnemyAbilityManager : AbilityManager
                     {
                         timer.state = AbilityState.Windup;
                         timer.windupTimer = slot.windupTime;
+                        lockedAimLocation = aimLocation;
                         slot.OnRelease(caster, aimLocation);
                     }
                     break;

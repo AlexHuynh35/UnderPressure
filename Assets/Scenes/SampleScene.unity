@@ -881,6 +881,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8003921987133124398, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
+      propertyPath: parryTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8171943314971239813, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
