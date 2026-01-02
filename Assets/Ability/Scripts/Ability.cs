@@ -9,7 +9,6 @@ public class Ability : ScriptableObject
     public float maxChargeTime;
     public float windupTime;
     public float activeTime;
-    public float cooldownTime;
     public float sustainSpeed;
     public float castSpeed;
 

@@ -106,7 +106,7 @@ public class PlayerAbilityManager : AbilityManager
                     if (timer.activeTimer <= 0)
                     {
                         timer.state = AbilityState.Cooldown;
-                        timer.cooldownTimer = slot.cooldownTime;
+                        timer.cooldownTimer = slots[i].cooldownTime;
                         slot.EndActive(caster);
                         canQueueNext = true;
                         timerBetweenMode = timeBetweenMode;
@@ -149,18 +149,18 @@ public class PlayerAbilityManager : AbilityManager
                 case AbilityState.Charge:
                     slot.OnRelease(caster, Vector2.zero);
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slot.cooldownTime;
+                    timer.cooldownTimer = slots[i].cooldownTime;
                     break;
 
                 case AbilityState.Windup:
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slot.cooldownTime;
+                    timer.cooldownTimer = slots[i].cooldownTime;
                     break;
 
                 case AbilityState.Active:
                     slot.EndActive(caster);
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slot.cooldownTime;
+                    timer.cooldownTimer = slots[i].cooldownTime;
                     break;
             }
 

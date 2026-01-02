@@ -26,6 +26,7 @@ public class EnemyAbilityManager : AbilityManager
         else
         {
             target = PlayerData.Player.transform;
+            aimLocation = target.position;
         }
     }
 
@@ -164,8 +165,16 @@ public class EnemyAbilityManager : AbilityManager
                     }
                     if (timer.activeTimer <= 0)
                     {
-                        timer.state = AbilityState.Cooldown;
-                        timer.cooldownTimer = slot.cooldownTime;
+                        if (mode + 1 < slots[i].abilities.Count)
+                        {
+                            timer.state = AbilityState.Ready;
+                            continuingCombo = true;
+                        }
+                        else
+                        {
+                            timer.state = AbilityState.Cooldown;
+                            timer.cooldownTimer = slots[i].cooldownTime;
+                        }
                         slot.EndActive(caster);
                     }
                     break;
@@ -175,7 +184,6 @@ public class EnemyAbilityManager : AbilityManager
                     if (timer.cooldownTimer <= 0)
                     {
                         timer.state = AbilityState.Ready;
-                        continuingCombo = true;
                     }
                     break;
             }
@@ -197,18 +205,18 @@ public class EnemyAbilityManager : AbilityManager
                 case AbilityState.Charge:
                     slot.OnRelease(caster, Vector2.zero);
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slot.cooldownTime;
+                    timer.cooldownTimer = slots[i].cooldownTime;
                     break;
 
                 case AbilityState.Windup:
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slot.cooldownTime;
+                    timer.cooldownTimer = slots[i].cooldownTime;
                     break;
 
                 case AbilityState.Active:
                     slot.EndActive(caster);
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slot.cooldownTime;
+                    timer.cooldownTimer = slots[i].cooldownTime;
                     break;
             }
 
