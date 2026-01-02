@@ -69,6 +69,7 @@ public class PlayerAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
+            if (mode >= slots[i].abilities.Count) break;
             Ability slot = slots[i].abilities[mode];
 
             switch (timer.state)
@@ -140,6 +141,7 @@ public class PlayerAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
+            if (mode >= slots[i].abilities.Count) break;
             Ability slot = slots[i].abilities[mode];
 
             switch (timer.state)

@@ -140,13 +140,14 @@ MonoBehaviour:
   rb: {fileID: 1526382199901466352}
   abilityManager: {fileID: 0}
   effectManager: {fileID: -6339841741118700284}
-  health: 0
-  maxHealth: 0
+  health: 1
+  maxHealth: 1
   armor: 0
   speed: 0
   maxSpeed: 0
   stunned: 0
   silenced: 0
+  orientation: {x: 0, y: 0}
 --- !u!114 &-6339841741118700284
 MonoBehaviour:
   m_ObjectHideFlags: 0

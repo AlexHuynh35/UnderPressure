@@ -1,23 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "SwordAttack", menuName = "Abilities/Justine/SwordAttack", order = 1)]
-public class SwordAttack : Ability
+[CreateAssetMenu(fileName = "GroundPound", menuName = "Abilities/Dummy/GroundPound", order = 3)]
+public class GroundPound : Ability
 {
     [Header("Ability Stats")]
     public float damage;
     public bool piercing;
-    public float knockback;
-    public float charge;
 
     [Header("Hitboxes")]
     public float radius;
-    public float angle;
     public GameObject hitboxPrefab;
 
     public override void OnRelease(EntityManager caster, Vector2 direction)
     {
-        Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
+        Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Enemy);
         movementEffect.OnEnter(caster);
     }
 
@@ -25,10 +22,9 @@ public class SwordAttack : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
-            new KnockbackEffect(force: knockback, source: caster, allowedTags: EntityTag.Soldier),
+            new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Player),
         };
-        HitboxShape shape = new ConeShape(radius: radius, angle: angle, direction: caster.orientation);
+        HitboxShape shape = new CircleShape(radius: radius);
         HitboxMovement movement = new FollowMovement(following: caster, offset: Vector2.zero);
         HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.identity).GetComponent<HitboxManager>();
         attack.Initialize
@@ -41,14 +37,11 @@ public class SwordAttack : Ability
             targetSelf: false,
             destroyOnHit: false
         );
-
-        Effect chargeEffect = new ChargeEffect(force: charge, direction: caster.orientation, source: caster, allowedTags: EntityTag.Player);
-        chargeEffect.OnEnter(caster);
     }
 
     public override void EndActive(EntityManager caster)
     {
-        Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);
+        Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Enemy);
         movementEffect.OnEnter(caster);
     }
 }

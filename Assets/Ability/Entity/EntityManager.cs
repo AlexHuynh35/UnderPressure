@@ -61,7 +61,7 @@ public class EntityManager : MonoBehaviour
 
     private void OnDeath()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     public void ApplyKnockback(Vector2 direction, float force)

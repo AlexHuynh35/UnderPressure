@@ -30,7 +30,7 @@ public class CameraClamp : MonoBehaviour
 
         float clampedX = Mathf.Clamp(targetPos.x, minBounds.x - addedBounds + camHalfWidth, maxBounds.x + addedBounds - camHalfWidth);
         float clampedY = Mathf.Clamp(targetPos.y, minBounds.y - addedBounds + camHalfHeight, maxBounds.y + addedBounds - camHalfHeight);
-        Vector3 desiredPosition = new Vector3(clampedX, clampedY, -999);
+        Vector3 desiredPosition = new Vector3(clampedX, clampedY, -10);
 
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, 0.2f);
     }

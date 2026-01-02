@@ -34,7 +34,6 @@ public class AbilityManager : MonoBehaviour
 
     void Start()
     {
-        Initialize();
         numSlots = slots.Count;
         caster = GetComponent<EntityManager>();
         timers = new List<AbilityTimer>(slots.Count);
@@ -52,6 +51,7 @@ public class AbilityManager : MonoBehaviour
             };
             timers.Add(timer);
         }
+        Initialize();
     }
 
     void Update()

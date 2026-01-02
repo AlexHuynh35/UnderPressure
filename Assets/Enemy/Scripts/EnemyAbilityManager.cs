@@ -14,12 +14,19 @@ public class EnemyAbilityManager : AbilityManager
 
     protected override void Initialize()
     {
-        target = PlayerData.Player.transform;
+        target = PlayerData.Player?.transform;
     }
 
     protected override void SetAimLocation()
     {
-        aimLocation = target.position;
+        if (target != null)
+        {
+            aimLocation = target.position;
+        }
+        else
+        {
+            target = PlayerData.Player.transform;
+        }
     }
 
     protected override void StartAbility()
@@ -43,6 +50,7 @@ public class EnemyAbilityManager : AbilityManager
             if (nextMode < slots[currentAttack].abilities.Count)
             {
                 mode = nextMode;
+                continuingCombo = false;
                 return;
             }
             else
@@ -114,6 +122,7 @@ public class EnemyAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
+            if (mode >= slots[i].abilities.Count) break;
             Ability slot = slots[i].abilities[mode];
 
             switch (timer.state)
@@ -158,7 +167,6 @@ public class EnemyAbilityManager : AbilityManager
                         timer.state = AbilityState.Cooldown;
                         timer.cooldownTimer = slot.cooldownTime;
                         slot.EndActive(caster);
-                        continuingCombo = true;
                     }
                     break;
 
@@ -167,6 +175,7 @@ public class EnemyAbilityManager : AbilityManager
                     if (timer.cooldownTimer <= 0)
                     {
                         timer.state = AbilityState.Ready;
+                        continuingCombo = true;
                     }
                     break;
             }
@@ -180,6 +189,7 @@ public class EnemyAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
+            if (mode >= slots[i].abilities.Count) break;
             Ability slot = slots[i].abilities[mode];
 
             switch (timer.state)
@@ -211,7 +221,7 @@ public class EnemyAbilityManager : AbilityManager
         bool isActive = false;
         foreach (AbilityTimer timer in timers)
         {
-            isActive = isActive || timer.state == AbilityState.Charge || timer.state == AbilityState.Windup || timer.state == AbilityState.Active;
+            isActive = isActive || timer.state != AbilityState.Ready;
         }
         return isActive;
     }
