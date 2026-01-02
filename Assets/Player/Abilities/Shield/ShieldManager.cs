@@ -1,19 +1,25 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ShieldManager : MonoBehaviour
 {
     public int maxUses;
     public float parryTime;
+    public float magnitude;
+    public float radius;
+    public GameObject hitboxPrefab;
 
     private int remainingUses;
     private bool active;
     private bool parryMode;
     private float parryTimer;
+    private EntityManager entityManager;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         remainingUses = maxUses;
+        entityManager = GetComponentInParent<EntityManager>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Deactivate();
     }
@@ -40,6 +46,7 @@ public class ShieldManager : MonoBehaviour
         {
             Destroy(target.gameObject);
             remainingUses--;
+            if (remainingUses <= 0) Deactivate();
         }
         else
         {
@@ -47,20 +54,36 @@ public class ShieldManager : MonoBehaviour
             var hitboxMovement = hitbox.GetMovement();
             if (hitboxMovement is StraightMovement)
             {
-                Destroy(target.gameObject);
-                Debug.Log("Reflect");
+                hitbox.SwapTarget(entityManager, magnitude);
             }
             else
             {
+                List<Effect> effects = new List<Effect>()
+                {
+                    new StunStatusEffect(rate: 1f, duration: magnitude, source: entityManager, allowedTags: EntityTag.Enemy)
+                };
+                HitboxShape shape = new CircleShape(radius: radius);
+                HitboxMovement movement = new FollowMovement(following: entityManager, offset: Vector3.zero);
+                HitboxManager attack = Instantiate(hitboxPrefab, entityManager.transform.position, Quaternion.identity).GetComponent<HitboxManager>();
+                attack.Initialize
+                (
+                    owner: entityManager.gameObject,
+                    effects: effects,
+                    shape: shape,
+                    movement: movement,
+                    lifetime: 0.25f,
+                    targetSelf: false,
+                    destroyOnHit: false
+                );
+
                 Destroy(target.gameObject);
-                Debug.Log("Stun");
             }
         }
     }
 
     public void Activate()
     {
-        if (remainingUses > 0) 
+        if (remainingUses > 0)
         {
             active = true;
             parryMode = true;

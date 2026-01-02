@@ -85,6 +85,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxUses: 5
+  parryTime: 1
+  stunLength: 10
+  radius: 2
+  hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}
 --- !u!58 &1126124861619646152
 CircleCollider2D:
   m_ObjectHideFlags: 0

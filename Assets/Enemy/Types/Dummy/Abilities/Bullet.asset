@@ -16,7 +16,6 @@ MonoBehaviour:
   maxChargeTime: 0
   windupTime: 0
   activeTime: 0.5
-  cooldownTime: 0
   sustainSpeed: 0
   castSpeed: 0
   range: 5
@@ -24,5 +23,5 @@ MonoBehaviour:
   piercing: 0
   radius: 0.25
   speed: 10
-  lifetime: 0.5
+  lifetime: 9
   hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}

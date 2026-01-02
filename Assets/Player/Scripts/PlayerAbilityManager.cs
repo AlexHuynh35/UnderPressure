@@ -69,8 +69,7 @@ public class PlayerAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
-            if (mode >= slots[i].abilities.Count) break;
-            Ability slot = slots[i].abilities[mode];
+            Ability slot = slots[i].abilities[mode >= slots[i].abilities.Count ? 0 : mode];
 
             switch (timer.state)
             {
@@ -108,8 +107,11 @@ public class PlayerAbilityManager : AbilityManager
                         timer.state = AbilityState.Cooldown;
                         timer.cooldownTimer = slots[i].cooldownTime;
                         slot.EndActive(caster);
-                        canQueueNext = true;
-                        timerBetweenMode = timeBetweenMode;
+                        if (i < 3)
+                        {
+                            canQueueNext = true;
+                            timerBetweenMode = timeBetweenMode;
+                        }
                     }
                     break;
 
@@ -141,8 +143,7 @@ public class PlayerAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
-            if (mode >= slots[i].abilities.Count) break;
-            Ability slot = slots[i].abilities[mode];
+            Ability slot = slots[i].abilities[mode >= slots[i].abilities.Count ? 0 : mode];
 
             switch (timer.state)
             {

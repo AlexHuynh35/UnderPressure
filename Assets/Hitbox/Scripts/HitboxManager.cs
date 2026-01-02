@@ -86,4 +86,25 @@ public class HitboxManager : MonoBehaviour
     {
         return movement;
     }
+
+    public void SwapTarget(EntityManager newSource, float additionalLifetime)
+    {
+        owner = newSource.gameObject;
+
+        foreach (var effect in effects)
+        {
+            effect.source = newSource;
+            if ((EntityTag.Player & effect.allowedTags) != 0)
+            {
+                effect.allowedTags = (effect.allowedTags ^ EntityTag.Player) | EntityTag.Enemy;
+            }
+        }
+
+        if (movement is StraightMovement straightMovement)
+        {
+            straightMovement.FlipDirection();
+        }
+
+        lifetime += additionalLifetime;
+    }
 }

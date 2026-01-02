@@ -27,6 +27,11 @@ public class StraightMovement : HitboxMovement
     {
         manager.transform.position += (Vector3)(direction * speed * deltaTime);
     }
+
+    public void FlipDirection()
+    {
+        direction = -direction;
+    }
 }
 
 public class FollowMovement : HitboxMovement
