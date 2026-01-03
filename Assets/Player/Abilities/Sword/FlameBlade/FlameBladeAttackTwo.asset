@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c09d673479e47138294ce33e082218, type: 3}
+  m_Name: FlameBladeAttackTwo
+  m_EditorClassIdentifier: 
+  name: FlameBladeAttackTwo
+  maxChargeTime: 0
+  windupTime: 0
+  activeTime: 0.5
+  sustainSpeed: 0
+  castSpeed: 0
+  range: 0
+  damage: 10
+  piercing: 0
+  radius: 1
+  angle: 180
+  number: 5
+  speed: 4
+  lifetime: 0.5
+  hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}
