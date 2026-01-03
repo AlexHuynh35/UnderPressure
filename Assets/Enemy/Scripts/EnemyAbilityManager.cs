@@ -230,7 +230,7 @@ public class EnemyAbilityManager : AbilityManager
         bool isActive = false;
         foreach (AbilityTimer timer in timers)
         {
-            isActive = isActive || timer.state != AbilityState.Ready;
+            isActive = isActive || timer.state == AbilityState.Charge || timer.state == AbilityState.Windup || timer.state == AbilityState.Active;
         }
         return isActive;
     }

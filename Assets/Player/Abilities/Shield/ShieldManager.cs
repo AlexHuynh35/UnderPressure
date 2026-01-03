@@ -6,6 +6,7 @@ public class ShieldManager : MonoBehaviour
     public int maxUses;
     public float parryTime;
     public float magnitude;
+    public float offset;
     public float radius;
     public GameObject hitboxPrefab;
 
@@ -19,13 +20,15 @@ public class ShieldManager : MonoBehaviour
     void Start()
     {
         remainingUses = maxUses;
-        entityManager = GetComponentInParent<EntityManager>();
+        entityManager = transform.parent.GetComponentInParent<EntityManager>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Deactivate();
     }
 
     void Update()
     {
+        transform.position = entityManager.transform.position + (Vector3)entityManager.orientation * offset;
+
         if (parryMode)
         {
             parryTimer -= Time.deltaTime;
