@@ -9,21 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596b494ef608146d491ff2046311d9f4, type: 3}
-  m_Name: SwordAttackFinal
+  m_Script: {fileID: 11500000, guid: 01055e8ca769b4eb2a096cf8090799c4, type: 3}
+  m_Name: KnightAxeAttackOne
   m_EditorClassIdentifier: 
-  name: Sword Attack Final
-  maxChargeTime: 3
-  windupTime: 0
+  name: Knight Axe Attack One
+  maxChargeTime: 0
+  windupTime: 0.25
   activeTime: 0.5
-  cooldownTime: 0
   sustainSpeed: 0
   castSpeed: 0
-  damage: 15
-  piercing: 1
-  knockback: 30
-  charge: 5
-  width: 3
-  height: 2
-  speed: 15
+  range: 0
+  damage: 10
+  piercing: 0
+  width: 2
+  height: 1
   hitboxPrefab: {fileID: 4936989231642616266, guid: 88071dc73489f4b3e8cbefb36cb19beb, type: 3}

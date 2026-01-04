@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e796f0ffade4c8b84bcc124c365d89, type: 3}
-  m_Name: BowAttackFinal
+  m_Script: {fileID: 11500000, guid: 693adaab9742a46b9be42194d4a7bdbf, type: 3}
+  m_Name: KnightSwordAttackOne
   m_EditorClassIdentifier: 
-  name: Bow Attack Final
-  maxChargeTime: 3
+  name: Knight Sword Attack One
+  maxChargeTime: 0
   windupTime: 0
   activeTime: 0.5
-  cooldownTime: 0
   sustainSpeed: 0
   castSpeed: 0
-  damage: 20
+  range: 0
+  damage: 5
   piercing: 0
-  knockback: 50
-  radius: 0.5
-  speed: 30
-  lifetime: 1
+  knockback: 10
+  charge: 5
+  radius: 2
+  angle: 90
   hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}

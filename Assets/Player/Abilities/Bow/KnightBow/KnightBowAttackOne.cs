@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "BowAttackOne", menuName = "Abilities/Justine/BowAttackOne", order = 6)]
-public class BowAttackOne: Ability
+[CreateAssetMenu(fileName = "KnightBowAttackOne", menuName = "Abilities/Justine/Bow/KnightBow/KnightBowAttackOne", order = 6)]
+public class KnightBowAttackOne: Ability
 {
     [Header("Ability Stats")]
     public float damage;

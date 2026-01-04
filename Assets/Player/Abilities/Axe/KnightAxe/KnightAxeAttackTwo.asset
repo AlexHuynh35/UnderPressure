@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01055e8ca769b4eb2a096cf8090799c4, type: 3}
-  m_Name: AxeAttackOne
+  m_Script: {fileID: 11500000, guid: e7771d9406b5b46908a4d9942be67c9b, type: 3}
+  m_Name: KnightAxeAttackTwo
   m_EditorClassIdentifier: 
-  name: Axe Attack One
+  name: Knight Axe Attack Two
   maxChargeTime: 0
   windupTime: 0.25
   activeTime: 0.5
-  cooldownTime: 0
   sustainSpeed: 0
   castSpeed: 0
-  damage: 10
+  range: 0
+  damage: 20
   piercing: 0
-  width: 2
-  height: 1
-  hitboxPrefab: {fileID: 4936989231642616266, guid: 88071dc73489f4b3e8cbefb36cb19beb, type: 3}
+  stunLength: 1
+  radius: 2
+  angle: 270
+  hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}

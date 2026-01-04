@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61f83f2262574fc4bf4958589a2c215, type: 3}
   m_Name: FlameBladeAttackFinal
   m_EditorClassIdentifier: 
-  name: FlameBladeAttackFinal
+  name: Flame Blade Attack Final
   maxChargeTime: 4
   windupTime: 0
   activeTime: 0.5

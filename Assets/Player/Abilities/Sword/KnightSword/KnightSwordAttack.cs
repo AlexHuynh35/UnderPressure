@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "SwordAttackFinal", menuName = "Abilities/Justine/SwordAttackFinal", order = 2)]
-public class SwordAttackFinal : Ability
+[CreateAssetMenu(fileName = "KnightSwordAttack", menuName = "Abilities/Justine/Sword/KnightSword/KnightSwordAttack", order = 1)]
+public class KnightSwordAttack : Ability
 {
     [Header("Ability Stats")]
     public float damage;
@@ -11,12 +11,11 @@ public class SwordAttackFinal : Ability
     public float charge;
 
     [Header("Hitboxes")]
-    public float width;
-    public float height;
-    public float speed;
+    public float radius;
+    public float angle;
     public GameObject hitboxPrefab;
 
-    public override void OnPress(EntityManager caster, Vector2 direction)
+    public override void OnRelease(EntityManager caster, Vector2 direction)
     {
         Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
@@ -26,12 +25,12 @@ public class SwordAttackFinal : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageEffect(damage: damage * chargeTime, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
+            new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
             new KnockbackEffect(force: knockback, source: caster, allowedTags: EntityTag.Soldier),
         };
-        HitboxShape shape = new BoxShape(x: width, y: height);
-        HitboxMovement movement = new StraightMovement(speed: speed, direction: caster.orientation);
-        HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(caster.orientation.y, caster.orientation.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+        HitboxShape shape = new ConeShape(radius: radius, angle: angle, direction: caster.orientation);
+        HitboxMovement movement = new FollowMovement(following: caster, offset: Vector2.zero);
+        HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.identity).GetComponent<HitboxManager>();
         attack.Initialize
         (
             owner: caster.gameObject,
