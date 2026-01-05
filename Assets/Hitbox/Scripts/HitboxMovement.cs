@@ -34,6 +34,52 @@ public class StraightMovement : HitboxMovement
     }
 }
 
+public class AccelerateMovement : HitboxMovement
+{
+    private float speed;
+    private float acceleration;
+    private Vector2 direction;
+
+    public AccelerateMovement(float speed, float acceleration, Vector2 direction) : base()
+    {
+        this.speed = speed;
+        this.acceleration = acceleration;
+        this.direction = direction;
+    }
+
+    public override void Move(HitboxManager manager, float deltaTime)
+    {
+        speed += acceleration * deltaTime;
+        manager.transform.position += (Vector3)(direction * speed * deltaTime);
+    }
+}
+
+public class FixedMovement : HitboxMovement
+{
+    private float speed;
+    private float rate;
+    private Vector2 direction;
+    private float timer;
+
+    public FixedMovement(float speed, float rate, Vector2 direction) : base()
+    {
+        this.speed = speed;
+        this.rate = rate;
+        this.direction = direction;
+        timer = rate;
+    }
+
+    public override void Move(HitboxManager manager, float deltaTime)
+    {
+        timer -= deltaTime;
+        if (timer < 0)
+        {
+            manager.transform.position += (Vector3)(direction * speed);
+            timer = rate;
+        }
+    }
+}
+
 public class FollowMovement : HitboxMovement
 {
     public EntityManager following;

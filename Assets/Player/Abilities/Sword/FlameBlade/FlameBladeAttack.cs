@@ -7,6 +7,8 @@ public class FlameBladeAttack : Ability
     [Header("Ability Stats")]
     public float damage;
     public bool piercing;
+    public float rate;
+    public float duration;
 
     [Header("Hitboxes")]
     public float radius;
@@ -28,11 +30,11 @@ public class FlameBladeAttack : Ability
         {
             List<Effect> effects = new List<Effect>()
             {
-                new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
+                new DamageStatusEffect(damage: damage, piercing: piercing, rate: rate, duration: duration, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
             };
             HitboxShape shape = new CircleShape(radius: radius);
             Vector2 directionOffset = AbilityHelper.AddOffset(caster.orientation, angle / (number + 1), i);
-            HitboxMovement movement = new StraightMovement(speed: speed, direction: directionOffset);
+            HitboxMovement movement = new AccelerateMovement(speed: speed, acceleration: -speed, direction: directionOffset);
             HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
             attack.Initialize
             (
@@ -42,7 +44,7 @@ public class FlameBladeAttack : Ability
                 movement: movement,
                 lifetime: lifetime,
                 targetSelf: false,
-                destroyOnHit: true
+                destroyOnHit: false
             );
         }
     }

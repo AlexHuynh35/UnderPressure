@@ -19,11 +19,13 @@ MonoBehaviour:
   sustainSpeed: 0
   castSpeed: 0
   range: 0
-  damage: 10
+  damage: 5
   piercing: 0
+  rate: 0.5
+  duration: 2
   radius: 1
   angle: 180
-  number: 5
-  speed: 4
-  lifetime: 0.5
+  number: 3
+  speed: 5
+  lifetime: 1
   hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}
