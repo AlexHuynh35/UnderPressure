@@ -10,6 +10,7 @@ public class EntityManager : MonoBehaviour
     public Rigidbody2D rb;
     public AbilityManager abilityManager;
     public EffectManager effectManager;
+    public Inventory inventory;
 
     [Header("Combat Stats")]
     public float health;

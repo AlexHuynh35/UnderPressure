@@ -25,24 +25,30 @@ public class KnightBowAttackTwo : Ability
     {
         for (int i = -1; i <= 1; i++)
         {
-            List<Effect> effects = new List<Effect>()
+            if (caster.inventory.arrow.amount > 0)
             {
-                new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
-            };
-            HitboxShape shape = new CircleShape(radius: radius);
-            Vector2 directionOffset = AbilityHelper.AddOffset(caster.orientation, angle, i);
-            HitboxMovement movement = new StraightMovement(speed: speed, direction: directionOffset);
-            HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
-            attack.Initialize
-            (
-                owner: caster.gameObject,
-                effects: effects,
-                shape: shape,
-                movement: movement,
-                lifetime: lifetime,
-                targetSelf: false,
-                destroyOnHit: true
-            );
+                caster.inventory.arrow.amount--;
+
+                List<Effect> effects = new List<Effect>();
+                if (caster.inventory.arrow.item is Arrow arrow)
+                {
+                    effects = arrow.ReturnEffects(caster);
+                }
+                HitboxShape shape = new CircleShape(radius: radius);
+                Vector2 directionOffset = AbilityHelper.AddOffset(caster.orientation, angle, i);
+                HitboxMovement movement = new StraightMovement(speed: speed, direction: directionOffset);
+                HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+                attack.Initialize
+                (
+                    owner: caster.gameObject,
+                    effects: effects,
+                    shape: shape,
+                    movement: movement,
+                    lifetime: lifetime,
+                    targetSelf: false,
+                    destroyOnHit: true
+                );
+            }
         }
     }
 
