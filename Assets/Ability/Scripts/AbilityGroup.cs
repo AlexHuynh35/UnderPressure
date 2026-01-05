@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AbilityGroup", menuName = "AbilityGroup", order = 0)]
+[CreateAssetMenu(fileName = "AbilityGroup", menuName = "AbilityGroup")]
 public class AbilityGroup : ScriptableObject
 {
     public new string name;

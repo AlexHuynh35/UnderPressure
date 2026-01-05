@@ -206,7 +206,7 @@ MonoBehaviour:
   effectManager: {fileID: 64923301}
   inventory: {fileID: 64923305}
   health: 1000
-  maxHealth: 10
+  maxHealth: 1000
   armor: 0
   speed: 100
   maxSpeed: 100
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe451f5cccce7438e947741c9a69e0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowInfo: {fileID: 11400000, guid: 67777ddce311f461989b59f95ac8036d, type: 2}
+  arrowInfo: {fileID: 11400000, guid: 37be5a7ef02c849058af215926462d63, type: 2}
   arrowAmount: 10
   arrow:
     item: {fileID: 0}

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "KnightSwordAttackFinal", menuName = "Abilities/Justine/Sword/KnightSword/KnightSwordAttackFinal", order = 2)]
+[CreateAssetMenu(fileName = "KnightSwordAttackFinal", menuName = "Abilities/Justine/Sword/KnightSword/KnightSwordAttackFinal")]
 public class KnightSwordAttackFinal : Ability
 {
     [Header("Ability Stats")]

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "Dash", menuName = "Abilities/Justine/Dash", order = 9)]
+[CreateAssetMenu(fileName = "Dash", menuName = "Abilities/Justine/Dash")]
 public class Dash : Ability
 {
     [Header("Ability Stats")]
