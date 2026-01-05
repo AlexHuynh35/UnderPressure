@@ -21,6 +21,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2204053694205192017, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
+      propertyPath: slots.Array.data[0].group
+      value: 
+      objectReference: {fileID: 11400000, guid: ea07755d907914cd296edb0caa6223f9, type: 2}
+    - target: {fileID: 2204053694205192017, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
+      propertyPath: slots.Array.data[1].group
+      value: 
+      objectReference: {fileID: 11400000, guid: 072137d03b8b7401a9fdec9c2e2f9207, type: 2}
+    - target: {fileID: 2204053694205192017, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
       propertyPath: slots.Array.data[0].abilities.Array.size
       value: 2
       objectReference: {fileID: 0}

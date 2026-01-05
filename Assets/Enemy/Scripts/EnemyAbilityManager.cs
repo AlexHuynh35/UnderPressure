@@ -48,7 +48,7 @@ public class EnemyAbilityManager : AbilityManager
         {
             int nextMode = mode + 1;
 
-            if (nextMode < slots[currentAttack].abilities.Count)
+            if (nextMode < slots[currentAttack].group.abilities.Count)
             {
                 mode = nextMode;
                 continuingCombo = false;
@@ -80,7 +80,7 @@ public class EnemyAbilityManager : AbilityManager
 
             if (timers[i].state == AbilityState.Ready)
             {
-                float useRange = slots[i].abilities[0].range + target.localScale.x / 2;
+                float useRange = slots[i].group.abilities[0].range + target.localScale.x / 2;
 
                 if (dist <= useRange) usable.Add(i);
             }
@@ -107,11 +107,11 @@ public class EnemyAbilityManager : AbilityManager
             {
                 timer.state = AbilityState.Charge;
                 timer.chargeTimer = 0;
-                timer.sustainTimer = slot.abilities[mode].sustainSpeed;
+                timer.sustainTimer = slot.group.abilities[mode].sustainSpeed;
 
                 timers[currentAttack] = timer;
 
-                slot.abilities[mode].OnPress(caster, aimLocation);
+                slot.group.abilities[mode].OnPress(caster, aimLocation);
             }
         }
     }
@@ -123,8 +123,8 @@ public class EnemyAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
-            if (mode >= slots[i].abilities.Count) break;
-            Ability slot = slots[i].abilities[mode];
+            if (mode >= slots[i].group.abilities.Count) break;
+            Ability slot = slots[i].group.abilities[mode];
 
             switch (timer.state)
             {
@@ -166,7 +166,7 @@ public class EnemyAbilityManager : AbilityManager
                     }
                     if (timer.activeTimer <= 0)
                     {
-                        if (mode + 1 < slots[i].abilities.Count)
+                        if (mode + 1 < slots[i].group.abilities.Count)
                         {
                             timer.state = AbilityState.Ready;
                             continuingCombo = true;
@@ -174,7 +174,7 @@ public class EnemyAbilityManager : AbilityManager
                         else
                         {
                             timer.state = AbilityState.Cooldown;
-                            timer.cooldownTimer = slots[i].cooldownTime;
+                            timer.cooldownTimer = slots[i].group.cooldownTime;
                         }
                         slot.EndActive(caster);
                     }
@@ -198,26 +198,26 @@ public class EnemyAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
-            if (mode >= slots[i].abilities.Count) break;
-            Ability slot = slots[i].abilities[mode];
+            if (mode >= slots[i].group.abilities.Count) break;
+            Ability slot = slots[i].group.abilities[mode];
 
             switch (timer.state)
             {
                 case AbilityState.Charge:
                     slot.OnRelease(caster, Vector2.zero);
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slots[i].cooldownTime;
+                    timer.cooldownTimer = slots[i].group.cooldownTime;
                     break;
 
                 case AbilityState.Windup:
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slots[i].cooldownTime;
+                    timer.cooldownTimer = slots[i].group.cooldownTime;
                     break;
 
                 case AbilityState.Active:
                     slot.EndActive(caster);
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slots[i].cooldownTime;
+                    timer.cooldownTimer = slots[i].group.cooldownTime;
                     break;
             }
 

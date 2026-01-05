@@ -249,31 +249,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots:
   - inputKey: 323
-    abilities:
-    - {fileID: 11400000, guid: 883cb51a98538412ea88187f64c75009, type: 2}
-    - {fileID: 11400000, guid: 8e55e9cb6c56447349953ecd6fcdef3b, type: 2}
-    - {fileID: 11400000, guid: a8985fb040e344c46b4a48dad36dc31e, type: 2}
-    cooldownTime: 0
+    group: {fileID: 11400000, guid: 62205522822544867bd5300acc75c3dd, type: 2}
   - inputKey: 324
-    abilities:
-    - {fileID: 11400000, guid: ddbe5e663e1164003981e6c79c112d76, type: 2}
-    - {fileID: 11400000, guid: 96f568d319c19476bbbd70763a1124a4, type: 2}
-    - {fileID: 11400000, guid: b40ab5e39d133481c99753deb17ddc0c, type: 2}
-    cooldownTime: 0
+    group: {fileID: 11400000, guid: 84b3d521b50af4d33b7326f2e91126b8, type: 2}
   - inputKey: 326
-    abilities:
-    - {fileID: 11400000, guid: 86af8d74db46d4aa48638e9e6cca23bc, type: 2}
-    - {fileID: 11400000, guid: 6d703c79a15114bf9917b29f48078d3f, type: 2}
-    - {fileID: 11400000, guid: 30794c293971649d29560f8c89e8d51e, type: 2}
-    cooldownTime: 0
+    group: {fileID: 11400000, guid: e5e3a91028c7f4c3f97da150f1c685db, type: 2}
   - inputKey: 32
-    abilities:
-    - {fileID: 11400000, guid: a15e9a69635064d099daaefb34f102c0, type: 2}
-    cooldownTime: 0
+    group: {fileID: 11400000, guid: c3d029a8b90d34ad5a53a4f1b146fcb7, type: 2}
   - inputKey: 304
-    abilities:
-    - {fileID: 11400000, guid: bd1eb265c415f452fbe6cf59164981a6, type: 2}
-    cooldownTime: 0
+    group: {fileID: 11400000, guid: 6d0ba4c0abebb4f76b18c8d99d518ebd, type: 2}
   maxModes: 3
   timeBetweenMode: 0.5
 --- !u!61 &64923303

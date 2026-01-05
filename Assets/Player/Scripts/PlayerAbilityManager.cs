@@ -33,11 +33,11 @@ public class PlayerAbilityManager : AbilityManager
 
                 timer.state = AbilityState.Charge;
                 timer.chargeTimer = 0;
-                timer.sustainTimer = slot.abilities[mode].sustainSpeed;
+                timer.sustainTimer = slot.group.abilities[mode].sustainSpeed;
 
                 timers[i] = timer;
 
-                slot.abilities[mode].OnPress(caster, aimLocation);
+                slot.group.abilities[mode].OnPress(caster, aimLocation);
             }
         }
     }
@@ -52,12 +52,12 @@ public class PlayerAbilityManager : AbilityManager
             if (timer.state == AbilityState.Charge && Input.GetKeyUp(slot.inputKey))
             {
                 timer.state = AbilityState.Windup;
-                timer.windupTimer = slot.abilities[mode].windupTime;
+                timer.windupTimer = slot.group.abilities[mode].windupTime;
 
                 timers[i] = timer;
                 lockedAimLocation = aimLocation;
 
-                slot.abilities[mode].OnRelease(caster, aimLocation);
+                slot.group.abilities[mode].OnRelease(caster, aimLocation);
             }
         }
     }
@@ -69,7 +69,7 @@ public class PlayerAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
-            Ability slot = slots[i].abilities[mode >= slots[i].abilities.Count ? 0 : mode];
+            Ability slot = slots[i].group.abilities[mode >= slots[i].group.abilities.Count ? 0 : mode];
 
             switch (timer.state)
             {
@@ -105,7 +105,7 @@ public class PlayerAbilityManager : AbilityManager
                     if (timer.activeTimer <= 0)
                     {
                         timer.state = AbilityState.Cooldown;
-                        timer.cooldownTimer = slots[i].cooldownTime;
+                        timer.cooldownTimer = slots[i].group.cooldownTime;
                         slot.EndActive(caster);
                         if (i < 3)
                         {
@@ -143,25 +143,25 @@ public class PlayerAbilityManager : AbilityManager
         for (int i = 0; i < numSlots; i++)
         {
             AbilityTimer timer = timers[i];
-            Ability slot = slots[i].abilities[mode >= slots[i].abilities.Count ? 0 : mode];
+            Ability slot = slots[i].group.abilities[mode >= slots[i].group.abilities.Count ? 0 : mode];
 
             switch (timer.state)
             {
                 case AbilityState.Charge:
                     slot.OnRelease(caster, Vector2.zero);
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slots[i].cooldownTime;
+                    timer.cooldownTimer = slots[i].group.cooldownTime;
                     break;
 
                 case AbilityState.Windup:
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slots[i].cooldownTime;
+                    timer.cooldownTimer = slots[i].group.cooldownTime;
                     break;
 
                 case AbilityState.Active:
                     slot.EndActive(caster);
                     timer.state = AbilityState.Cooldown;
-                    timer.cooldownTimer = slots[i].cooldownTime;
+                    timer.cooldownTimer = slots[i].group.cooldownTime;
                     break;
             }
 
