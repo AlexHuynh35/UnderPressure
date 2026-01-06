@@ -11,7 +11,7 @@ public class MovementEffect : Effect
 
     public override void OnEnter(EntityManager target)
     {
-        target.ChangeMovement(boost);
+        target.ChangeMovement(boost, 0);
     }
 }
 
@@ -22,12 +22,6 @@ public class MovementAreaEffect : AreaEffect
     public MovementAreaEffect(float boost, float rate, EntityManager source, EntityTag allowedTags) : base(rate, source, allowedTags)
     {
         this.boost = boost;
-    }
-
-    public override void OnEnter(EntityManager target)
-    {
-        base.OnEnter(target);
-        target.ChangeMovement(boost);
     }
 
     protected override AreaEffectInstance CreateTickingEffect()
@@ -44,10 +38,15 @@ public class MovementAreaEffectInstance : AreaEffectInstance
     {
         this.boost = boost;
     }
+
+    public override void Apply(EntityManager target)
+    {
+        target.ChangeMovement(boost, 1);
+    }
     
     public override void Revert(EntityManager target)
     {
-        target.ChangeMovement(1 / boost);
+        target.ChangeMovement(1, 1);
     }
 }
 
@@ -58,12 +57,6 @@ public class MovementStatusEffect : StatusEffect
     public MovementStatusEffect(float boost, float rate, float duration, EntityManager source, EntityTag allowedTags) : base(rate, duration, source, allowedTags)
     {
         this.boost = boost;
-    }
-
-    public override void OnEnter(EntityManager target)
-    {
-        base.OnEnter(target);
-        target.ChangeMovement(boost);
     }
 
     protected override StatusEffectInstance CreateTickingEffect()
@@ -81,8 +74,13 @@ public class MovementStatusEffectInstance : StatusEffectInstance
         this.boost = boost;
     }
 
+    public override void Apply(EntityManager target)
+    {
+        target.ChangeMovement(boost, 2);
+    }
+
     public override void Revert(EntityManager target)
     {
-        target.ChangeMovement(1f / boost);
+        target.ChangeMovement(1, 2);
     }
 }

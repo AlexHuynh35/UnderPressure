@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2f8864cc75a4228864a816f427b240, type: 3}
   m_Name: DrainArrow
   m_EditorClassIdentifier: 
+  name: Drain Arrow
   type: 0
   damage: 10
   piercing: 0

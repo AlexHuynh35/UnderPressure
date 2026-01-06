@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public abstract class Effect
 {
@@ -36,6 +37,18 @@ public abstract class AreaEffect : Effect
     {
         AreaEffectInstance ticking = CreateTickingEffect();
         activeTicks[target] = ticking;
+
+        Type type = ticking.GetType();
+        if (!target.effectManager.HasEffectList(type))
+        {
+            target.effectManager.AddEffectList(type, new EffectInstanceList());
+        }
+
+        if (target.effectManager.CountEffects(type) < 1)
+        {
+            ticking.Apply(target);
+        }
+
         target.effectManager.AddEffect(ticking);
     }
 
@@ -71,7 +84,18 @@ public abstract class StatusEffect : Effect
     public override void OnEnter(EntityManager target)
     {
         StatusEffectInstance ticking = CreateTickingEffect();
-        target.effectManager.AddEffect(ticking);
+
+        Type type = ticking.GetType();
+        if (!target.effectManager.HasEffectList(type))
+        {
+            target.effectManager.AddEffectList(type, new EffectInstanceList());
+        }
+
+        if (target.effectManager.CountEffects(type) < 1)
+        {
+            ticking.Apply(target);
+            target.effectManager.AddEffect(ticking);
+        }
     }
 
     protected abstract StatusEffectInstance CreateTickingEffect();

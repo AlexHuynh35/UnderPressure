@@ -1,4 +1,4 @@
-using UnityEditor.PackageManager.Requests;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityManager : MonoBehaviour
@@ -16,6 +16,7 @@ public class EntityManager : MonoBehaviour
     public float health;
     public float maxHealth;
     public int armor;
+    public float[] speeds;
     public float speed;
     public float maxSpeed;
     public int stunned;
@@ -25,7 +26,11 @@ public class EntityManager : MonoBehaviour
     /* Lifecycle */
     void Start()
     {
-
+        speeds = new float[3];
+        for (int i = 0; i < speeds.Length; i++)
+        {
+            speeds[i] = 1;
+        }
     }
 
     void Update()
@@ -41,7 +46,7 @@ public class EntityManager : MonoBehaviour
             armor--;
             return;
         }
-        
+
         health = Mathf.Max(0, health - amount);
 
         if (health <= 0)
@@ -78,9 +83,10 @@ public class EntityManager : MonoBehaviour
         health = Mathf.Min(maxHealth, health + amount);
     }
 
-    public void ChangeMovement(float amount)
+    public void ChangeMovement(float amount, int index)
     {
-        speed = maxSpeed * amount;
+        speeds[index] = amount;
+        speed = maxSpeed * speeds[0] * speeds[1] * speeds[2];
     }
 
     public void ToggleStun(bool flag)

@@ -208,6 +208,7 @@ MonoBehaviour:
   health: 1000
   maxHealth: 1000
   armor: 0
+  speeds: []
   speed: 100
   maxSpeed: 100
   stunned: 1
@@ -332,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe451f5cccce7438e947741c9a69e0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowInfo: {fileID: 11400000, guid: 37be5a7ef02c849058af215926462d63, type: 2}
+  arrowInfo: {fileID: 11400000, guid: aebaaf77c306a488b81a9268bfc23f2f, type: 2}
   arrowAmount: 10
   arrow:
     item: {fileID: 0}
@@ -433,7 +434,19 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
       propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: maxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8765841473129667991, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}

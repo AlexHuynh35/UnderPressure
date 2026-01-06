@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8c1b031312648d4af822dcf15fdd15, type: 3}
   m_Name: NormalArrow
   m_EditorClassIdentifier: 
+  name: Normal Arrow
   type: 0
   damage: 10
   piercing: 0

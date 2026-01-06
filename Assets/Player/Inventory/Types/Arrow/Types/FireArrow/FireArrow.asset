@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e7966a69e8c439dba09908a7eadceb, type: 3}
   m_Name: FireArrow
   m_EditorClassIdentifier: 
+  name: Fire Arrow
   type: 0
   damage: 10
   piercing: 0

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2935925dadb4adbb4d4b393794afb0, type: 3}
   m_Name: IceArrow
   m_EditorClassIdentifier: 
+  name: Ice Arrow
   type: 0
   damage: 10
   piercing: 0

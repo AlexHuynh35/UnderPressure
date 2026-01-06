@@ -1,4 +1,3 @@
-using Unity.IntegerTime;
 using UnityEngine;
 
 public abstract class EffectInstance
@@ -10,9 +9,11 @@ public abstract class EffectInstance
         this.source = source;
     }
 
+    public virtual void Apply(EntityManager target) { }
+
     public virtual void OnTick(EntityManager target, float deltaTime) { }
 
-    public virtual void Apply(EntityManager target) { }
+    public virtual void Tick(EntityManager target) { }
 
     public virtual void Revert(EntityManager target) { }
 
@@ -36,7 +37,7 @@ public abstract class AreaEffectInstance : EffectInstance
         timeUntilTick -= deltaTime;
         if (timeUntilTick <= 0)
         {
-            Apply(target);
+            Tick(target);
             timeUntilTick = rate;
         }
     }
@@ -72,7 +73,7 @@ public abstract class StatusEffectInstance : EffectInstance
         timeUntilTick -= deltaTime;
         if (timeUntilTick <= 0)
         {
-            Apply(target);
+            Tick(target);
             timeUntilTick = rate;
         }
     }

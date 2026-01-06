@@ -45,7 +45,7 @@ public class DamageAreaEffectInstance : AreaEffectInstance
         this.piercing = piercing;
     }
 
-    public override void Apply(EntityManager target)
+    public override void Tick(EntityManager target)
     {
         target.ApplyDamage(damage, piercing);
     }
@@ -79,7 +79,7 @@ public class DamageStatusEffectInstance : StatusEffectInstance
         this.piercing = piercing;
     }
 
-    public override void Apply(EntityManager target)
+    public override void Tick(EntityManager target)
     {
         target.ApplyDamage(damage, piercing);
     }

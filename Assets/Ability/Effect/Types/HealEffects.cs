@@ -39,7 +39,7 @@ public class HealAreaEffectInstance : AreaEffectInstance
         this.heal = heal;
     }
 
-    public override void Apply(EntityManager target)
+    public override void Tick(EntityManager target)
     {
         target.ApplyHeal(heal);
     }
@@ -69,7 +69,7 @@ public class HealStatusEffectInstance : StatusEffectInstance
         this.heal = heal;
     }
 
-    public override void Apply(EntityManager target)
+    public override void Tick(EntityManager target)
     {
         target.ApplyHeal(heal);
     }
