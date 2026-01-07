@@ -22,6 +22,7 @@ public class EntityManager : MonoBehaviour
     public float maxSpeed;
     public int stunned;
     public int silenced;
+    public int decayed;
     public Vector2 orientation;
 
     /* Lifecycle */
@@ -81,7 +82,7 @@ public class EntityManager : MonoBehaviour
 
     public void ApplyHeal(float amount)
     {
-        health = Mathf.Min(maxHealth, health + amount);
+        health = Mathf.Min(maxHealth, health + amount * decayed);
     }
 
     public void ChangeMovement(float amount, int index)
@@ -111,6 +112,18 @@ public class EntityManager : MonoBehaviour
         else
         {
             silenced = 1;
+        }
+    }
+
+    public void ToggleDecay(bool flag)
+    {
+        if (flag)
+        {
+            decayed = 0;
+        }
+        else
+        {
+            decayed = 1;
         }
     }
 }

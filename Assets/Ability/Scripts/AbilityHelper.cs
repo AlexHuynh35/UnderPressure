@@ -20,4 +20,9 @@ public static class AbilityHelper
     {
         return (endingPoint - startingPoint).normalized;
     }
+
+    public static Vector2 OffsetLocation(Vector2 location, float offset)
+    {
+        return new Vector2(location.x + Random.Range(-offset, offset), location.y + Random.Range(-offset, offset));
+    }
 }
