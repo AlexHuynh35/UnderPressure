@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fire Arrow
   type: 0
-  damage: 10
+  damage: 5
   piercing: 0
+  rate: 0.5
+  duration: 2

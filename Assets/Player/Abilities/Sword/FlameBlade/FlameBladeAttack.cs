@@ -26,22 +26,40 @@ public class FlameBladeAttack : Ability
 
     public override void StartActive(EntityManager caster, Vector2 direction, float chargeTime)
     {
+        List<Effect> effects1 = new List<Effect>()
+        {
+            new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
+        };
+        HitboxShape shape1 = new ConeShape(radius: radius, angle: angle, direction: caster.orientation);
+        HitboxMovement movement1 = new FollowMovement(following: caster, offset: Vector2.zero);
+        HitboxManager attack1 = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.identity).GetComponent<HitboxManager>();
+        attack1.Initialize
+        (
+            owner: caster.gameObject,
+            effects: effects1,
+            shape: shape1,
+            movement: movement1,
+            lifetime: 0.25f,
+            targetSelf: false,
+            destroyOnHit: false
+        );
+
         for (int i = -(int)Mathf.Floor(number / 2); i <= (int)Mathf.Floor(number / 2); i++)
         {
-            List<Effect> effects = new List<Effect>()
+            List<Effect> effects2 = new List<Effect>()
             {
-                new DamageStatusEffect(damage: damage, piercing: piercing, rate: rate, duration: duration, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
+                new BurnStatusEffect(damage: damage, rate: rate, duration: duration, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
             };
-            HitboxShape shape = new CircleShape(radius: radius);
+            HitboxShape shape2 = new CircleShape(radius: radius);
             Vector2 directionOffset = AbilityHelper.AddOffset(caster.orientation, angle / (number + 1), i);
-            HitboxMovement movement = new AccelerateMovement(speed: speed, acceleration: -speed, direction: directionOffset);
-            HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
-            attack.Initialize
+            HitboxMovement movement2 = new AccelerateMovement(speed: speed, acceleration: -speed, direction: directionOffset);
+            HitboxManager attack2 = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+            attack2.Initialize
             (
                 owner: caster.gameObject,
-                effects: effects,
-                shape: shape,
-                movement: movement,
+                effects: effects2,
+                shape: shape2,
+                movement: movement2,
                 lifetime: lifetime,
                 targetSelf: false,
                 destroyOnHit: false

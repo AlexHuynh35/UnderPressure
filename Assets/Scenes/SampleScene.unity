@@ -204,6 +204,7 @@ MonoBehaviour:
   rb: {fileID: 64923298}
   abilityManager: {fileID: 64923302}
   effectManager: {fileID: 64923301}
+  spriteManager: {fileID: 524369155}
   inventory: {fileID: 64923305}
   health: 1000
   maxHealth: 1000
@@ -333,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe451f5cccce7438e947741c9a69e0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowInfo: {fileID: 11400000, guid: aebaaf77c306a488b81a9268bfc23f2f, type: 2}
+  arrowInfo: {fileID: 11400000, guid: 6da03dccb94fe420091dd0ab3ae96a36, type: 2}
   arrowAmount: 10
   arrow:
     item: {fileID: 0}
@@ -364,8 +365,8 @@ Transform:
   m_GameObject: {fileID: 191027454}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 1}
+  m_LocalScale: {x: 1.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 64923296}
@@ -415,7 +416,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.49803922}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -662,6 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524369153}
   - component: {fileID: 524369154}
+  - component: {fileID: 524369155}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -739,6 +741,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &524369155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524369152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66313a031f4847cb85e91d490a20f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusDB: {fileID: 11400000, guid: 030337093882a4ebe87b430ca63fd284, type: 2}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
