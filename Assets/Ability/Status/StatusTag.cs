@@ -7,4 +7,5 @@ public enum StatusTag
     Frost,
     Poison,
     Confuse,
+    Regeneration,
 }

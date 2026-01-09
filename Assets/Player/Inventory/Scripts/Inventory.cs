@@ -23,11 +23,16 @@ public class Inventory : MonoBehaviour
     public Arrow arrowInfo;
     public int arrowAmount;
 
+    public Potion potionInfo;
+    public int potionAmount;
+
     [HideInInspector] public ItemStack arrow;
+    [HideInInspector] public ItemStack potion;
 
     void Start()
     {
         arrow = new ItemStack(arrowInfo, arrowAmount);
+        potion = new ItemStack(potionInfo, potionAmount);
     }
 
     void Update()

@@ -69,8 +69,18 @@ public class HealStatusEffectInstance : StatusEffectInstance
         this.heal = heal;
     }
 
+    public override void Apply(EntityManager target)
+    {
+        target.spriteManager.ApplyColors(StatusTag.Regeneration);
+    }
+
     public override void Tick(EntityManager target)
     {
         target.ApplyHeal(heal);
+    }
+
+    public override void Revert(EntityManager target)
+    {
+        target.spriteManager.ApplyColors(StatusTag.None);
     }
 }

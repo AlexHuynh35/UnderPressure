@@ -214,7 +214,7 @@ MonoBehaviour:
   maxSpeed: 100
   stunned: 1
   silenced: 1
-  decayed: 0
+  decayed: 1
   orientation: {x: 1, y: 0}
 --- !u!114 &64923300
 MonoBehaviour:
@@ -263,6 +263,8 @@ MonoBehaviour:
     group: {fileID: 11400000, guid: c3d029a8b90d34ad5a53a4f1b146fcb7, type: 2}
   - inputKey: 304
     group: {fileID: 11400000, guid: 6d0ba4c0abebb4f76b18c8d99d518ebd, type: 2}
+  - inputKey: 113
+    group: {fileID: 11400000, guid: 8885982392e9a4219aee36d3817ffe16, type: 2}
   maxModes: 3
   timeBetweenMode: 0.5
 --- !u!61 &64923303
@@ -337,7 +339,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowInfo: {fileID: 11400000, guid: 37be5a7ef02c849058af215926462d63, type: 2}
   arrowAmount: 10
+  potionInfo: {fileID: 11400000, guid: 3a905c726970d4e83998cd13b3613108, type: 2}
+  potionAmount: 10
   arrow:
+    item: {fileID: 0}
+    amount: 0
+  potion:
     item: {fileID: 0}
     amount: 0
 --- !u!1 &191027454

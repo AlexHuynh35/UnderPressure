@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cf9565c8c24f4f279859ec89da90047, type: 3}
-  m_Name: Shield Group
+  m_Name: PotionUseGroup
   m_EditorClassIdentifier: 
-  name: Shield Group
+  name: Potion Use Group
   abilities:
-  - {fileID: 11400000, guid: bd1eb265c415f452fbe6cf59164981a6, type: 2}
-  cooldownTime: 0
+  - {fileID: 11400000, guid: 220d31c59690c438f923effe9bd48166, type: 2}
+  cooldownTime: 10
