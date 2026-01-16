@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Flame Blade Attack Final
   maxChargeTime: 4
-  windupTime: 0
-  activeTime: 0.5
+  windUpTime: 0
+  activeTime: 0
+  windDownTime: 0.5
   sustainSpeed: 0
   castSpeed: 0
   range: 0

@@ -51,8 +51,8 @@ public class PlayerAbilityManager : AbilityManager
 
             if (timer.state == AbilityState.Charge && Input.GetKeyUp(slot.inputKey))
             {
-                timer.state = AbilityState.Windup;
-                timer.windupTimer = slot.group.abilities[mode].windupTime;
+                timer.state = AbilityState.WindUp;
+                timer.windUpTimer = slot.group.abilities[mode].windUpTime;
 
                 timers[i] = timer;
                 lockedAimLocation = aimLocation;
@@ -83,12 +83,12 @@ public class PlayerAbilityManager : AbilityManager
                     }
                     break;
 
-                case AbilityState.Windup:
-                    timer.windupTimer -= dt;
-                    if (timer.windupTimer <= 0)
+                case AbilityState.WindUp:
+                    timer.windUpTimer -= dt;
+                    if (timer.windUpTimer <= 0)
                     {
                         timer.state = AbilityState.Active;
-                        timer.activeTimer = slot.activeTime;
+                        timer.activeTimer = slot.activeTime + slot.windDownTime;
                         timer.castTimer = slot.castSpeed;
                         slot.StartActive(caster, lockedAimLocation, Mathf.Min(timer.chargeTimer, slot.maxChargeTime));
                     }
@@ -153,7 +153,7 @@ public class PlayerAbilityManager : AbilityManager
                     timer.cooldownTimer = slots[i].group.cooldownTime;
                     break;
 
-                case AbilityState.Windup:
+                case AbilityState.WindUp:
                     timer.state = AbilityState.Cooldown;
                     timer.cooldownTimer = slots[i].group.cooldownTime;
                     break;
@@ -174,7 +174,7 @@ public class PlayerAbilityManager : AbilityManager
         bool isActive = false;
         foreach (AbilityTimer timer in timers)
         {
-            isActive = isActive || timer.state == AbilityState.Charge || timer.state == AbilityState.Windup || timer.state == AbilityState.Active;
+            isActive = isActive || timer.state == AbilityState.Charge || timer.state == AbilityState.WindUp || timer.state == AbilityState.Active;
         }
         return isActive;
     }

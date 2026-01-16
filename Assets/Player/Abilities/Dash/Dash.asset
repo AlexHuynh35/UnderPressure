@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dash
   maxChargeTime: 0
-  windupTime: 0
-  activeTime: 0.25
-  cooldownTime: 0
+  windUpTime: 0
+  activeTime: 0
+  windDownTime: 0.25
   sustainSpeed: 0
   castSpeed: 0
+  range: 0
   charge: 50

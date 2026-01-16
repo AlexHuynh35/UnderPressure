@@ -7,8 +7,9 @@ public class Ability : ScriptableObject
 
     [Header("Ability Timings")]
     public float maxChargeTime;
-    public float windupTime;
+    public float windUpTime;
     public float activeTime;
+    public float windDownTime;
     public float sustainSpeed;
     public float castSpeed;
 

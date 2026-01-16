@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "PotionUse", menuName = "Abilities/Justine/PotionUse")]
-public class PotionUse : Ability
+[CreateAssetMenu(fileName = "Consumable", menuName = "Abilities/Justine/Consumable")]
+public class Consumable : Ability
 {
     public override void OnPress(EntityManager caster, Vector2 direction)
     {

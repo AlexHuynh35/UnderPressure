@@ -5,7 +5,7 @@ public enum AbilityState
 {
     Ready,
     Charge,
-    Windup,
+    WindUp,
     Active,
     Cooldown,
     Disabled
@@ -16,7 +16,7 @@ public struct AbilityTimer
 {
     public AbilityState state;
     public float chargeTimer;
-    public float windupTimer;
+    public float windUpTimer;
     public float activeTimer;
     public float cooldownTimer;
     public float sustainTimer;
@@ -43,7 +43,7 @@ public class AbilityManager : MonoBehaviour
             {
                 state = AbilityState.Ready,
                 chargeTimer = 0,
-                windupTimer = 0,
+                windUpTimer = 0,
                 activeTimer = 0,
                 cooldownTimer = 0,
                 sustainTimer = 0,
