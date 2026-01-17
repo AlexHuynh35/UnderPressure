@@ -8,4 +8,5 @@ public enum StatusTag
     Poison,
     Confuse,
     Regeneration,
+    Haste,
 }

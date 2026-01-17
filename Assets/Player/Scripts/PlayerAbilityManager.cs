@@ -52,7 +52,7 @@ public class PlayerAbilityManager : AbilityManager
             if (timer.state == AbilityState.Charge && Input.GetKeyUp(slot.inputKey))
             {
                 timer.state = AbilityState.WindUp;
-                timer.windUpTimer = slot.group.abilities[mode].windUpTime;
+                timer.windUpTimer = slot.group.abilities[mode].windUpTime * caster.proficiency;
 
                 timers[i] = timer;
                 lockedAimLocation = aimLocation;
@@ -88,7 +88,7 @@ public class PlayerAbilityManager : AbilityManager
                     if (timer.windUpTimer <= 0)
                     {
                         timer.state = AbilityState.Active;
-                        timer.activeTimer = slot.activeTime + slot.windDownTime;
+                        timer.activeTimer = slot.activeTime + slot.windDownTime * caster.proficiency;
                         timer.castTimer = slot.castSpeed;
                         slot.StartActive(caster, lockedAimLocation, Mathf.Min(timer.chargeTimer, slot.maxChargeTime));
                     }

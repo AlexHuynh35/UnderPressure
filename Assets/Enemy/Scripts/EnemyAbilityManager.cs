@@ -139,7 +139,7 @@ public class EnemyAbilityManager : AbilityManager
                     if (timer.chargeTimer >= slot.maxChargeTime)
                     {
                         timer.state = AbilityState.WindUp;
-                        timer.windUpTimer = slot.windUpTime;
+                        timer.windUpTimer = slot.windUpTime * caster.proficiency;
                         lockedAimLocation = aimLocation;
                         slot.OnRelease(caster, aimLocation);
                     }
@@ -150,7 +150,7 @@ public class EnemyAbilityManager : AbilityManager
                     if (timer.windUpTimer <= 0)
                     {
                         timer.state = AbilityState.Active;
-                        timer.activeTimer = slot.activeTime + slot.windDownTime;
+                        timer.activeTimer = slot.activeTime + slot.windDownTime * caster.proficiency;
                         timer.castTimer = slot.castSpeed;
                         slot.StartActive(caster, lockedAimLocation, Mathf.Min(timer.chargeTimer, slot.maxChargeTime));
                     }

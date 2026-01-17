@@ -20,6 +20,8 @@ public class EntityManager : MonoBehaviour
     public float[] speeds;
     public float speed;
     public float maxSpeed;
+    public float proficiency;
+    public float maxProficiency;
     public int stunned;
     public int silenced;
     public int decayed;
@@ -89,6 +91,11 @@ public class EntityManager : MonoBehaviour
     {
         speeds[index] = amount;
         speed = maxSpeed * speeds[0] * speeds[1] * speeds[2];
+    }
+
+    public void ChangeProficiency(float amount)
+    {
+        proficiency = maxProficiency * amount;
     }
 
     public void ToggleStun(bool flag)

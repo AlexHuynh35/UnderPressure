@@ -212,6 +212,8 @@ MonoBehaviour:
   speeds: []
   speed: 100
   maxSpeed: 100
+  proficiency: 1
+  maxProficiency: 1
   stunned: 1
   silenced: 1
   decayed: 1
@@ -339,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowInfo: {fileID: 11400000, guid: 37be5a7ef02c849058af215926462d63, type: 2}
   arrowAmount: 10
-  potionInfo: {fileID: 11400000, guid: 3a905c726970d4e83998cd13b3613108, type: 2}
+  potionInfo: {fileID: 11400000, guid: 093116f4dbe8e47a584101d35d5f6ac9, type: 2}
   potionAmount: 10
   arrow:
     item: {fileID: 0}
