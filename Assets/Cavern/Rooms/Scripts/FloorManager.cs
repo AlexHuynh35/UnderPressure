@@ -8,11 +8,14 @@ public struct RoomStructure
 {
     public bool visited;
     public int id;
+
+    // property represents the diection of the door and the id of the room that door leads to
     public Dictionary<Direction, int> rooms;
 }
 
 public class FloorManager : MonoBehaviour
 {
+    public static FloorManager Instance { get; private set; }
     public int rows;
     public int columns;
     public int numRooms;

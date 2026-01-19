@@ -6888,6 +6888,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[530].second.m_TileSpriteIndex
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4897076099621762258, guid: 89586680c963a4889afbd66dc3b7afd2, type: 3}
+      propertyPath: doorList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6992642477665985988, guid: 89586680c963a4889afbd66dc3b7afd2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6931,6 +6935,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1139787951634091416, guid: 89586680c963a4889afbd66dc3b7afd2, type: 3}
+    - {fileID: 6933363667777637389, guid: 89586680c963a4889afbd66dc3b7afd2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89586680c963a4889afbd66dc3b7afd2, type: 3}
