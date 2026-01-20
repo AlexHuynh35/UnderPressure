@@ -83,6 +83,7 @@ public class FloorManager : MonoBehaviour
         RoomManager nextRoomManager = roomManagers[currentRoomStructure.rooms[direction]];
         currentRoomManager.gameObject.SetActive(false);
         nextRoomManager.gameObject.SetActive(true);
+        nextRoomManager.EnterRoom(DirectionDatabase.GetOpposite(direction));
         entity.transform.position = nextRoomManager.doorDict[DirectionDatabase.GetOpposite(direction)].transform.position;
         HUDManager.Instance.ChangePlayerLocation(currentRoomID, currentRoomStructure.rooms[direction]);
     }
@@ -203,10 +204,8 @@ public class FloorManager : MonoBehaviour
     {
         foreach (var roomStructure in roomStructures)
         {
-            RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity).GetComponent<RoomManager>();
-            room.transform.parent = transform;
+            RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity, transform).GetComponent<RoomManager>();
             roomManagers[roomStructure.Key] = room;
-            room.InitializeDoorDict();
             room.InitializeRoom(roomStructure.Value);
             room.gameObject.SetActive(false);
         }

@@ -32,6 +32,12 @@ public class DoorManager : MonoBehaviour
         door.transform.position = new Vector2(blockage.transform.position.x + DirectionDatabase.directionToPosition[direction].Item1 * 2.5f, blockage.transform.position.y + DirectionDatabase.directionToPosition[direction].Item2 * 2.5f);
     }
 
+    public void Enter()
+    {
+        blockage.SetActive(false);
+        door.SetActive(false);
+    }
+
     public void Open()
     {
         blockage.SetActive(false);

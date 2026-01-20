@@ -9,7 +9,7 @@ public class RoomManager : MonoBehaviour
 
     void Start()
     {
-        StartRoom();
+
     }
 
     void Update()
@@ -17,16 +17,10 @@ public class RoomManager : MonoBehaviour
         DebugClearRoom();
     }
 
-    public void InitializeDoorDict()
-    {
-        foreach (var door in doorList)
-        {
-            doorDict[door.direction] = door;
-        }
-    }
-
     public void InitializeRoom(RoomStructure structure)
     {
+        InitializeDoorDict();
+
         foreach (var door in structure.rooms)
         {
             if (door.Value < 0)
@@ -37,6 +31,16 @@ public class RoomManager : MonoBehaviour
             {
                 doorDict[door.Key].InitializeDoor(structure.id);
             }
+        }
+
+        StartRoom();
+    }
+
+    public void InitializeDoorDict()
+    {
+        foreach (var door in doorList)
+        {
+            doorDict[door.direction] = door;
         }
     }
 
@@ -53,6 +57,24 @@ public class RoomManager : MonoBehaviour
         foreach (var door in doorList)
         {
             door.Close();
+        }
+    }
+
+    public void EnterRoom(Direction direction)
+    {
+        if (!roomCleared)
+        {
+            foreach (var door in doorDict)
+            {
+                if (door.Value.direction == direction)
+                {
+                    door.Value.Enter();
+                }
+                else
+                {
+                    door.Value.Close();
+                }
+            }
         }
     }
 
