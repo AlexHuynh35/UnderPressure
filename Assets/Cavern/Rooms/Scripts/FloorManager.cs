@@ -38,7 +38,7 @@ public class FloorManager : MonoBehaviour
         floor = FillFloor();
         startingPoint = (UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(0, columns));
 
-        if (startingPoint.Item1 > 0)
+        if (startingPoint.Item2 > 0)
         {
             RoomStructure belowStartingRoom = floor[startingPoint.Item1, startingPoint.Item2 - 1];
             belowStartingRoom.visited = true;
@@ -65,6 +65,8 @@ public class FloorManager : MonoBehaviour
                 Debug.Log("List contents: " + string.Join(", ", floor[i, j].rooms));
             }
         }
+
+        HUDManager.Instance.SetMap(rows, columns, floor);
 
         roomManagers[1].gameObject.SetActive(true);
     }
