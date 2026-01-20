@@ -22,6 +22,7 @@ public class MapManager : MonoBehaviour
     {
         int halfRows = rows / 2;
         int halfColumns = columns / 2;
+        
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -30,7 +31,7 @@ public class MapManager : MonoBehaviour
                 {
                     Vector2 position = new Vector2 (transform.position.x + (i - halfRows) * xSpacing, transform.position.y + (j - halfColumns) * ySpacing);
                     cellManagers[structures[i, j].id] = Instantiate(cellPrefab, position, Quaternion.identity, transform).GetComponent<MapCellManager>();
-                    cellManagers[structures[i, j].id].InitializeImageDict();
+                    cellManagers[structures[i, j].id].Initialize();
                     cellManagers[structures[i, j].id].SetRoomID(structures[i, j].id);
                     foreach (var room in structures[i, j].rooms)
                     {
@@ -39,5 +40,13 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+
+        cellManagers[1].SetPlayer(true);
+    }
+
+    public void ChangePlayerLocation(int current, int next)
+    {
+        cellManagers[current].SetPlayer(false);
+        cellManagers[next].SetPlayer(true);
     }
 }

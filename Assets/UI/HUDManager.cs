@@ -27,4 +27,9 @@ public class HUDManager : MonoBehaviour
     {
         map.SetMap(rows, columns, structures);
     }
+
+    public void ChangePlayerLocation(int current, int next)
+    {
+        map.ChangePlayerLocation(current, next);
+    }
 }

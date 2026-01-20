@@ -84,6 +84,7 @@ public class FloorManager : MonoBehaviour
         currentRoomManager.gameObject.SetActive(false);
         nextRoomManager.gameObject.SetActive(true);
         entity.transform.position = nextRoomManager.doorDict[DirectionDatabase.GetOpposite(direction)].transform.position;
+        HUDManager.Instance.ChangePlayerLocation(currentRoomID, currentRoomStructure.rooms[direction]);
     }
 
     private RoomStructure[,] FillFloor()
