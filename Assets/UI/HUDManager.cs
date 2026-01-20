@@ -1,9 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
     public static HUDManager Instance { get; private set; }
-    public MapManager map;
+    public GameObject menu;
+
+    [Header("Navigation")]
+    public Button inventoryButton;
+    public Button mapButton;
+
+    [Header("Inventory")]
+    public GameObject inventoryContainer;
+
+    [Header("Map")]
+    public GameObject mapContainer;
+    private MapManager map;
 
     private void Awake()
     {
@@ -12,14 +24,18 @@ public class HUDManager : MonoBehaviour
 
     void Start()
     {
-        map.gameObject.SetActive(false);
+        map = mapContainer.GetComponentInChildren<MapManager>();
+        inventoryButton.onClick.AddListener(OpenInventory);
+        mapButton.onClick.AddListener(OpenMap);
+        OpenInventory();
+        menu.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            map.gameObject.SetActive(!map.gameObject.activeSelf);
+            menu.SetActive(!menu.activeSelf);
         }
     }
     
@@ -31,5 +47,17 @@ public class HUDManager : MonoBehaviour
     public void ChangePlayerLocation(int current, int next)
     {
         map.ChangePlayerLocation(current, next);
+    }
+
+    private void OpenInventory()
+    {
+        mapContainer.SetActive(false);
+        inventoryContainer.SetActive(true);
+    }
+
+    private void OpenMap()
+    {
+        inventoryContainer.SetActive(false);
+        mapContainer.SetActive(true);
     }
 }
