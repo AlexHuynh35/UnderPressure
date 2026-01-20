@@ -22,14 +22,14 @@ public class DoorManager : MonoBehaviour
         EntityManager entity = other.gameObject.GetComponent<EntityManager>();
         if ((entity.tags & EntityTag.Player) != 0)
         {
-            Debug.Log("Leave Room");
+            FloorManager.Instance.LoadNextRoom(entity, direction, roomID);
         }
     }
 
     public void InitializeDoor(int roomID)
     {
         this.roomID = roomID;
-        door.transform.position = new Vector2(blockage.transform.position.x + DirectionDatabase.directionToPosition[direction].Item1 * 2, blockage.transform.position.y + DirectionDatabase.directionToPosition[direction].Item2 * 2);
+        door.transform.position = new Vector2(blockage.transform.position.x + DirectionDatabase.directionToPosition[direction].Item1 * 2.5f, blockage.transform.position.y + DirectionDatabase.directionToPosition[direction].Item2 * 2.5f);
     }
 
     public void Open()

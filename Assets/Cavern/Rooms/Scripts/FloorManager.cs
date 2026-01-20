@@ -19,17 +19,31 @@ public class FloorManager : MonoBehaviour
     public int rows;
     public int columns;
     public int numRooms;
+    public GameObject roomPrefab;
 
     private (int, int) startingPoint;
     private RoomStructure[,] floor;
-    private Dictionary<int, RoomManager> rooms;
+    private Dictionary<int, RoomStructure> roomStructures = new Dictionary<int, RoomStructure>();
+    private Dictionary<int, RoomManager> roomManagers = new Dictionary<int, RoomManager>();
 
-    private Queue<(int, int)> roomQueue;
+    private Queue<(int, int)> roomQueue = new Queue<(int, int)>();
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
         floor = FillFloor();
         startingPoint = (UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(0, columns));
+
+        if (startingPoint.Item1 > 0)
+        {
+            RoomStructure belowStartingRoom = floor[startingPoint.Item1, startingPoint.Item2 - 1];
+            belowStartingRoom.visited = true;
+            floor[startingPoint.Item1, startingPoint.Item2 - 1] = belowStartingRoom;
+        }
 
         RoomStructure startingRoom = floor[startingPoint.Item1, startingPoint.Item2];
         startingRoom.visited = true;
@@ -39,11 +53,35 @@ public class FloorManager : MonoBehaviour
         roomQueue.Enqueue(startingPoint);
 
         CreateFloorStructure();
+        CreateRoomStructureDict();
+        CreateRoomManagerDict();
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                Debug.Log(floor[i, j].visited);
+                Debug.Log(floor[i, j].id);
+                Debug.Log("List contents: " + string.Join(", ", floor[i, j].rooms));
+            }
+        }
+
+        roomManagers[1].gameObject.SetActive(true);
     }
 
     void Update()
     {
 
+    }
+
+    public void LoadNextRoom(EntityManager entity, Direction direction, int currentRoomID)
+    {
+        RoomStructure currentRoomStructure = roomStructures[currentRoomID];
+        RoomManager currentRoomManager = roomManagers[currentRoomID];
+        RoomManager nextRoomManager = roomManagers[currentRoomStructure.rooms[direction]];
+        currentRoomManager.gameObject.SetActive(false);
+        nextRoomManager.gameObject.SetActive(true);
+        entity.transform.position = nextRoomManager.doorDict[DirectionDatabase.GetOpposite(direction)].transform.position;
     }
 
     private RoomStructure[,] FillFloor()
@@ -75,24 +113,31 @@ public class FloorManager : MonoBehaviour
     {
         int totalRoomIDs = 1;
 
-        while (totalRoomIDs <= numRooms)
+        while (totalRoomIDs <= numRooms && roomQueue.Count > 0)
         {
             (int, int) currentPosition = roomQueue.Dequeue();
             int oldRoomID = floor[currentPosition.Item1, currentPosition.Item2].id;
             List<Direction> paths = PickBranchingPaths(GetAvailableDirections(currentPosition));
 
-            foreach (Direction direction in paths)
+            if (paths.Count > 0)
             {
-                totalRoomIDs++;
-                if (totalRoomIDs <= numRooms)
+                foreach (Direction direction in paths)
                 {
-                    (int, int) newPosition = (currentPosition.Item1 + DirectionDatabase.directionToPosition[direction].Item1, currentPosition.Item2 + DirectionDatabase.directionToPosition[direction].Item2);
-                    RoomStructure newRoom = floor[newPosition.Item1, newPosition.Item2];
-                    newRoom.visited = true;
-                    newRoom.id = totalRoomIDs;
-                    newRoom.rooms[DirectionDatabase.GetOpposite(direction)] = oldRoomID;
-                    floor[newPosition.Item1, newPosition.Item2] = newRoom;
-                    roomQueue.Enqueue(newPosition);
+                    totalRoomIDs++;
+                    if (totalRoomIDs <= numRooms)
+                    {
+                        (int, int) newPosition = (currentPosition.Item1 + DirectionDatabase.directionToPosition[direction].Item1, currentPosition.Item2 + DirectionDatabase.directionToPosition[direction].Item2);
+                        RoomStructure newRoom = floor[newPosition.Item1, newPosition.Item2];
+                        newRoom.visited = true;
+                        newRoom.id = totalRoomIDs;
+                        newRoom.rooms[DirectionDatabase.GetOpposite(direction)] = oldRoomID;
+                        floor[newPosition.Item1, newPosition.Item2] = newRoom;
+                        roomQueue.Enqueue(newPosition);
+
+                        RoomStructure oldRoom = floor[currentPosition.Item1, currentPosition.Item2];
+                        oldRoom.rooms[direction] = totalRoomIDs;
+                        floor[currentPosition.Item1, currentPosition.Item2] = oldRoom;
+                    }
                 }
             }
         }
@@ -119,7 +164,9 @@ public class FloorManager : MonoBehaviour
 
     private List<Direction> PickBranchingPaths(List<Direction> availableDirections)
     {
-        List<Direction> branchingPaths = new() { availableDirections[UnityEngine.Random.Range(0, availableDirections.Count)] };
+        if (availableDirections.Count == 0) return new List<Direction>() { };
+
+        List<Direction> branchingPaths = new List<Direction>() { availableDirections[UnityEngine.Random.Range(0, availableDirections.Count)] };
 
         for (int i = 0; i < availableDirections.Count; i++)
         {
@@ -133,5 +180,32 @@ public class FloorManager : MonoBehaviour
         }
 
         return branchingPaths;
+    }
+
+    private void CreateRoomStructureDict()
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (floor[i, j].visited)
+                {
+                    roomStructures[floor[i, j].id] = floor[i, j];
+                }
+            }
+        }
+    }
+
+    private void CreateRoomManagerDict()
+    {
+        foreach (var roomStructure in roomStructures)
+        {
+            RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity).GetComponent<RoomManager>();
+            room.transform.parent = transform;
+            roomManagers[roomStructure.Key] = room;
+            room.InitializeDoorDict();
+            room.InitializeRoom(roomStructure.Value);
+            room.gameObject.SetActive(false);
+        }
     }
 }

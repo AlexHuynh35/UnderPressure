@@ -9,20 +9,6 @@ public class RoomManager : MonoBehaviour
 
     void Start()
     {
-        InitializeDoorDict();
-        RoomStructure testStructure = new RoomStructure
-        {
-            visited = true,
-            id = 0,
-            rooms = new Dictionary<Direction, int>
-            {
-                { Direction.Up, -1 },
-                { Direction.Down, 0 },
-                { Direction.Left, -1 },
-                { Direction.Right, 0 }
-            },
-        };
-        InitializeRoom(testStructure);
         StartRoom();
     }
 
@@ -31,7 +17,7 @@ public class RoomManager : MonoBehaviour
         DebugClearRoom();
     }
 
-    private void InitializeDoorDict()
+    public void InitializeDoorDict()
     {
         foreach (var door in doorList)
         {
