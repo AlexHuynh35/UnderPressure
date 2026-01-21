@@ -33,7 +33,7 @@ public class HUDManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (InputManager.Instance.PressMenu())
         {
             menu.SetActive(!menu.activeSelf);
         }

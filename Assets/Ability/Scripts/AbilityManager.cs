@@ -56,6 +56,8 @@ public class AbilityManager : MonoBehaviour
 
     void Update()
     {
+        if (!InputManager.Instance.receivingInputs) return;
+        
         SetAimLocation();
         
         UpdateAbilities();

@@ -4,6 +4,6 @@ using UnityEngine;
 [System.Serializable]
 public class AbilitySlot
 {
-    public KeyCode inputKey;
+    public InputType inputType;
     public AbilityGroup group;
 }

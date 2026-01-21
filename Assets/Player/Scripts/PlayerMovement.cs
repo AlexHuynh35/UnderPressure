@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!InputManager.Instance.receivingInputs) return;
+        
         Vector2 movementVector = GetMovementDirection();
         player.rb.AddForce(movementVector, ForceMode2D.Force);
     }
