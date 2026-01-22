@@ -9,6 +9,7 @@ public class InputSettingManager : MonoBehaviour
     public TextMeshProUGUI inputText;
     public TextMeshProUGUI keyText;
     public Button changeKeyButton;
+    public Button resetKeyButton;
 
     private InputAction action;
     private InputActionRebindingExtensions.RebindingOperation rebindOperation;
@@ -19,6 +20,7 @@ public class InputSettingManager : MonoBehaviour
         inputText.SetText(type.ToString());
         keyText.SetText(action.GetBindingDisplayString(0));
         changeKeyButton.onClick.AddListener(StartRebinding);
+        resetKeyButton.onClick.AddListener(ResetKey);
     }
 
     void Update()
@@ -26,14 +28,21 @@ public class InputSettingManager : MonoBehaviour
         
     }
 
-    public void StartRebinding()
+    private void ResetKey()
+    {
+        action.RemoveAllBindingOverrides();
+        InputManager.Instance.SaveBindings();
+        keyText.SetText(action.GetBindingDisplayString(0));
+    }
+
+    private void StartRebinding()
     {
         InputManager.Instance.StartBinding();
 
         changeKeyButton.interactable = false;
         keyText.SetText("...");
 
-        rebindOperation = action.PerformInteractiveRebinding().OnComplete(operation => RebindComplete()).OnCancel(operation => RebindCancel()).Start();
+        rebindOperation = action.PerformInteractiveRebinding().OnComplete(operation => RebindComplete()).OnCancel(operation => RebindCancel()).WithCancelingThrough("<Keyboard>/escape").Start();
     }
 
     private void RebindComplete()

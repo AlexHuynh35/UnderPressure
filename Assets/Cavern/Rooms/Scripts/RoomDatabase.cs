@@ -15,11 +15,11 @@ public class RoomDatabase : ScriptableObject
 
     private void OnEnable()
     {
-        List<GameObject> allRooms = new List<GameObject>();
-        allRooms.Union(topRooms);
-        allRooms.Union(bottomRooms);
-        allRooms.Union(leftRooms);
-        allRooms.Union(rightRooms);
+        allRooms = new List<GameObject>();
+        allRooms = allRooms.Union(topRooms).ToList();
+        allRooms = allRooms.Union(bottomRooms).ToList();
+        allRooms = allRooms.Union(leftRooms).ToList();
+        allRooms = allRooms.Union(rightRooms).ToList();
     }
 
     public List<GameObject> GetFittingRooms(bool top, bool bottom, bool left, bool right)
@@ -28,19 +28,19 @@ public class RoomDatabase : ScriptableObject
 
         if (top)
         {
-            rooms.Intersect(topRooms);
+            rooms = rooms.Intersect(topRooms).ToList();
         }
         if (bottom)
         {
-            rooms.Intersect(bottomRooms);
+            rooms = rooms.Intersect(bottomRooms).ToList();
         }
         if (left)
         {
-            rooms.Intersect(leftRooms);
+            rooms = rooms.Intersect(leftRooms).ToList();
         }
         if (right)
         {
-            rooms.Intersect(rightRooms);
+            rooms = rooms.Intersect(rightRooms).ToList();
         }
 
         rooms.AddRange(centerRooms);

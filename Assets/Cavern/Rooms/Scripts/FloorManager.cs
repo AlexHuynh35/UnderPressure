@@ -56,6 +56,7 @@ public class FloorManager : MonoBehaviour
         CreateRoomStructureDict();
         CreateRoomManagerDict();
 
+        /*
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -65,6 +66,7 @@ public class FloorManager : MonoBehaviour
                 Debug.Log("List contents: " + string.Join(", ", floor[i, j].rooms));
             }
         }
+        */
 
         HUDManager.Instance.SetMap(rows, columns, floor);
 

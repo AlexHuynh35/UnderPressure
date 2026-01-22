@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
     public bool receivingInputs = true;
 
     private const string BindingsKey = "PlayerBindings";
+    private const string PlayerMap = "Player";
 
     private void Awake()
     {
@@ -34,7 +35,7 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        actionsAsset.FindActionMap("Player").Enable();
+        actionsAsset.FindActionMap(PlayerMap).Enable();
     }
 
     void Update()
@@ -60,17 +61,17 @@ public class InputManager : MonoBehaviour
 
     public void StartBinding()
     {
-        actionsAsset.FindActionMap("Player").Disable();
+        actionsAsset.FindActionMap(PlayerMap).Disable();
     }
 
     public void EndBinding()
     {
-        actionsAsset.FindActionMap("Player").Enable();
+        actionsAsset.FindActionMap(PlayerMap).Enable();
     }
 
     public void SaveBindings()
     {
-        var rebinds = actionsAsset.SaveBindingOverridesAsJson();
+        var rebinds = actionsAsset.FindActionMap(PlayerMap).SaveBindingOverridesAsJson();
         PlayerPrefs.SetString(BindingsKey, rebinds);
         PlayerPrefs.Save();
     }
@@ -82,7 +83,7 @@ public class InputManager : MonoBehaviour
 
     private void SetInputDict()
     {
-        inputDict = Enum.GetValues(typeof(InputType)).Cast<InputType>().ToDictionary(e => e, e => actionsAsset.FindActionMap("Player").FindAction(e.ToString()));
+        inputDict = Enum.GetValues(typeof(InputType)).Cast<InputType>().ToDictionary(e => e, e => actionsAsset.FindActionMap(PlayerMap).FindAction(e.ToString()));
         foreach (var input in inputDict)
         {
             input.Value.Enable();
@@ -94,7 +95,7 @@ public class InputManager : MonoBehaviour
         if (PlayerPrefs.HasKey(BindingsKey))
         {
             var rebinds = PlayerPrefs.GetString(BindingsKey);
-            actionsAsset.LoadBindingOverridesFromJson(rebinds);
+            actionsAsset.FindActionMap(PlayerMap).LoadBindingOverridesFromJson(rebinds);
         }
     }
 }
