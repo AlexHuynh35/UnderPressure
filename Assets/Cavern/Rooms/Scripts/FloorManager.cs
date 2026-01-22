@@ -19,7 +19,7 @@ public class FloorManager : MonoBehaviour
     public int rows;
     public int columns;
     public int numRooms;
-    public GameObject roomPrefab;
+    public RoomDatabase database;
 
     private (int, int) startingPoint;
     private RoomStructure[,] floor;
@@ -204,6 +204,8 @@ public class FloorManager : MonoBehaviour
     {
         foreach (var roomStructure in roomStructures)
         {
+            List<GameObject> roomPrefabs = database.GetFittingRooms(roomStructure.Value.rooms[Direction.Up] >= 0, roomStructure.Value.rooms[Direction.Down] >= 0, roomStructure.Value.rooms[Direction.Left] >= 0, roomStructure.Value.rooms[Direction.Right] >= 0);
+            GameObject roomPrefab = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Count)];
             RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity, transform).GetComponent<RoomManager>();
             roomManagers[roomStructure.Key] = room;
             room.InitializeRoom(roomStructure.Value);

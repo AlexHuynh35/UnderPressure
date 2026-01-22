@@ -2984,7 +2984,7 @@ MonoBehaviour:
   rows: 5
   columns: 5
   numRooms: 10
-  roomPrefab: {fileID: 8529725727229939125, guid: 1dd4767d62db043ef9dd07477d8c4304, type: 3}
+  database: {fileID: 11400000, guid: 17aa1831e6ffb499daefc0e43877927b, type: 2}
 --- !u!4 &2048129722
 Transform:
   m_ObjectHideFlags: 0
