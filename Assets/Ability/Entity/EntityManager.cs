@@ -25,6 +25,7 @@ public class EntityManager : MonoBehaviour
     public int stunned;
     public int silenced;
     public int decayed;
+    public int confused;
     public Vector2 orientation;
 
     /* Lifecycle */
@@ -131,6 +132,18 @@ public class EntityManager : MonoBehaviour
         else
         {
             decayed = 1;
+        }
+    }
+
+    public void ToggleConfuse(bool flag)
+    {
+        if (flag)
+        {
+            confused = -1;
+        }
+        else
+        {
+            confused = 1;
         }
     }
 }

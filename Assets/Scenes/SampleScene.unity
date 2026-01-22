@@ -253,6 +253,7 @@ MonoBehaviour:
   stunned: 1
   silenced: 1
   decayed: 1
+  confused: 1
   orientation: {x: 1, y: 0}
 --- !u!114 &64923300
 MonoBehaviour:

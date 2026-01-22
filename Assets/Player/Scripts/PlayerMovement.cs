@@ -20,8 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 GetMovementDirection()
     {
         Vector2 input = new Vector2(
-            Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")
+            Input.GetAxisRaw("Horizontal") * player.confused,
+            Input.GetAxisRaw("Vertical") * player.confused
         );
 
         if (input != Vector2.zero)
