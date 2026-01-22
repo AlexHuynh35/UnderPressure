@@ -13,7 +13,7 @@ public class DamageEffect : Effect
 
     public override void OnEnter(EntityManager target)
     {
-        target.ApplyDamage(damage, piercing);
+        target.ApplyDamage(damage, piercing, source.attackMultiplier);
     }
 }
 
@@ -47,7 +47,7 @@ public class DamageAreaEffectInstance : AreaEffectInstance
 
     public override void Tick(EntityManager target)
     {
-        target.ApplyDamage(damage, piercing);
+        target.ApplyDamage(damage, piercing, source.attackMultiplier);
     }
 }
 
@@ -81,6 +81,6 @@ public class DamageStatusEffectInstance : StatusEffectInstance
 
     public override void Tick(EntityManager target)
     {
-        target.ApplyDamage(damage, piercing);
+        target.ApplyDamage(damage, piercing, source.attackMultiplier);
     }
 }

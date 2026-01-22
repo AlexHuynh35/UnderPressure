@@ -244,15 +244,23 @@ MonoBehaviour:
   effectManager: {fileID: 5563520921933283120}
   spriteManager: {fileID: 4176943580688952115}
   inventory: {fileID: 0}
+  orientation: {x: 1, y: 0}
   health: 10
-  maxHealth: 10
   armor: 0
   speeds: []
   speed: 0
-  maxSpeed: 0
+  proficiency: 0
+  attackMultiplier: 1
+  damageMultiplier: 1
   stunned: 1
   silenced: 1
-  orientation: {x: 1, y: 0}
+  decayed: 1
+  confused: 1
+  maxHealth: 10
+  maxSpeed: 0
+  maxProficiency: 1
+  maxAttackMultiplier: 1
+  maxDamageMultiplier: 1
 --- !u!114 &5563520921933283120
 MonoBehaviour:
   m_ObjectHideFlags: 0

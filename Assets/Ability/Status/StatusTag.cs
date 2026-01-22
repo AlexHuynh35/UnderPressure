@@ -9,4 +9,5 @@ public enum StatusTag
     Confuse,
     Regeneration,
     Haste,
+    Berserk,
 }

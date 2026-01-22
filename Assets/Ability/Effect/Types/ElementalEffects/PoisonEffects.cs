@@ -33,7 +33,7 @@ public class DecayStatusEffectInstance : StatusEffectInstance
 
     public override void Tick(EntityManager target)
     {
-        target.ApplyDamage(damage, false);
+        target.ApplyDamage(damage, false, source.attackMultiplier);
     }
 
     public override void Revert(EntityManager target)
@@ -88,7 +88,7 @@ public class DrainStatusEffectInstance : StatusEffectInstance
 
     public override void Tick(EntityManager target)
     {
-        target.ApplyDamage(damage, false);
+        target.ApplyDamage(damage, false, source.attackMultiplier);
         HitboxManager attack = Object.Instantiate(data.hitboxPrefab, AbilityHelper.OffsetLocation(target.transform.position, 1f), Quaternion.identity).GetComponent<HitboxManager>();
         attack.Initialize
         (

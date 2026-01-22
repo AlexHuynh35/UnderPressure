@@ -242,19 +242,23 @@ MonoBehaviour:
   effectManager: {fileID: 64923301}
   spriteManager: {fileID: 524369155}
   inventory: {fileID: 64923305}
+  orientation: {x: 1, y: 0}
   health: 1000
-  maxHealth: 1000
   armor: 0
   speeds: []
   speed: 100
-  maxSpeed: 100
   proficiency: 1
-  maxProficiency: 1
+  attackMultiplier: 1
+  damageMultiplier: 1
   stunned: 1
   silenced: 1
   decayed: 1
   confused: 1
-  orientation: {x: 1, y: 0}
+  maxHealth: 1000
+  maxSpeed: 100
+  maxProficiency: 1
+  maxAttackMultiplier: 1
+  maxDamageMultiplier: 1
 --- !u!114 &64923300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowInfo: {fileID: 11400000, guid: 37be5a7ef02c849058af215926462d63, type: 2}
   arrowAmount: 10
-  potionInfo: {fileID: 11400000, guid: 093116f4dbe8e47a584101d35d5f6ac9, type: 2}
+  potionInfo: {fileID: 11400000, guid: 25370666fa1614e20a5c2b7b701dd0bd, type: 2}
   potionAmount: 10
   arrow:
     item: {fileID: 0}
@@ -730,12 +734,44 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: decayed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: confused
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
       propertyPath: maxSpeed
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
       propertyPath: maxHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: proficiency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: maxProficiency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: attackMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: damageMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: maxAttackMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507971130402918061, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
+      propertyPath: maxDamageMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8765841473129667991, guid: 159268da5d8d549f281a1f09c11e009d, type: 3}
       propertyPath: m_LocalPosition.x

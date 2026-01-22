@@ -31,7 +31,7 @@ public class BurnStatusEffectInstance : StatusEffectInstance
 
     public override void Tick(EntityManager target)
     {
-        target.ApplyDamage(damage, true);
+        target.ApplyDamage(damage, true, source.attackMultiplier);
     }
 
     public override void Revert(EntityManager target)

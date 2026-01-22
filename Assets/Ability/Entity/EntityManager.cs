@@ -12,21 +12,28 @@ public class EntityManager : MonoBehaviour
     public EffectManager effectManager;
     public SpriteManager spriteManager;
     public Inventory inventory;
+    public Vector2 orientation;
 
     [Header("Combat Stats")]
     public float health;
-    public float maxHealth;
     public int armor;
     public float[] speeds;
     public float speed;
-    public float maxSpeed;
     public float proficiency;
-    public float maxProficiency;
+    public float attackMultiplier;
+    public float damageMultiplier;
     public int stunned;
     public int silenced;
     public int decayed;
     public int confused;
-    public Vector2 orientation;
+
+    [Header("Default Stats")]
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float maxProficiency;
+    [SerializeField] private float maxAttackMultiplier;
+    [SerializeField] private float maxDamageMultiplier;
+
 
     /* Lifecycle */
     void Start()
@@ -44,7 +51,7 @@ public class EntityManager : MonoBehaviour
     }
 
     /* Combat */
-    public void ApplyDamage(float amount, bool ignoreArmor)
+    public void ApplyDamage(float amount, bool ignoreArmor, float multiplier)
     {
         if (armor > 0 && !ignoreArmor)
         {
@@ -52,7 +59,7 @@ public class EntityManager : MonoBehaviour
             return;
         }
 
-        health = Mathf.Max(0, health - amount);
+        health = Mathf.Max(0, health - amount * damageMultiplier * multiplier);
 
         if (health <= 0)
         {
@@ -97,6 +104,16 @@ public class EntityManager : MonoBehaviour
     public void ChangeProficiency(float amount)
     {
         proficiency = maxProficiency * amount;
+    }
+
+    public void ChangeAttack(float amount)
+    {
+        attackMultiplier = maxAttackMultiplier * amount;
+    }
+
+    public void ChangeDamage(float amount)
+    {
+        damageMultiplier = maxDamageMultiplier * amount;
     }
 
     public void ToggleStun(bool flag)
