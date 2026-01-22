@@ -9,6 +9,7 @@ public class HUDManager : MonoBehaviour
     [Header("Navigation")]
     public Button inventoryButton;
     public Button mapButton;
+    public Button settingsButton;
 
     [Header("Inventory")]
     public GameObject inventoryContainer;
@@ -16,6 +17,9 @@ public class HUDManager : MonoBehaviour
     [Header("Map")]
     public GameObject mapContainer;
     private MapManager map;
+
+    [Header("Settings")]
+    public GameObject settingsContainer;
 
     private void Awake()
     {
@@ -27,6 +31,7 @@ public class HUDManager : MonoBehaviour
         map = mapContainer.GetComponentInChildren<MapManager>();
         inventoryButton.onClick.AddListener(OpenInventory);
         mapButton.onClick.AddListener(OpenMap);
+        settingsButton.onClick.AddListener(OpenSettings);
         OpenInventory();
         menu.SetActive(false);
     }
@@ -51,13 +56,22 @@ public class HUDManager : MonoBehaviour
 
     private void OpenInventory()
     {
-        mapContainer.SetActive(false);
         inventoryContainer.SetActive(true);
+        mapContainer.SetActive(false);
+        settingsContainer.SetActive(false);
     }
 
     private void OpenMap()
     {
         inventoryContainer.SetActive(false);
         mapContainer.SetActive(true);
+        settingsContainer.SetActive(false);
+    }
+
+    private void OpenSettings()
+    {
+        inventoryContainer.SetActive(false);
+        mapContainer.SetActive(false);
+        settingsContainer.SetActive(true);
     }
 }

@@ -21,7 +21,7 @@ public class PlayerAbilityManager : AbilityManager
             AbilityTimer timer = timers[i];
             AbilitySlot slot = slots[i];
 
-            if (timer.state == AbilityState.Ready && Input.GetKeyDown(InputManager.Instance.keyCodes[slot.inputType]))
+            if (timer.state == AbilityState.Ready && InputManager.Instance.inputDict[slot.inputType].WasPressedThisFrame())
             {
                 if (canQueueNext)
                 {
@@ -49,7 +49,7 @@ public class PlayerAbilityManager : AbilityManager
             AbilityTimer timer = timers[i];
             AbilitySlot slot = slots[i];
 
-            if (timer.state == AbilityState.Charge && Input.GetKeyUp(InputManager.Instance.keyCodes[slot.inputType]))
+            if (timer.state == AbilityState.Charge && InputManager.Instance.inputDict[slot.inputType].WasReleasedThisFrame())
             {
                 timer.state = AbilityState.WindUp;
                 timer.windUpTimer = slot.group.abilities[mode].windUpTime * caster.proficiency;
