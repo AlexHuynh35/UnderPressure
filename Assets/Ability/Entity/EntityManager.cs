@@ -34,6 +34,13 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float maxAttackMultiplier;
     [SerializeField] private float maxDamageMultiplier;
 
+    [Header("Stamina Stats")]
+    public int stamina;
+    public float staminaRate;
+    [SerializeField] private float maxStamina;
+    [SerializeField] private float maxStaminaRate;
+    private float staminaTimer;
+
 
     /* Lifecycle */
     void Start()
@@ -47,7 +54,7 @@ public class EntityManager : MonoBehaviour
 
     void Update()
     {
-
+        RegainStamina();
     }
 
     /* Combat */
@@ -162,5 +169,33 @@ public class EntityManager : MonoBehaviour
         {
             confused = 1;
         }
+    }
+
+    public void RegainStamina()
+    {
+        if (stamina < maxStamina)
+        {
+            staminaTimer += Time.deltaTime;
+            if (staminaTimer >= staminaRate)
+            {
+                stamina++;
+                staminaTimer = 0;
+            }
+        }
+    }
+
+    public bool UseStamina()
+    {
+        if (stamina > 0)
+        {
+            stamina--;
+            return true;
+        }
+        return false;
+    }
+
+    public void ChangeStaminaRate(float amount)
+    {
+        staminaRate = maxStaminaRate * amount;
     }
 }

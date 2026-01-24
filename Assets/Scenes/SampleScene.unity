@@ -259,6 +259,10 @@ MonoBehaviour:
   maxProficiency: 1
   maxAttackMultiplier: 1
   maxDamageMultiplier: 1
+  stamina: 3
+  staminaRate: 2
+  maxStamina: 3
+  maxStaminaRate: 2
 --- !u!114 &64923300
 MonoBehaviour:
   m_ObjectHideFlags: 0

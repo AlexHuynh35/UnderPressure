@@ -9,7 +9,10 @@ public class Dash : Ability
 
     public override void OnPress(EntityManager caster, Vector2 direction)
     {
-        Effect chargeEffect = new ChargeEffect(force: charge, direction: caster.orientation, source: caster, allowedTags: EntityTag.Player);
-        chargeEffect.OnEnter(caster);
+        if (caster.UseStamina())
+        {
+            Effect chargeEffect = new ChargeEffect(force: charge, direction: caster.orientation, source: caster, allowedTags: EntityTag.Player);
+            chargeEffect.OnEnter(caster);
+        }
     }
 }
