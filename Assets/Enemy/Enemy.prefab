@@ -249,7 +249,7 @@ MonoBehaviour:
   armor: 0
   speeds: []
   speed: 0
-  proficiency: 0
+  proficiency: 1
   attackMultiplier: 1
   damageMultiplier: 1
   stunned: 1
@@ -261,6 +261,10 @@ MonoBehaviour:
   maxProficiency: 1
   maxAttackMultiplier: 1
   maxDamageMultiplier: 1
+  stamina: 0
+  staminaRate: 0
+  maxStamina: 0
+  maxStaminaRate: 0
 --- !u!114 &5563520921933283120
 MonoBehaviour:
   m_ObjectHideFlags: 0
