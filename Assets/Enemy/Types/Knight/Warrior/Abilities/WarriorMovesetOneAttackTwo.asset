@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf354ae0171104451ac4dbfdc02c9450, type: 3}
-  m_Name: WarriorSlashTwo
+  m_Name: WarriorMovesetOneAttackTwo
   m_EditorClassIdentifier: 
-  name: Warrior Slash Two
+  name: Warrior Moveset One Attack Two
   maxChargeTime: 0
   windUpTime: 1
   activeTime: 0
