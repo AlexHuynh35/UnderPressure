@@ -86,6 +86,7 @@ public class EntityManager : MonoBehaviour
 
     private void OnDeath()
     {
+        inventory.DropItem();
         Destroy(gameObject);
     }
 

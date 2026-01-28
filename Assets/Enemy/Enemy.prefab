@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 1153070062529290258}
   - component: {fileID: 5563520921933283120}
   - component: {fileID: 2204053694205192017}
+  - component: {fileID: 2832746682566783224}
   - component: {fileID: 2910776450205393004}
   - component: {fileID: 8655781532648497118}
   m_Layer: 0
@@ -243,7 +244,7 @@ MonoBehaviour:
   abilityManager: {fileID: 2204053694205192017}
   effectManager: {fileID: 5563520921933283120}
   spriteManager: {fileID: 4176943580688952115}
-  inventory: {fileID: 0}
+  inventory: {fileID: 2832746682566783224}
   orientation: {x: 1, y: 0}
   health: 10
   armor: 0
@@ -292,6 +293,22 @@ MonoBehaviour:
   slots: []
   detectionRange: 5
   timeBetweenAttack: 1
+--- !u!114 &2832746682566783224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5765182413864872287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e833cc2f048c48d9b2e450caa808a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowInfo: {fileID: 11400000, guid: 67777ddce311f461989b59f95ac8036d, type: 2}
+  arrowAmount: 2
+  inventorySpace: 2
+  dropPrefab: {fileID: 5692608284684714028, guid: c6b7c6819ffc3485599c7c8ced5c0205, type: 3}
 --- !u!50 &2910776450205393004
 Rigidbody2D:
   serializedVersion: 5

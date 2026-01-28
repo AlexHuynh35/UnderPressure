@@ -303,7 +303,7 @@ MonoBehaviour:
   - inputType: 0
     group: {fileID: 11400000, guid: 62205522822544867bd5300acc75c3dd, type: 2}
   - inputType: 1
-    group: {fileID: 11400000, guid: 84b3d521b50af4d33b7326f2e91126b8, type: 2}
+    group: {fileID: 11400000, guid: e5e3a91028c7f4c3f97da150f1c685db, type: 2}
   - inputType: 2
     group: {fileID: 11400000, guid: 8885982392e9a4219aee36d3817ffe16, type: 2}
   - inputType: 5
@@ -379,13 +379,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 64923295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe451f5cccce7438e947741c9a69e0af, type: 3}
+  m_Script: {fileID: 11500000, guid: e687e04d78c7a493899163eb392425ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowInfo: {fileID: 11400000, guid: 37be5a7ef02c849058af215926462d63, type: 2}
+  arrowInfo: {fileID: 11400000, guid: 67777ddce311f461989b59f95ac8036d, type: 2}
   arrowAmount: 10
-  potionInfo: {fileID: 11400000, guid: 25370666fa1614e20a5c2b7b701dd0bd, type: 2}
-  potionAmount: 10
+  inventorySpace: 9
+  dropPrefab: {fileID: 5692608284684714028, guid: c6b7c6819ffc3485599c7c8ced5c0205, type: 3}
   arrow:
     item: {fileID: 0}
     amount: 0

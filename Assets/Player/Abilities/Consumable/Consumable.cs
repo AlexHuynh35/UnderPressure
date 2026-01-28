@@ -6,13 +6,16 @@ public class Consumable : Ability
 {
     public override void OnPress(EntityManager caster, Vector2 direction)
     {
-        if (caster.inventory.potion.amount > 0)
+        if (caster.inventory is PlayerInventory inventory)
         {
-            caster.inventory.potion.amount--;
-
-            if (caster.inventory.potion.item is Potion potion)
+            if (inventory.potion.amount > 0)
             {
-                potion.ApplyEffects(caster);
+                inventory.potion.amount--;
+
+                if (inventory.potion.item is Potion potion)
+                {
+                    potion.ApplyEffects(caster);
+                }
             }
         }
     }
