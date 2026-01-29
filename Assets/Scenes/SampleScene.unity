@@ -246,7 +246,7 @@ MonoBehaviour:
   health: 1000
   armor: 0
   speeds: []
-  speed: 100
+  speed: 75
   proficiency: 1
   attackMultiplier: 1
   damageMultiplier: 1
@@ -255,7 +255,7 @@ MonoBehaviour:
   decayed: 1
   confused: 1
   maxHealth: 1000
-  maxSpeed: 100
+  maxSpeed: 75
   maxProficiency: 1
   maxAttackMultiplier: 1
   maxDamageMultiplier: 1

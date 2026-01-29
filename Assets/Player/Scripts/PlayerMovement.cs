@@ -19,17 +19,18 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 GetMovementDirection()
     {
-        Vector2 input = new Vector2(
-            Input.GetAxisRaw("Horizontal") * player.confused,
-            Input.GetAxisRaw("Vertical") * player.confused
-        );
+        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal") * player.confused, Input.GetAxisRaw("Vertical") * player.confused);
 
         if (input != Vector2.zero)
         {
             if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            {
                 player.orientation = input.x > 0 ? Vector2.right : Vector2.left;
+            }
             else
+            {
                 player.orientation = input.y > 0 ? Vector2.up : Vector2.down;
+            }
         }
 
         Vector2 movementDirection = input.normalized;

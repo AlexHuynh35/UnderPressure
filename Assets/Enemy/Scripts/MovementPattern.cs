@@ -6,8 +6,8 @@ public class MovementPattern : ScriptableObject
     public new string name;
 
     [Header("Movement Stats")]
-    public float speed;
-    public float range;
+    public float activeTime;
+    public float cooldownTime;
 
     public virtual void SetOrientation(EntityManager entity)
     {

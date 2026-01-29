@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -3908186198005491613, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
       propertyPath: pattern
       value: 
-      objectReference: {fileID: 11400000, guid: 578e4b1d7bab94bf6884112ea1825483, type: 2}
+      objectReference: {fileID: 11400000, guid: 0e7198af57cec45fd9f14ddba8b39c2c, type: 2}
     - target: {fileID: 2204053694205192017, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
       propertyPath: slots.Array.size
       value: 1
