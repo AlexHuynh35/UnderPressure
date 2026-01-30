@@ -54,6 +54,27 @@ public class AccelerateMovement : HitboxMovement
     }
 }
 
+public class BoomerangMovement : HitboxMovement
+{
+    private float speed;
+    private float acceleration;
+    private Vector2 direction;
+
+    public BoomerangMovement(float speed, float time, Vector2 direction) : base()
+    {
+        this.speed = speed;
+        this.direction = direction;
+
+        acceleration = 2f * speed / time;
+    }
+
+    public override void Move(HitboxManager manager, float deltaTime)
+    {
+        speed -= acceleration * deltaTime;
+        manager.transform.position += (Vector3)(direction * speed * deltaTime);
+    }
+}
+
 public class FixedMovement : HitboxMovement
 {
     private float speed;

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cf9565c8c24f4f279859ec89da90047, type: 3}
-  m_Name: KnightAxe
+  m_Name: KnightAxeBasic
   m_EditorClassIdentifier: 
-  name: Knight Axe
+  name: Knight Axe Basic
   abilities:
   - {fileID: 11400000, guid: ddbe5e663e1164003981e6c79c112d76, type: 2}
   - {fileID: 11400000, guid: 96f568d319c19476bbbd70763a1124a4, type: 2}
