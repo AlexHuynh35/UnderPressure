@@ -9,22 +9,12 @@ public class PlayerEntityManager : EntityManager
     [SerializeField] private float maxStaminaRate;
     private float staminaTimer;
 
+    [Header("Invincibility Stats")]
+    public float frames;
+
     void Update()
     {
         RegainStamina();
-    }
-
-    public void RegainStamina()
-    {
-        if (stamina < maxStamina)
-        {
-            staminaTimer += Time.deltaTime;
-            if (staminaTimer >= staminaRate)
-            {
-                stamina++;
-                staminaTimer = 0;
-            }
-        }
     }
 
     public bool UseStamina()
@@ -40,5 +30,24 @@ public class PlayerEntityManager : EntityManager
     public void ChangeStaminaRate(float amount)
     {
         staminaRate = maxStaminaRate * amount;
+    }
+
+    private void RegainStamina()
+    {
+        if (stamina < maxStamina)
+        {
+            staminaTimer += Time.deltaTime;
+            if (staminaTimer >= staminaRate)
+            {
+                stamina++;
+                staminaTimer = 0;
+            }
+        }
+    }
+
+    protected override void OnHurt()
+    {
+        Effect invincibilityEffect = new InvincibilityStatusEffect(frame: true, rate: 0.1f, duration: frames, source: this, allowedTags: EntityTag.Player);
+        invincibilityEffect.OnEnter(this);
     }
 }

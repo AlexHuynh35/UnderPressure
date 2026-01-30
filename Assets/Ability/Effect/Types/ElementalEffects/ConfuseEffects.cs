@@ -31,6 +31,6 @@ public class ConfuseStatusEffectInstance : StatusEffectInstance
     {
         target.ToggleConfuse(false);
         target.ToggleSilence(false);
-        target.spriteManager.ApplyColors(StatusTag.None);
+        target.spriteManager.RemoveColors(StatusTag.Confuse);
     }
 }

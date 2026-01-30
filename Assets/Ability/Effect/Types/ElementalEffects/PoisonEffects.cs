@@ -39,7 +39,7 @@ public class DecayStatusEffectInstance : StatusEffectInstance
     public override void Revert(EntityManager target)
     {
         target.ToggleDecay(false);
-        target.spriteManager.ApplyColors(StatusTag.None);
+        target.spriteManager.RemoveColors(StatusTag.Poison);
     }
 }
 
@@ -104,6 +104,6 @@ public class DrainStatusEffectInstance : StatusEffectInstance
 
     public override void Revert(EntityManager target)
     {
-        target.spriteManager.ApplyColors(StatusTag.None);
+        target.spriteManager.RemoveColors(StatusTag.Poison);
     }
 }

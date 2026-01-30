@@ -36,6 +36,6 @@ public class BurnStatusEffectInstance : StatusEffectInstance
 
     public override void Revert(EntityManager target)
     {
-        target.spriteManager.ApplyColors(StatusTag.None);
+        target.spriteManager.RemoveColors(StatusTag.Burn);
     }
 }

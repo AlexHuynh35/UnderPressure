@@ -21,6 +21,7 @@ public class EntityManager : MonoBehaviour
     public float proficiency;
     public float attackMultiplier;
     public float damageMultiplier;
+    public int invincible;
     public int stunned;
     public int silenced;
     public int decayed;
@@ -57,7 +58,14 @@ public class EntityManager : MonoBehaviour
             return;
         }
 
-        health = Mathf.Max(0, health - amount * damageMultiplier * multiplier);
+        float damage = amount * invincible * damageMultiplier * multiplier;
+
+        if (damage > 0)
+        {
+            OnHurt();
+        }
+
+        health = Mathf.Max(0, health - damage);
 
         if (health <= 0)
         {
@@ -67,7 +75,14 @@ public class EntityManager : MonoBehaviour
 
     public void ApplyPercentDamage(float amount)
     {
-        health = Mathf.Max(0, health - maxHealth * amount);
+        float damage = maxHealth * amount * invincible;
+
+        if (damage > 0)
+        {
+            OnHurt();
+        }
+
+        health = Mathf.Max(0, health - damage);
 
         if (health <= 0)
         {
@@ -76,6 +91,8 @@ public class EntityManager : MonoBehaviour
     }
 
     protected virtual void OnDeath() { }
+
+    protected virtual void OnHurt() { }
 
     public void ApplyKnockback(Vector2 direction, float force)
     {
@@ -109,6 +126,18 @@ public class EntityManager : MonoBehaviour
     public void ChangeDamage(float amount)
     {
         damageMultiplier = maxDamageMultiplier * amount;
+    }
+
+    public void ToggleInvincibility(bool flag)
+    {
+        if (flag)
+        {
+            invincible = 0;
+        }
+        else
+        {
+            invincible = 1;
+        }
     }
 
     public void ToggleStun(bool flag)

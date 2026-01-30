@@ -60,6 +60,6 @@ public class FrostStatusEffectInstance : StatusEffectInstance
     public override void Revert(EntityManager target)
     {
         target.ChangeMovement(1, 2);
-        target.spriteManager.ApplyColors(StatusTag.None);
+        target.spriteManager.RemoveColors(StatusTag.Frost);
     }
 }

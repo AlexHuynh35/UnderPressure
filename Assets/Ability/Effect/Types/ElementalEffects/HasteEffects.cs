@@ -39,6 +39,6 @@ public class HasteStatusEffectInstance : StatusEffectInstance
     {
         target.ChangeProficiency(1);
         target.ChangeMovement(1, 2);
-        target.spriteManager.ApplyColors(StatusTag.None);
+        target.spriteManager.RemoveColors(StatusTag.Haste);
     }
 }

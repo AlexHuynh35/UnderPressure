@@ -379,6 +379,7 @@ MonoBehaviour:
   proficiency: 1
   attackMultiplier: 1
   damageMultiplier: 1
+  invincible: 1
   stunned: 1
   silenced: 1
   decayed: 1
@@ -392,6 +393,7 @@ MonoBehaviour:
   staminaRate: 2
   maxStamina: 3
   maxStaminaRate: 2
+  frames: 0.5
 --- !u!1001 &98770047
 PrefabInstance:
   m_ObjectHideFlags: 0

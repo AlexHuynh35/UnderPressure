@@ -81,6 +81,6 @@ public class HealStatusEffectInstance : StatusEffectInstance
 
     public override void Revert(EntityManager target)
     {
-        target.spriteManager.ApplyColors(StatusTag.None);
+        target.spriteManager.RemoveColors(StatusTag.Regeneration);
     }
 }

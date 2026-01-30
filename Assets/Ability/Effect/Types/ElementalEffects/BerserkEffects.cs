@@ -39,6 +39,6 @@ public class BerserkStatusEffectInstance : StatusEffectInstance
     {
         target.ChangeAttack(1);
         target.ChangeDamage(1);
-        target.spriteManager.ApplyColors(StatusTag.None);
+        target.spriteManager.RemoveColors(StatusTag.Berserk);
     }
 }

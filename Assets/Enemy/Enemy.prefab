@@ -255,6 +255,7 @@ MonoBehaviour:
   proficiency: 1
   attackMultiplier: 1
   damageMultiplier: 1
+  invincible: 1
   stunned: 1
   silenced: 1
   decayed: 1
