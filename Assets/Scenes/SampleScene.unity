@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 64923296}
-  - component: {fileID: 64923299}
+  - component: {fileID: 64923306}
   - component: {fileID: 64923301}
   - component: {fileID: 64923302}
   - component: {fileID: 64923300}
@@ -224,45 +224,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &64923299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64923295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cd9b637ad0ac48eab782d08544f3f8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tags: 1
-  rb: {fileID: 64923298}
-  abilityManager: {fileID: 64923302}
-  effectManager: {fileID: 64923301}
-  spriteManager: {fileID: 524369155}
-  inventory: {fileID: 64923305}
-  orientation: {x: 1, y: 0}
-  health: 1000
-  armor: 0
-  speeds: []
-  speed: 75
-  proficiency: 1
-  attackMultiplier: 1
-  damageMultiplier: 1
-  stunned: 1
-  silenced: 1
-  decayed: 1
-  confused: 1
-  maxHealth: 1000
-  maxSpeed: 75
-  maxProficiency: 1
-  maxAttackMultiplier: 1
-  maxDamageMultiplier: 1
-  stamina: 3
-  staminaRate: 2
-  maxStamina: 3
-  maxStaminaRate: 2
 --- !u!114 &64923300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +353,45 @@ MonoBehaviour:
   potion:
     item: {fileID: 0}
     amount: 0
+--- !u!114 &64923306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64923295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00415c1c995dd497daa6f1ff80e7ae98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 1
+  rb: {fileID: 64923298}
+  abilityManager: {fileID: 64923302}
+  effectManager: {fileID: 64923301}
+  spriteManager: {fileID: 524369155}
+  inventory: {fileID: 64923305}
+  orientation: {x: 1, y: 0}
+  health: 100
+  armor: 0
+  speeds: []
+  speed: 75
+  proficiency: 1
+  attackMultiplier: 1
+  damageMultiplier: 1
+  stunned: 1
+  silenced: 1
+  decayed: 1
+  confused: 1
+  maxHealth: 100
+  maxSpeed: 75
+  maxProficiency: 1
+  maxAttackMultiplier: 1
+  maxDamageMultiplier: 1
+  stamina: 3
+  staminaRate: 2
+  maxStamina: 3
+  maxStaminaRate: 2
 --- !u!1001 &98770047
 PrefabInstance:
   m_ObjectHideFlags: 0

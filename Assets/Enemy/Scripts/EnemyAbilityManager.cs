@@ -147,6 +147,16 @@ public class EnemyAbilityManager : AbilityManager
 
                 case AbilityState.WindUp:
                     timer.windUpTimer -= dt;
+                    if (mode == 0 && Vector2.Distance(transform.position, target.position) > slots[i].group.abilities[0].range + target.localScale.x / 2)
+                    {
+                        mode = 0;
+                        continuingCombo = false;
+                        currentAttack = -1;
+
+                        timer.state = AbilityState.Cooldown;
+                        timer.cooldownTimer = slots[i].group.cooldownTime;
+                        slot.EndActive(caster);
+                    }
                     if (timer.windUpTimer <= 0)
                     {
                         timer.state = AbilityState.Active;

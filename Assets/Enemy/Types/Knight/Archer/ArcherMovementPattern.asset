@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Archer Movement Pattern
   activeTime: 2
-  cooldownTime: 0.5
+  cooldownTime: 0
   startRange: 8
   endRange: 4

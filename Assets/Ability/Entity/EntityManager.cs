@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityManager : MonoBehaviour
@@ -34,14 +33,6 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float maxAttackMultiplier;
     [SerializeField] private float maxDamageMultiplier;
 
-    [Header("Stamina Stats")]
-    public int stamina;
-    public float staminaRate;
-    [SerializeField] private float maxStamina;
-    [SerializeField] private float maxStaminaRate;
-    private float staminaTimer;
-
-
     /* Lifecycle */
     void Start()
     {
@@ -54,7 +45,7 @@ public class EntityManager : MonoBehaviour
 
     void Update()
     {
-        RegainStamina();
+        
     }
 
     /* Combat */
@@ -84,11 +75,7 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    private void OnDeath()
-    {
-        inventory.DropItem();
-        Destroy(gameObject);
-    }
+    protected virtual void OnDeath() { }
 
     public void ApplyKnockback(Vector2 direction, float force)
     {
@@ -170,33 +157,5 @@ public class EntityManager : MonoBehaviour
         {
             confused = 1;
         }
-    }
-
-    public void RegainStamina()
-    {
-        if (stamina < maxStamina)
-        {
-            staminaTimer += Time.deltaTime;
-            if (staminaTimer >= staminaRate)
-            {
-                stamina++;
-                staminaTimer = 0;
-            }
-        }
-    }
-
-    public bool UseStamina()
-    {
-        if (stamina > 0)
-        {
-            stamina--;
-            return true;
-        }
-        return false;
-    }
-
-    public void ChangeStaminaRate(float amount)
-    {
-        staminaRate = maxStaminaRate * amount;
     }
 }
