@@ -3,12 +3,26 @@ using UnityEngine;
 
 public class PlayerInventory : Inventory
 {
+    public Weapon weaponInfo;
+    [HideInInspector] public ItemStack weapon;
     [HideInInspector] public ItemStack arrow;
     [HideInInspector] public ItemStack potion;
+
+    private EntityManager player;
+
+    private void Awake()
+    {
+        player = GetComponent<EntityManager>();
+        arrow = new ItemStack(arrowInfo, arrowAmount);
+        weapon = new ItemStack(weaponInfo, 1);
+    }
     
     void Start()
     {
-        arrow = new ItemStack(arrowInfo, arrowAmount);
+        if (player.abilityManager is PlayerAbilityManager manager)
+        {
+            manager.SwitchWeapon(weaponInfo);
+        }
     }
 
     void Update()

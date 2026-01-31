@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf9565c8c24f4f279859ec89da90047, type: 3}
-  m_Name: KnightAxeUltimate
+  m_Script: {fileID: 11500000, guid: 2fdd9d4d5b425495ebeb49ea3aa8ae9d, type: 3}
+  m_Name: KnightAxe
   m_EditorClassIdentifier: 
-  name: Knight Axe Ultimate
-  abilities:
-  - {fileID: 11400000, guid: d1e9fc18ea82c4a0e903071cde89fa34, type: 2}
-  cooldownTime: 10
+  name: Knight Axe
+  type: 2
+  basicAttack: {fileID: 11400000, guid: 84b3d521b50af4d33b7326f2e91126b8, type: 2}
+  specialAttack: {fileID: 11400000, guid: 6eaffc656b91441368c5184bafb9f18d, type: 2}

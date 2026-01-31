@@ -6,7 +6,7 @@
             "id": "43cd26f9-0efc-4f6e-9839-aea6abaddf4c",
             "actions": [
                 {
-                    "name": "WeaponOne",
+                    "name": "WeaponBasic",
                     "type": "Button",
                     "id": "6fd4708a-5828-44d5-ae00-804b8e729524",
                     "expectedControlType": "",
@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "WeaponTwo",
+                    "name": "WeaponSpecial",
                     "type": "Button",
                     "id": "5c674cd6-8a69-4a22-b863-fe09ca78e992",
                     "expectedControlType": "",
@@ -77,7 +77,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WeaponOne",
+                    "action": "WeaponBasic",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -88,7 +88,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WeaponTwo",
+                    "action": "WeaponSpecial",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

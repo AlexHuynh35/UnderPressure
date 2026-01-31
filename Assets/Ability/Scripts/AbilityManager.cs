@@ -32,26 +32,15 @@ public class AbilityManager : MonoBehaviour
     protected Vector2 aimLocation;
     protected Vector2 lockedAimLocation;
 
+    private void Awake()
+    {
+        caster = GetComponent<EntityManager>();
+        Initialize();
+    }
+
     void Start()
     {
-        numSlots = slots.Count;
-        caster = GetComponent<EntityManager>();
-        timers = new List<AbilityTimer>(slots.Count);
-        for (int i = 0; i < numSlots; i++)
-        {
-            AbilityTimer timer = new AbilityTimer
-            {
-                state = AbilityState.Ready,
-                chargeTimer = 0,
-                windUpTimer = 0,
-                activeTimer = 0,
-                cooldownTimer = 0,
-                sustainTimer = 0,
-                castTimer = 0
-            };
-            timers.Add(timer);
-        }
-        Initialize();
+        
     }
 
     void Update()
@@ -72,7 +61,25 @@ public class AbilityManager : MonoBehaviour
         ReleaseAbility();
     }
     
-    protected virtual void Initialize() { }
+    protected virtual void Initialize()
+    {
+        numSlots = slots.Count;
+        timers = new List<AbilityTimer>(slots.Count);
+        for (int i = 0; i < numSlots; i++)
+        {
+            AbilityTimer timer = new AbilityTimer
+            {
+                state = AbilityState.Ready,
+                chargeTimer = 0,
+                windUpTimer = 0,
+                activeTimer = 0,
+                cooldownTimer = 0,
+                sustainTimer = 0,
+                castTimer = 0
+            };
+            timers.Add(timer);
+        }
+    }
     protected virtual void SetAimLocation() { }
     protected virtual void StartAbility() { }
     protected virtual void ReleaseAbility() { }

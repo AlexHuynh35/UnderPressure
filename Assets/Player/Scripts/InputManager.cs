@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public enum InputType
 {
-    WeaponOne,
-    WeaponTwo,
+    WeaponBasic,
+    WeaponSpecial,
     ConsumableOne,
     ConsumableTwo,
     Shield,

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerAbilityManager : AbilityManager
 {
@@ -8,6 +9,40 @@ public class PlayerAbilityManager : AbilityManager
     private bool canQueueNext;
     private int mode;
     private float timerBetweenMode;
+
+    private int weaponBasicSlot;
+    private int weaponSpecialSlot;
+
+    public void SwitchWeapon(Weapon weapon)
+    {
+        AbilitySlot basicSlot = slots[weaponBasicSlot];
+        basicSlot.group = weapon.basicAttack;
+        slots[weaponBasicSlot] = basicSlot;
+
+        AbilitySlot specialSlot = slots[weaponSpecialSlot];
+        specialSlot.group = weapon.specialAttack;
+        slots[weaponSpecialSlot] = specialSlot;
+    }
+
+    protected override void Initialize()
+    {
+        /*
+        slots = new List<AbilitySlot>()
+        {
+            new AbilitySlot { inputType = InputType.WeaponBasic, group = null },
+            new AbilitySlot { inputType = InputType.WeaponSpecial, group = null },
+            new AbilitySlot { inputType = InputType.ConsumableOne, group = null },
+            new AbilitySlot { inputType = InputType.ConsumableTwo, group = null },
+            new AbilitySlot { inputType = InputType.Shield, group = null },
+            new AbilitySlot { inputType = InputType.Dash, group = null }
+        };
+        */
+
+        base.Initialize();
+        
+        weaponBasicSlot = 0;
+        weaponSpecialSlot = 1;
+    }
 
     protected override void SetAimLocation()
     {

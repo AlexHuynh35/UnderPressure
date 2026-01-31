@@ -14,6 +14,7 @@ public class EnemyAbilityManager : AbilityManager
 
     protected override void Initialize()
     {
+        base.Initialize();
         target = PlayerData.Player?.transform;
     }
 
