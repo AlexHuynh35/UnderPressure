@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf9565c8c24f4f279859ec89da90047, type: 3}
+  m_Name: FlameBladeBasic
+  m_EditorClassIdentifier: 
+  name: Flame Blade Basic
+  abilities:
+  - {fileID: 11400000, guid: 883cb51a98538412ea88187f64c75009, type: 2}
+  - {fileID: 11400000, guid: 8e55e9cb6c56447349953ecd6fcdef3b, type: 2}
+  - {fileID: 11400000, guid: a8985fb040e344c46b4a48dad36dc31e, type: 2}
+  cooldownTime: 0

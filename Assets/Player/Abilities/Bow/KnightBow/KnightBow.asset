@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf9565c8c24f4f279859ec89da90047, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fdd9d4d5b425495ebeb49ea3aa8ae9d, type: 3}
   m_Name: KnightBow
   m_EditorClassIdentifier: 
   name: Knight Bow
-  abilities:
-  - {fileID: 11400000, guid: 86af8d74db46d4aa48638e9e6cca23bc, type: 2}
-  - {fileID: 11400000, guid: 6d703c79a15114bf9917b29f48078d3f, type: 2}
-  - {fileID: 11400000, guid: 30794c293971649d29560f8c89e8d51e, type: 2}
-  cooldownTime: 0
+  type: 2
+  basicAttack: {fileID: 11400000, guid: e5e3a91028c7f4c3f97da150f1c685db, type: 2}
+  specialAttack: {fileID: 0}

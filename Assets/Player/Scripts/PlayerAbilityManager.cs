@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 public class PlayerAbilityManager : AbilityManager
 {
-    public int maxModes;
     public float timeBetweenMode;
 
     private bool canQueueNext;
+    private int currentAttack;
     private int mode;
     private float timerBetweenMode;
 
@@ -39,7 +39,7 @@ public class PlayerAbilityManager : AbilityManager
         */
 
         base.Initialize();
-        
+
         weaponBasicSlot = 0;
         weaponSpecialSlot = 1;
     }
@@ -58,13 +58,17 @@ public class PlayerAbilityManager : AbilityManager
 
             if (timer.state == AbilityState.Ready && InputManager.Instance.inputDict[slot.inputType].WasPressedThisFrame())
             {
-                if (canQueueNext)
+                if (canQueueNext && currentAttack == i && mode < slot.group.abilities.Count - 1)
                 {
-                    canQueueNext = false;
                     mode++;
-
-                    if (mode >= maxModes) mode = 0;
                 }
+                else
+                {
+                    mode = 0;
+                }
+
+                canQueueNext = false;
+                currentAttack = i;
 
                 timer.state = AbilityState.Charge;
                 timer.chargeTimer = 0;

@@ -40,7 +40,7 @@ public class KnightAxeAttackFinal : Ability
             effects: effects,
             shape: shape,
             movement: movement,
-            lifetime: lifetime * chargeTime,
+            lifetime: lifetime * Mathf.Max(chargeTime, 1),
             targetSelf: false,
             destroyOnHit: false
         );

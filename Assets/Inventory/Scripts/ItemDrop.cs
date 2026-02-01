@@ -12,7 +12,7 @@ public class ItemDrop : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         EntityManager target = other.GetComponent<EntityManager>();
-        if (target.tags == EntityTag.Player)
+        if (target != null && target.tags == EntityTag.Player)
         {
             target.inventory.AddToInventory(itemStack);
             Destroy(gameObject);

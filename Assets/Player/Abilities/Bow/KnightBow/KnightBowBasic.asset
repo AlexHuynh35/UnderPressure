@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf9565c8c24f4f279859ec89da90047, type: 3}
+  m_Name: KnightBowBasic
+  m_EditorClassIdentifier: 
+  name: Knight Bow Basic
+  abilities:
+  - {fileID: 11400000, guid: 86af8d74db46d4aa48638e9e6cca23bc, type: 2}
+  - {fileID: 11400000, guid: 6d703c79a15114bf9917b29f48078d3f, type: 2}
+  - {fileID: 11400000, guid: 30794c293971649d29560f8c89e8d51e, type: 2}
+  cooldownTime: 0

@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf9565c8c24f4f279859ec89da90047, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fdd9d4d5b425495ebeb49ea3aa8ae9d, type: 3}
   m_Name: FlameBlade
   m_EditorClassIdentifier: 
   name: Flame Blade
-  abilities:
-  - {fileID: 11400000, guid: 883cb51a98538412ea88187f64c75009, type: 2}
-  - {fileID: 11400000, guid: 8e55e9cb6c56447349953ecd6fcdef3b, type: 2}
-  - {fileID: 11400000, guid: a8985fb040e344c46b4a48dad36dc31e, type: 2}
-  cooldownTime: 0
+  type: 2
+  basicAttack: {fileID: 11400000, guid: 62205522822544867bd5300acc75c3dd, type: 2}
+  specialAttack: {fileID: 0}

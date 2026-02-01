@@ -23,6 +23,13 @@ public struct AbilityTimer
     public float castTimer;
 }
 
+[System.Serializable]
+public class AbilitySlot
+{
+    public InputType inputType;
+    public AbilityGroup group;
+}
+
 public class AbilityManager : MonoBehaviour
 {
     public List<AbilitySlot> slots;
