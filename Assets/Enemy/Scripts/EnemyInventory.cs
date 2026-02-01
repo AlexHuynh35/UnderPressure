@@ -19,5 +19,6 @@ public class EnemyInventory : Inventory
             ItemDrop drop = Instantiate(dropPrefab, AbilityHelper.OffsetLocation(transform.position, 1), Quaternion.identity).GetComponent<ItemDrop>();
             drop.Initialize(itemStack.Value);
         }
+        inventory.Clear();
     }
 }

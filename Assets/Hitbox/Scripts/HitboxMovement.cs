@@ -151,3 +151,27 @@ public class OrbitMovement : HitboxMovement
         manager.transform.position = following.transform.position + offset;
     }
 }
+
+public class ArchMovement : HitboxMovement
+{
+    private float speed;
+    private float height;
+    private float distance;
+    private Vector2 endLocation;
+    private Vector2 direction;
+
+    public ArchMovement(float speed, float height, Vector2 startLocation, Vector2 endLocation) : base()
+    {
+        this.speed = speed;
+        this.height = height;
+        this.endLocation = endLocation;
+        distance = Vector2.Distance(startLocation, endLocation);
+        direction = AbilityHelper.GetDirection(startLocation, endLocation).normalized;
+    }
+
+    public override void Move(HitboxManager manager, float deltaTime)
+    {
+        manager.transform.position += (Vector3)(direction * speed * deltaTime);
+        manager.sprite.transform.position = new Vector3(manager.transform.position.x, manager.transform.position.y + Mathf.Sin(180 * Mathf.Deg2Rad * Vector2.Distance(manager.transform.position, endLocation) / distance) * height, manager.transform.position.z);
+    }
+}

@@ -4,6 +4,8 @@ using System.Linq;
 
 public class HitboxManager : MonoBehaviour
 {
+    public SpriteRenderer sprite;
+    
     private GameObject owner;
     private List<Effect> effects;
     private HitboxShape shape;
@@ -25,7 +27,8 @@ public class HitboxManager : MonoBehaviour
 
     void Start()
     {
-        shape.SetShape(GetComponent<Collider2D>(), GetComponentInChildren<SpriteRenderer>());
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        shape.SetShape(GetComponent<Collider2D>(), sprite);
     }
 
     void Update()
