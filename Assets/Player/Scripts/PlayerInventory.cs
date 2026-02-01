@@ -16,7 +16,7 @@ public class PlayerInventory : Inventory
         arrow = new ItemStack(arrowInfo, arrowAmount);
         weapon = new ItemStack(weaponInfo, 1);
     }
-    
+
     void Start()
     {
         if (player.abilityManager is PlayerAbilityManager manager)
@@ -27,7 +27,7 @@ public class PlayerInventory : Inventory
 
     void Update()
     {
-        
+
     }
 
     public override bool AddToInventory(ItemStack itemStack)
@@ -64,6 +64,26 @@ public class PlayerInventory : Inventory
             return true;
         }
 
+        return false;
+    }
+
+    public bool UseArrow()
+    {
+        if (arrow.amount > 0)
+        {
+            arrow.amount--;
+            return true;
+        }
+        return false;
+    }
+
+    public bool UsePotion()
+    {
+        if (potion.amount > 0)
+        {
+            potion.amount--;
+            return true;
+        }
         return false;
     }
 }

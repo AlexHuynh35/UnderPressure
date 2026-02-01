@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e9847deba4944e1db3135916a82ddb3, type: 3}
-  m_Name: Dash
+  m_Script: {fileID: 11500000, guid: 45502a0f415254a91a60ce663c403f8c, type: 3}
+  m_Name: KnightSwordAttackSpecial
   m_EditorClassIdentifier: 
-  name: Dash
+  name: Knight Sword Attack Special
   maxChargeTime: 0
   windUpTime: 0
   activeTime: 0.25
@@ -20,4 +20,9 @@ MonoBehaviour:
   sustainSpeed: 0
   castSpeed: 0
   range: 0
-  charge: 50
+  damage: 20
+  piercing: 0
+  charge: 125
+  width: 3
+  height: 2
+  hitboxPrefab: {fileID: 4936989231642616266, guid: 88071dc73489f4b3e8cbefb36cb19beb, type: 3}

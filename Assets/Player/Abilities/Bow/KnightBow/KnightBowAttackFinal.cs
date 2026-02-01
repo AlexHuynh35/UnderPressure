@@ -25,7 +25,7 @@ public class KnightBowAttackFinal: Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageEffect(damage: damage * chargeTime, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
+            new DamageEffect(damage: damage * Mathf.Max(chargeTime, 1), piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
         };
         HitboxShape shape = new CircleShape(radius: radius);
         HitboxMovement movement = new StraightMovement(speed: speed, direction: caster.orientation);

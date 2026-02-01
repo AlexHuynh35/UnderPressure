@@ -24,10 +24,8 @@ public class KnightBowAttackOne : Ability
     {
         if (caster.inventory is PlayerInventory inventory)
         {
-            if (inventory.arrow.amount > 0)
+            if (inventory.UseArrow())
             {
-                inventory.arrow.amount--;
-
                 List<Effect> effects = new List<Effect>();
                 if (inventory.arrow.item is Arrow arrow)
                 {
@@ -60,10 +58,8 @@ public class KnightBowAttackOne : Ability
     {
         if (caster.inventory is PlayerInventory inventory)
         {
-            if (inventory.arrow.amount > 0)
+            if (inventory.UseArrow())
             {
-                inventory.arrow.amount--;
-
                 List<Effect> effects = new List<Effect>();
                 if (inventory.arrow.item is Arrow arrow)
                 {

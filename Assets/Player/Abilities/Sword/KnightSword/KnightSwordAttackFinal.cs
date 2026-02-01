@@ -26,7 +26,7 @@ public class KnightSwordAttackFinal : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageEffect(damage: damage * chargeTime, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
+            new DamageEffect(damage: damage * Mathf.Max(chargeTime, 1), piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
             new KnockbackEffect(force: knockback, source: caster, allowedTags: EntityTag.Soldier),
         };
         HitboxShape shape = new BoxShape(x: width, y: height);

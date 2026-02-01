@@ -53,6 +53,9 @@ public class ShieldManager : MonoBehaviour
         }
         else
         {
+            Effect parryEffect = new ParryStatusEffect(rate: 1f, duration: magnitude, source: entityManager, allowedTags: EntityTag.Player);
+            parryEffect.OnEnter(entityManager);
+
             var hitbox = target.GetComponent<HitboxManager>();
             var hitboxMovement = hitbox.GetMovement();
             if (hitboxMovement is StraightMovement)

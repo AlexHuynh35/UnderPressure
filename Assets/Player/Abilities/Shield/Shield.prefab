@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3573217653629895740}
@@ -52,14 +52,26 @@ MonoBehaviour:
   rb: {fileID: 0}
   abilityManager: {fileID: 0}
   effectManager: {fileID: 7814717553868967444}
+  spriteManager: {fileID: 0}
+  inventory: {fileID: 0}
+  orientation: {x: 0, y: 0}
   health: 10
-  maxHealth: 10
   armor: 0
+  speeds: []
   speed: 0
-  maxSpeed: 0
+  proficiency: 0
+  attackMultiplier: 0
+  damageMultiplier: 0
+  invincible: 0
   stunned: 0
   silenced: 0
-  orientation: {x: 0, y: 0}
+  decayed: 0
+  confused: 0
+  maxHealth: 10
+  maxSpeed: 0
+  maxProficiency: 0
+  maxAttackMultiplier: 0
+  maxDamageMultiplier: 0
 --- !u!114 &7814717553868967444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxUses: 5
   parryTime: 1
-  magnitude: 1
+  magnitude: 2
   offset: 1
   radius: 2
   hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}

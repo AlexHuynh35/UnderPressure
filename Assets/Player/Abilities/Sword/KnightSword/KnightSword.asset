@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Knight Sword
   type: 2
   basicAttack: {fileID: 11400000, guid: 4ded459883c9d4b7b9172a966706f8fc, type: 2}
-  specialAttack: {fileID: 0}
+  specialAttack: {fileID: 11400000, guid: f067d5d772f924f1b9d9035545aa5963, type: 2}

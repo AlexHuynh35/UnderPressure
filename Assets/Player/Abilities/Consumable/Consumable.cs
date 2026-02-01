@@ -8,10 +8,8 @@ public class Consumable : Ability
     {
         if (caster.inventory is PlayerInventory inventory)
         {
-            if (inventory.potion.amount > 0)
+            if (inventory.UsePotion())
             {
-                inventory.potion.amount--;
-
                 if (inventory.potion.item is Potion potion)
                 {
                     potion.ApplyEffects(caster);

@@ -348,7 +348,7 @@ MonoBehaviour:
   arrowAmount: 12
   inventorySpace: 9
   dropPrefab: {fileID: 5692608284684714028, guid: c6b7c6819ffc3485599c7c8ced5c0205, type: 3}
-  weaponInfo: {fileID: 11400000, guid: 6af3282b0d615401baaaefdbce2ffa64, type: 2}
+  weaponInfo: {fileID: 11400000, guid: 90220762cdb9c477eba9fa10ffd34890, type: 2}
   weapon:
     item: {fileID: 0}
     amount: 0
@@ -399,6 +399,7 @@ MonoBehaviour:
   maxStamina: 3
   maxStaminaRate: 2
   frames: 0.5
+  parried: 0
 --- !u!1001 &98770047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1493,46 +1494,6 @@ PrefabInstance:
     - target: {fileID: 1750552988360241588, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
       propertyPath: m_Name
       value: Shield
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750552988360241588, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3189297232810787970, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573217653629895740, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573217653629895740, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603921431859539420, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603921431859539420, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: health
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603921431859539420, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: maxHealth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8003921987133124398, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: parryTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8171943314971239813, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8171943314971239813, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8171943314971239813, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
       propertyPath: m_LocalPosition.x

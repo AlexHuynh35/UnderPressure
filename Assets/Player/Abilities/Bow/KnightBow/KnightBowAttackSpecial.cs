@@ -28,10 +28,8 @@ public class KnightBowAttackSpecial : Ability
         {
             for (int i = 0; i < number; i++)
             {
-                if (inventory.arrow.amount > 0)
+                if (inventory.UseArrow())
                 {
-                    inventory.arrow.amount--;
-
                     List<Effect> arrowEffects = new List<Effect>();
                     if (inventory.arrow.item is Arrow arrow)
                     {

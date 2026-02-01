@@ -12,6 +12,9 @@ public class PlayerEntityManager : EntityManager
     [Header("Invincibility Stats")]
     public float frames;
 
+    [Header("Parry Stats")]
+    public bool parried;
+
     void Update()
     {
         RegainStamina();
@@ -49,5 +52,20 @@ public class PlayerEntityManager : EntityManager
     {
         Effect invincibilityEffect = new InvincibilityStatusEffect(frame: true, rate: 0.1f, duration: frames, source: this, allowedTags: EntityTag.Player);
         invincibilityEffect.OnEnter(this);
+    }
+
+    public bool UseParry()
+    {
+        if (parried)
+        {
+            parried = false;
+            return true;
+        }
+        return false;
+    }
+
+    public void ToggleParry(bool flag)
+    {
+        parried = flag;
     }
 }
