@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d57e094ac7b4a618f80cb1fc064351, type: 3}
+  m_Name: ExecutionerMovesetOneAttack
+  m_EditorClassIdentifier: 
+  name: Executioner Moveset One Attack
+  maxChargeTime: 0
+  windUpTime: 1.5
+  activeTime: 0
+  windDownTime: 1
+  sustainSpeed: 0
+  castSpeed: 0
+  range: 3
+  damage: 10
+  piercing: 1
+  width: 2
+  height: 1
+  hitboxPrefab: {fileID: 4936989231642616266, guid: 88071dc73489f4b3e8cbefb36cb19beb, type: 3}

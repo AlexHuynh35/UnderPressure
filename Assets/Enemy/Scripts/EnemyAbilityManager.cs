@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class EnemyAbilityManager : AbilityManager
 {
+    public bool cardinalOnly;
     public float detectionRange;
     public float timeBetweenAttack;
 
@@ -77,13 +78,26 @@ public class EnemyAbilityManager : AbilityManager
 
         for (int i = 0; i < numSlots; i++)
         {
-            float dist = Vector2.Distance(transform.position, target.position);
-
             if (timers[i].state == AbilityState.Ready)
             {
+                float dist = Vector2.Distance(transform.position, target.position);
                 float useRange = slots[i].group.abilities[0].range + target.localScale.x / 2;
 
-                if (dist <= useRange) usable.Add(i);
+                if (dist <= useRange)
+                {
+                    if (cardinalOnly)
+                    {
+                        Vector2 diff = AbilityHelper.GetDifference(transform.position, target.position);
+                        if (Mathf.Abs(diff.x) <= 0.5f || Mathf.Abs(diff.y) <= 0.5f)
+                        {
+                            usable.Add(i);
+                        }
+                    }
+                    else
+                    {
+                        usable.Add(i);
+                    }
+                }
             }
         }
 

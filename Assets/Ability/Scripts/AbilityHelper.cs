@@ -21,6 +21,11 @@ public static class AbilityHelper
         return (endingPoint - startingPoint).normalized;
     }
 
+    public static Vector2 GetDifference(Vector2 startingPoint, Vector2 endingPoint)
+    {
+        return endingPoint - startingPoint;
+    }
+
     public static Vector2 OffsetLocation(Vector2 location, float offset)
     {
         return new Vector2(location.x + Random.Range(-offset, offset), location.y + Random.Range(-offset, offset));

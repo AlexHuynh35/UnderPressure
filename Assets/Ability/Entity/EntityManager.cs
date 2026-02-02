@@ -11,7 +11,6 @@ public class EntityManager : MonoBehaviour
     public EffectManager effectManager;
     public SpriteManager spriteManager;
     public Inventory inventory;
-    public Vector2 orientation;
 
     [Header("Combat Stats")]
     public float health;
@@ -33,6 +32,10 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float maxProficiency;
     [SerializeField] private float maxAttackMultiplier;
     [SerializeField] private float maxDamageMultiplier;
+
+    [Header("Orientation")]
+    public Vector2 orientation;
+    public Vector2 movementDirection;
 
     /* Lifecycle */
     void Start()
