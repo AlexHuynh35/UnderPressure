@@ -20,6 +20,7 @@ public class FloorManager : MonoBehaviour
     public int columns;
     public int numRooms;
     public RoomDatabase database;
+    public List<RoomRules> allRules;
 
     private (int, int) startingPoint;
     private RoomStructure[,] floor;
@@ -71,6 +72,7 @@ public class FloorManager : MonoBehaviour
         HUDManager.Instance.SetMap(rows, columns, floor);
 
         roomManagers[1].gameObject.SetActive(true);
+        roomManagers[1].EnterRoom(Direction.Down);
     }
 
     void Update()
@@ -210,7 +212,7 @@ public class FloorManager : MonoBehaviour
             GameObject roomPrefab = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Count)];
             RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity, transform).GetComponent<RoomManager>();
             roomManagers[roomStructure.Key] = room;
-            room.InitializeRoom(roomStructure.Value);
+            room.InitializeRoom(roomStructure.Value, allRules[UnityEngine.Random.Range(0, allRules.Count)]);
             room.gameObject.SetActive(false);
         }
     }

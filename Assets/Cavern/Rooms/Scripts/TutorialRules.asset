@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e906ae14612464d248845a2ab2e8d071, type: 3}
+  m_Name: TutorialRules
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 2274403547932863168, guid: c38908d1e2f71416aa5a97e46ed6b0f1, type: 3}
+  - {fileID: 6674517422749781708, guid: 891475a0ba4454bae8102b7dbdd6b294, type: 3}
+  - {fileID: 617536097061266434, guid: 1c1ef89b0ba574c81bcdc6467da2127f, type: 3}
+  items: []
+  rounds: 1
+  averageEnemyPerRound: 3
+  averageNumberRewardTypes: 0
+  averageRewardAmountPerType: 0

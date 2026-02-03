@@ -3,9 +3,14 @@ using System.Collections.Generic;
 
 public class RoomManager : MonoBehaviour
 {
+    public RoomRules rules;
     public List<DoorManager> doorList;
     public Dictionary<Direction, DoorManager> doorDict = new Dictionary<Direction, DoorManager>();
     [HideInInspector] public bool roomCleared;
+
+    private int currentRound;
+    private bool roundStart;
+    private List<GameObject> enemies;
 
     void Start()
     {
@@ -14,10 +19,11 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
+        CheckRound();
         DebugClearRoom();
     }
 
-    public void InitializeRoom(RoomStructure structure)
+    public void InitializeRoom(RoomStructure structure, RoomRules rules)
     {
         InitializeDoorDict();
 
@@ -32,6 +38,8 @@ public class RoomManager : MonoBehaviour
                 doorDict[door.Key].InitializeDoor(structure.id);
             }
         }
+
+        this.rules = rules;
 
         StartRoom();
     }
@@ -75,24 +83,71 @@ public class RoomManager : MonoBehaviour
                     door.Value.Close();
                 }
             }
+
+            StartRound();
         }
     }
 
     public void StartRoom()
     {
         roomCleared = false;
+        currentRound = 1;
+        roundStart = false;
+        enemies = new List<GameObject>();
         CloseDoors();
     }
 
     public void ClearRoom()
     {
         roomCleared = true;
+        roundStart = false;
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
         OpenDoors();
     }
 
     public void DebugClearRoom()
     {
         if (Input.GetKeyDown(KeyCode.O))
+        {
+            ClearRoom();
+        }
+    }
+
+    public void StartRound()
+    {
+        for (int i = 0; i < rules.GetNumberEnemy(); i++)
+        {
+            enemies.Add(Instantiate(rules.GetRandomEnemy(), AbilityHelper.OffsetLocation(Vector2.zero, 2), Quaternion.identity, transform));
+        }
+
+        roundStart = true;
+    }
+
+    public void CheckRound()
+    {
+        if (roundStart)
+        {
+            enemies.RemoveAll(enemy => enemy == null);
+            if (enemies.Count <= 0)
+            {
+                roundStart = false;
+                ClearRound();
+            }
+        }
+    }
+
+    public void ClearRound()
+    {
+        currentRound++;
+
+        if (currentRound <= rules.rounds)
+        {
+            StartRound();
+        }
+        else
         {
             ClearRoom();
         }
