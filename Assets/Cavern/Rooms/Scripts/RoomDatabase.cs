@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RoomDatabase", menuName = "RoomDatabase")]
 public class RoomDatabase : ScriptableObject
 {
+    public GameObject entranceRoom;
     public List<GameObject> centerRooms;
     public List<GameObject> topRooms;
     public List<GameObject> bottomRooms;

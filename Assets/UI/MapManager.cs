@@ -27,7 +27,7 @@ public class MapManager : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                if (structures[i, j].visited && structures[i, j].id > 0)
+                if (structures[i, j].visited && structures[i, j].id > -1)
                 {
                     Vector2 position = new Vector2 (transform.position.x + (i - halfRows) * xSpacing, transform.position.y + (j - halfColumns) * ySpacing);
                     cellManagers[structures[i, j].id] = Instantiate(cellPrefab, position, Quaternion.identity, transform).GetComponent<MapCellManager>();
@@ -35,13 +35,13 @@ public class MapManager : MonoBehaviour
                     cellManagers[structures[i, j].id].SetRoomID(structures[i, j].id);
                     foreach (var room in structures[i, j].rooms)
                     {
-                        cellManagers[structures[i, j].id].SetDoor(room.Key, room.Value > 0);
+                        cellManagers[structures[i, j].id].SetDoor(room.Key, room.Value > -1);
                     }
                 }
             }
         }
 
-        cellManagers[1].SetPlayer(true);
+        cellManagers[0].SetPlayer(true);
     }
 
     public void ChangePlayerLocation(int current, int next)

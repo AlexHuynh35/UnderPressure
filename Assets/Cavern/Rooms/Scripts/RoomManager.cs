@@ -10,7 +10,7 @@ public class RoomManager : MonoBehaviour
 
     private int currentRound;
     private bool roundStart;
-    private List<GameObject> enemies;
+    private List<GameObject> enemies = new List<GameObject>();
 
     void Start()
     {
@@ -42,6 +42,25 @@ public class RoomManager : MonoBehaviour
         this.rules = rules;
 
         StartRoom();
+    }
+
+    public void InitializeEntranceRoom(RoomStructure structure)
+    {
+        InitializeDoorDict();
+
+        foreach (var door in structure.rooms)
+        {
+            if (door.Value < 0)
+            {
+                doorDict.Remove(door.Key);
+            }
+            else
+            {
+                doorDict[door.Key].InitializeDoor(structure.id);
+            }
+        }
+
+        ClearRoom();
     }
 
     public void InitializeDoorDict()
@@ -93,7 +112,7 @@ public class RoomManager : MonoBehaviour
         roomCleared = false;
         currentRound = 1;
         roundStart = false;
-        enemies = new List<GameObject>();
+        enemies.Clear();
         CloseDoors();
     }
 

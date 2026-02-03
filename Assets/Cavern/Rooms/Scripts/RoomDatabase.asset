@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c661df7bb949486eb4cd2990152eb0d, type: 3}
   m_Name: RoomDatabase
   m_EditorClassIdentifier: 
+  entranceRoom: {fileID: 2306507096180252823, guid: e68b5c1de13054fb6aac58f4766cb3af, type: 3}
   centerRooms:
   - {fileID: 8529725727229939125, guid: 1dd4767d62db043ef9dd07477d8c4304, type: 3}
   - {fileID: 1760477925111490125, guid: d79be4f64bce245238052adfece13340, type: 3}

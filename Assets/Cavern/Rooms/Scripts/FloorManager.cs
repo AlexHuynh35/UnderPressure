@@ -37,14 +37,13 @@ public class FloorManager : MonoBehaviour
     void Start()
     {
         floor = FillFloor();
-        startingPoint = (UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(0, columns));
+        startingPoint = (UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(1, columns));
 
-        if (startingPoint.Item2 > 0)
-        {
-            RoomStructure belowStartingRoom = floor[startingPoint.Item1, startingPoint.Item2 - 1];
-            belowStartingRoom.visited = true;
-            floor[startingPoint.Item1, startingPoint.Item2 - 1] = belowStartingRoom;
-        }
+        RoomStructure entranceRoom = floor[startingPoint.Item1, startingPoint.Item2 - 1];
+        entranceRoom.visited = true;
+        entranceRoom.id = 0;
+        entranceRoom.rooms[Direction.Up] = 1;
+        floor[startingPoint.Item1, startingPoint.Item2 - 1] = entranceRoom;
 
         RoomStructure startingRoom = floor[startingPoint.Item1, startingPoint.Item2];
         startingRoom.visited = true;
@@ -71,8 +70,7 @@ public class FloorManager : MonoBehaviour
 
         HUDManager.Instance.SetMap(rows, columns, floor);
 
-        roomManagers[1].gameObject.SetActive(true);
-        roomManagers[1].EnterRoom(Direction.Down);
+        roomManagers[0].gameObject.SetActive(true);
     }
 
     void Update()
@@ -208,12 +206,23 @@ public class FloorManager : MonoBehaviour
     {
         foreach (var roomStructure in roomStructures)
         {
-            List<GameObject> roomPrefabs = database.GetFittingRooms(roomStructure.Value.rooms[Direction.Up] >= 0, roomStructure.Value.rooms[Direction.Down] >= 0, roomStructure.Value.rooms[Direction.Left] >= 0, roomStructure.Value.rooms[Direction.Right] >= 0);
-            GameObject roomPrefab = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Count)];
-            RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity, transform).GetComponent<RoomManager>();
-            roomManagers[roomStructure.Key] = room;
-            room.InitializeRoom(roomStructure.Value, allRules[UnityEngine.Random.Range(0, allRules.Count)]);
-            room.gameObject.SetActive(false);
+            if (roomStructure.Value.id == 0)
+            {
+                GameObject roomPrefab = database.entranceRoom;
+                RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity, transform).GetComponent<RoomManager>();
+                roomManagers[roomStructure.Key] = room;
+                room.InitializeEntranceRoom(roomStructure.Value);
+                room.gameObject.SetActive(false);
+            }
+            else
+            {
+                List<GameObject> roomPrefabs = database.GetFittingRooms(roomStructure.Value.rooms[Direction.Up] >= 0, roomStructure.Value.rooms[Direction.Down] >= 0, roomStructure.Value.rooms[Direction.Left] >= 0, roomStructure.Value.rooms[Direction.Right] >= 0);
+                GameObject roomPrefab = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Count)];
+                RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity, transform).GetComponent<RoomManager>();
+                roomManagers[roomStructure.Key] = room;
+                room.InitializeRoom(roomStructure.Value, allRules[UnityEngine.Random.Range(0, allRules.Count)]);
+                room.gameObject.SetActive(false);
+            }
         }
     }
 }
