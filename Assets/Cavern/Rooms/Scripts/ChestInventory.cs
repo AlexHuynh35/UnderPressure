@@ -25,8 +25,9 @@ public class ChestInventory : Inventory
         }
     }
 
-    public void Initialize()
+    public override void Initialize(DropHolder dropHolder)
     {
+        base.Initialize(dropHolder);
         opened = false;
     }
 

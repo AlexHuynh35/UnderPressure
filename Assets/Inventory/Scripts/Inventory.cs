@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
     
     [SerializeField] protected int inventorySpace;
     [SerializeField] protected GameObject dropPrefab;
+    protected DropHolder dropHolder;
 
     [HideInInspector] public Dictionary<Type, ItemStack> inventory = new Dictionary<Type, ItemStack>();
 
@@ -44,6 +45,11 @@ public class Inventory : MonoBehaviour
 
     }
 
+    public virtual void Initialize(DropHolder dropHolder)
+    {
+        this.dropHolder = dropHolder;
+    }
+
     public virtual bool AddToInventory(ItemStack itemStack)
     {
         return false;
@@ -53,8 +59,9 @@ public class Inventory : MonoBehaviour
     {
         foreach (var itemStack in inventory)
         {
-            ItemDrop drop = Instantiate(dropPrefab, AbilityHelper.OffsetLocation(transform.position, 1), Quaternion.identity).GetComponent<ItemDrop>();
+            ItemDrop drop = Instantiate(dropPrefab, AbilityHelper.OffsetLocation(transform.position, 1), Quaternion.identity, dropHolder.transform).GetComponent<ItemDrop>();
             drop.Initialize(itemStack.Value);
         }
+        inventory.Clear();
     }
 }

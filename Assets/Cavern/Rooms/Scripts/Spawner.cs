@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject SpawnEnemy(GameObject enemyPrefab)
+    private EnemyHolder enemyHolder;
+
+    public void Initialize(EnemyHolder enemyHolder)
     {
-        return Instantiate(enemyPrefab, AbilityHelper.OffsetLocation(transform.position, 2), Quaternion.identity);
+        this.enemyHolder = enemyHolder;
+    }
+
+    public GameObject SpawnEnemy(GameObject enemyPrefab, DropHolder dropHolder)
+    {
+        GameObject enemy = Instantiate(enemyPrefab, AbilityHelper.OffsetLocation(transform.position, 2), Quaternion.identity, enemyHolder.transform);
+        enemy.GetComponent<EntityManager>().inventory.Initialize(dropHolder);
+        return enemy;
     }
 }

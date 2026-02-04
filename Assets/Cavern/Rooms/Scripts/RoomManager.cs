@@ -6,6 +6,8 @@ public class RoomManager : MonoBehaviour
     public RoomRules rules;
     public List<DoorManager> doorList;
     public List<Spawner> spawnerList;
+    public DropHolder dropHolder;
+    public EnemyHolder enemyHolder;
     public Dictionary<Direction, DoorManager> doorDict = new Dictionary<Direction, DoorManager>();
     [HideInInspector] public bool roomCleared;
 
@@ -30,6 +32,7 @@ public class RoomManager : MonoBehaviour
     public void InitializeRoom(RoomStructure structure, RoomRules rules)
     {
         InitializeDoorDict();
+        InitializeSpawners();
 
         foreach (var door in structure.rooms)
         {
@@ -51,6 +54,7 @@ public class RoomManager : MonoBehaviour
     public void InitializeEntranceRoom(RoomStructure structure)
     {
         InitializeDoorDict();
+        InitializeSpawners();
 
         foreach (var door in structure.rooms)
         {
@@ -67,7 +71,7 @@ public class RoomManager : MonoBehaviour
         ClearRoom();
     }
 
-    public void InitializeDoorDict()
+    private void InitializeDoorDict()
     {
         foreach (var door in doorList)
         {
@@ -75,7 +79,15 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void OpenDoors()
+    private void InitializeSpawners()
+    {
+        foreach (var spawner in spawnerList)
+        {
+            spawner.Initialize(enemyHolder);
+        }
+    }
+
+    private void OpenDoors()
     {
         foreach (var door in doorDict)
         {
@@ -83,7 +95,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void CloseDoors()
+    private void CloseDoors()
     {
         foreach (var door in doorList)
         {
@@ -111,7 +123,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void StartRoom()
+    private void StartRoom()
     {
         roomCleared = false;
         currentRound = 1;
@@ -120,7 +132,7 @@ public class RoomManager : MonoBehaviour
         CloseDoors();
     }
 
-    public void ClearRoom()
+    private void ClearRoom()
     {
         roomCleared = true;
         roundStart = false;
@@ -131,7 +143,7 @@ public class RoomManager : MonoBehaviour
         OpenDoors();
     }
 
-    public void DebugClearRoom()
+    private void DebugClearRoom()
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
@@ -139,17 +151,17 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void StartRound()
+    private void StartRound()
     {
         for (int i = 0; i < rules.GetNumberEnemy(); i++)
         {
-            enemies.Add(spawnerList[i % spawnerList.Count].SpawnEnemy(rules.GetRandomEnemy()));
+            enemies.Add(spawnerList[i % spawnerList.Count].SpawnEnemy(rules.GetRandomEnemy(), dropHolder));
         }
 
         roundStart = true;
     }
 
-    public void CheckRound()
+    private void CheckRound()
     {
         if (roundStart)
         {
@@ -162,7 +174,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void ClearRound()
+    private void ClearRound()
     {
         currentRound++;
 
@@ -176,17 +188,17 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void GiveReward()
+    private void GiveReward()
     {
         chest = Instantiate(rules.chestPrefab, Vector2.zero, Quaternion.identity, transform).GetComponent<ChestInventory>();
-        chest.Initialize();
+        chest.Initialize(dropHolder);
         for (int i = 0; i < rules.averageNumberRewardTypes; i++)
         {
             chest.AddToInventory(rules.PickRandomReward());
         }
     }
 
-    public void CheckReward()
+    private void CheckReward()
     {
         if (chest != null && !roomCleared)
         {
