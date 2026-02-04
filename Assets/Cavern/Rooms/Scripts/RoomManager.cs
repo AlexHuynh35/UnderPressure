@@ -5,6 +5,7 @@ public class RoomManager : MonoBehaviour
 {
     public RoomRules rules;
     public List<DoorManager> doorList;
+    public List<Spawner> spawnerList;
     public Dictionary<Direction, DoorManager> doorDict = new Dictionary<Direction, DoorManager>();
     [HideInInspector] public bool roomCleared;
 
@@ -139,7 +140,7 @@ public class RoomManager : MonoBehaviour
     {
         for (int i = 0; i < rules.GetNumberEnemy(); i++)
         {
-            enemies.Add(Instantiate(rules.GetRandomEnemy(), AbilityHelper.OffsetLocation(Vector2.zero, 2), Quaternion.identity, transform));
+            enemies.Add(spawnerList[i % spawnerList.Count].SpawnEnemy(rules.GetRandomEnemy()));
         }
 
         roundStart = true;
