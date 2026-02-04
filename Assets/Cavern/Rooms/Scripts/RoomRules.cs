@@ -8,6 +8,7 @@ public class RoomRules : ScriptableObject
     public List<GameObject> enemyPrefabs;
 
     [Header("Rewards")]
+    public GameObject chestPrefab;
     public List<Item> items;
 
     [Header("Rules")]
@@ -24,5 +25,10 @@ public class RoomRules : ScriptableObject
     public int GetNumberEnemy()
     {
         return Random.Range(Mathf.Max(averageEnemyPerRound - 2, 1), averageEnemyPerRound + 2);
+    }
+
+    public ItemStack PickRandomReward()
+    {
+        return new ItemStack(items[Random.Range(0, items.Count)], Random.Range(Mathf.Max(averageRewardAmountPerType - 2, 1), averageRewardAmountPerType + 2));
     }
 }

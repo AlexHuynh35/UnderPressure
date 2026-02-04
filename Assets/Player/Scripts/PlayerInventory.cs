@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerInventory : Inventory
 {
+    public Potion potionInfo;
+    public int potionAmount;
     public Weapon weaponInfo;
     [HideInInspector] public ItemStack weapon;
     [HideInInspector] public ItemStack arrow;
@@ -14,6 +16,7 @@ public class PlayerInventory : Inventory
     {
         player = GetComponent<EntityManager>();
         arrow = new ItemStack(arrowInfo, arrowAmount);
+        potion = new ItemStack(potionInfo, potionAmount);
         weapon = new ItemStack(weaponInfo, 1);
     }
 

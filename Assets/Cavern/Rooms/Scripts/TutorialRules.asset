@@ -16,8 +16,11 @@ MonoBehaviour:
   - {fileID: 2274403547932863168, guid: c38908d1e2f71416aa5a97e46ed6b0f1, type: 3}
   - {fileID: 6674517422749781708, guid: 891475a0ba4454bae8102b7dbdd6b294, type: 3}
   - {fileID: 617536097061266434, guid: 1c1ef89b0ba574c81bcdc6467da2127f, type: 3}
-  items: []
+  chestPrefab: {fileID: 3926034628937419057, guid: e2f658f9be2c4410580721276b9a0bd7, type: 3}
+  items:
+  - {fileID: 11400000, guid: 67777ddce311f461989b59f95ac8036d, type: 2}
+  - {fileID: 11400000, guid: 3a905c726970d4e83998cd13b3613108, type: 2}
   rounds: 1
   averageEnemyPerRound: 3
-  averageNumberRewardTypes: 0
-  averageRewardAmountPerType: 0
+  averageNumberRewardTypes: 1
+  averageRewardAmountPerType: 5

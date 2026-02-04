@@ -13,6 +13,8 @@ public class RoomManager : MonoBehaviour
     private bool roundStart;
     private List<GameObject> enemies = new List<GameObject>();
 
+    private ChestInventory chest;
+
     void Start()
     {
 
@@ -21,6 +23,7 @@ public class RoomManager : MonoBehaviour
     void Update()
     {
         CheckRound();
+        CheckReward();
         DebugClearRoom();
     }
 
@@ -169,7 +172,25 @@ public class RoomManager : MonoBehaviour
         }
         else
         {
-            ClearRoom();
+            GiveReward();
+        }
+    }
+
+    public void GiveReward()
+    {
+        chest = Instantiate(rules.chestPrefab, Vector2.zero, Quaternion.identity, transform).GetComponent<ChestInventory>();
+        chest.Initialize();
+        for (int i = 0; i < rules.averageNumberRewardTypes; i++)
+        {
+            chest.AddToInventory(rules.PickRandomReward());
+        }
+    }
+
+    public void CheckReward()
+    {
+        if (chest != null && !roomCleared)
+        {
+            if (chest.opened) ClearRoom();
         }
     }
 }
