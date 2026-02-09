@@ -269,10 +269,10 @@ MonoBehaviour:
     group: {fileID: 11400000, guid: 8885982392e9a4219aee36d3817ffe16, type: 2}
   - inputType: 3
     group: {fileID: 11400000, guid: 8885982392e9a4219aee36d3817ffe16, type: 2}
-  - inputType: 5
-    group: {fileID: 11400000, guid: c3d029a8b90d34ad5a53a4f1b146fcb7, type: 2}
   - inputType: 4
     group: {fileID: 11400000, guid: 6d0ba4c0abebb4f76b18c8d99d518ebd, type: 2}
+  - inputType: 5
+    group: {fileID: 11400000, guid: c3d029a8b90d34ad5a53a4f1b146fcb7, type: 2}
   timeBetweenMode: 0.5
 --- !u!61 &64923303
 BoxCollider2D:
@@ -345,12 +345,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowInfo: {fileID: 11400000, guid: 67777ddce311f461989b59f95ac8036d, type: 2}
-  arrowAmount: 0
+  arrowAmount: 10
   inventorySpace: 9
   dropPrefab: {fileID: 5692608284684714028, guid: c6b7c6819ffc3485599c7c8ced5c0205, type: 3}
   potionInfo: {fileID: 11400000, guid: 3a905c726970d4e83998cd13b3613108, type: 2}
   potionAmount: 0
-  weaponInfo: {fileID: 11400000, guid: 6af3282b0d615401baaaefdbce2ffa64, type: 2}
+  weaponInfo: {fileID: 11400000, guid: 90220762cdb9c477eba9fa10ffd34890, type: 2}
   weapon:
     item: {fileID: 0}
     amount: 0
@@ -402,7 +402,7 @@ MonoBehaviour:
   maxStamina: 3
   maxStaminaRate: 2
   frames: 0.5
-  parried: 0
+  shieldManager: {fileID: 724955922}
 --- !u!1 &191027454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,6 +1491,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8171943314971239813, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
   m_PrefabInstance: {fileID: 724955919}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &724955922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8003921987133124398, guid: fb5eeccd413ec46b5827c1ff9856a6d3, type: 3}
+  m_PrefabInstance: {fileID: 724955919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb8d270b688c45eaad451f699fe4e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &870075223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2895,9 +2906,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594625efb108b49e4b26bc7ed2a6a36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 5
-  columns: 5
-  numRooms: 10
+  rows: 3
+  columns: 3
+  numRooms: 5
   database: {fileID: 11400000, guid: 17aa1831e6ffb499daefc0e43877927b, type: 2}
   allRules:
   - {fileID: 11400000, guid: 3086ea293450943dcaa2c5d2818b4a94, type: 2}

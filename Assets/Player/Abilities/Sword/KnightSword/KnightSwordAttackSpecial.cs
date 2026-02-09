@@ -18,7 +18,7 @@ public class KnightSwordAttackSpecial : Ability
     {
         if (caster is PlayerEntityManager player)
         {
-            if (player.UseParry())
+            if (player.shieldManager.UseParry())
             {
                 Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
                 movementEffect.OnEnter(caster);

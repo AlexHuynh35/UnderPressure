@@ -16,11 +16,11 @@ public class ParryStatusEffectInstance : StatusEffectInstance
 
     public override void Apply(EntityManager target)
     {
-        if (target is PlayerEntityManager player) player.ToggleParry(true);
+        if (target is PlayerEntityManager player) player.shieldManager.ToggleParry(true);
     }
 
     public override void Revert(EntityManager target)
     {
-        if (target is PlayerEntityManager player) player.ToggleParry(false);
+        if (target is PlayerEntityManager player) player.shieldManager.ToggleParry(false);
     }
 }

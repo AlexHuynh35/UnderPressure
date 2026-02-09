@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class ShieldManager : MonoBehaviour
 {
+    [Header("Shield Stats")]
     public int maxUses;
     public float parryTime;
     public float magnitude;
@@ -10,6 +11,8 @@ public class ShieldManager : MonoBehaviour
     public float radius;
     public GameObject hitboxPrefab;
 
+    [Header("Shield Management")]
+    public bool successfulParry;
     private int remainingUses;
     private bool active;
     private bool parryMode;
@@ -28,7 +31,7 @@ public class ShieldManager : MonoBehaviour
     void Update()
     {
         transform.position = entityManager.transform.position + (Vector3)entityManager.orientation * offset;
-
+        
         if (parryMode)
         {
             parryTimer -= Time.deltaTime;
@@ -103,5 +106,20 @@ public class ShieldManager : MonoBehaviour
         active = false;
         parryMode = false;
         spriteRenderer.gameObject.SetActive(false);
+    }
+
+    public bool UseParry()
+    {
+        if (successfulParry)
+        {
+            successfulParry = false;
+            return true;
+        }
+        return false;
+    }
+
+    public void ToggleParry(bool flag)
+    {
+        successfulParry = flag;
     }
 }
