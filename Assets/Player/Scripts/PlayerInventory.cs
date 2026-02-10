@@ -5,11 +5,14 @@ public class PlayerInventory : Inventory
 {
     public Potion potionInfo;
     public int potionAmount;
-    public Weapon weaponInfo;
-    [HideInInspector] public ItemStack weapon;
+    public Weapon weaponOneInfo;
+    public Weapon weaponTwoInfo;
     [HideInInspector] public ItemStack arrow;
     [HideInInspector] public ItemStack potion;
-
+    [HideInInspector] public ItemStack weaponOne;
+    [HideInInspector] public ItemStack weaponTwo;
+    
+    private bool usingWeaponOne;
     private EntityManager player;
 
     private void Awake()
@@ -17,20 +20,22 @@ public class PlayerInventory : Inventory
         player = GetComponent<EntityManager>();
         arrow = new ItemStack(arrowInfo, arrowAmount);
         potion = new ItemStack(potionInfo, potionAmount);
-        weapon = new ItemStack(weaponInfo, 1);
+        weaponOne = new ItemStack(weaponOneInfo, 1);
+        weaponTwo = new ItemStack(weaponTwoInfo, 1);
     }
 
     void Start()
     {
         if (player.abilityManager is PlayerAbilityManager manager)
         {
-            manager.SwitchWeapon(weaponInfo);
+            if (weaponOne.item is Weapon weapon) manager.SwitchWeapon(weapon);
         }
+        usingWeaponOne = true;
     }
 
     void Update()
     {
-
+        SwitchWeapon();
     }
 
     public override bool AddToInventory(ItemStack itemStack)
@@ -88,5 +93,18 @@ public class PlayerInventory : Inventory
             return true;
         }
         return false;
+    }
+
+    public void SwitchWeapon()
+    {
+        if (InputManager.Instance.inputDict[InputType.Switch].WasPressedThisFrame())
+        {
+            if (player.abilityManager is PlayerAbilityManager manager)
+            {
+                Item item = usingWeaponOne ? weaponTwo.item : weaponOne.item;
+                if (item is Weapon weapon) manager.SwitchWeapon(weapon);
+                usingWeaponOne = !usingWeaponOne;
+            }
+        }
     }
 }

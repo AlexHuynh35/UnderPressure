@@ -13,6 +13,7 @@ public enum InputType
     Shield,
     Dash,
     Menu,
+    Switch
 }
 
 public class InputManager : MonoBehaviour
