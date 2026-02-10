@@ -2,18 +2,21 @@ using UnityEngine;
 
 public class PlayerEntityManager : EntityManager
 {
-    [Header("Stamina Stats")]
+    [Header("Player Cached Components")]
+    public ShieldManager shieldManager;
+
+    [Header("Player Combat Stats")]
     public int stamina;
     public float staminaRate;
+    private float staminaTimer;
+    public float invincibilityFrames;
+    public bool internalized;
+    public float internalizedDamage;
+
+    [Header("Player Default Stats")]
     [SerializeField] private float maxStamina;
     [SerializeField] private float maxStaminaRate;
-    private float staminaTimer;
-
-    [Header("Invincibility Stats")]
-    public float frames;
-
-    [Header("Shield")]
-    public ShieldManager shieldManager;
+    [SerializeField] private float maxInternalizedDamageRate;
 
     void Update()
     {
@@ -48,9 +51,52 @@ public class PlayerEntityManager : EntityManager
         }
     }
 
+    public override void ApplyDamage(float amount, bool ignoreArmor, float multiplier)
+    {
+        if (armor > 0 && !ignoreArmor)
+        {
+            armor--;
+            return;
+        }
+
+        float damage = amount * invincible * damageMultiplier * multiplier;
+
+        if (damage > 0)
+        {
+            OnHurt();
+        }
+
+        health = Mathf.Max(0, health - damage);
+
+        if (internalized)
+        {
+            internalizedDamage += damage * maxInternalizedDamageRate;
+        }
+        else
+        {
+            internalizedDamage = 0;
+        }
+
+        if (health <= 0)
+        {
+            OnDeath();
+        }
+    }
+
+    public override void ApplyHeal(float amount)
+    {
+        health = Mathf.Min(maxHealth, health + internalizedDamage + amount * decayed);
+        internalizedDamage = 0;
+    }
+
     protected override void OnHurt()
     {
-        Effect invincibilityEffect = new InvincibilityStatusEffect(frame: true, rate: 0.1f, duration: frames, source: this, allowedTags: EntityTag.Player);
+        Effect invincibilityEffect = new InvincibilityStatusEffect(frame: true, rate: 0.1f, duration: invincibilityFrames, source: this, allowedTags: EntityTag.Player);
         invincibilityEffect.OnEnter(this);
+    }
+
+    public void ToggleInternalized(bool flag)
+    {
+        internalized = flag;
     }
 }

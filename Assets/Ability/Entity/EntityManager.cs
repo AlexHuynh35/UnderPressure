@@ -27,11 +27,11 @@ public class EntityManager : MonoBehaviour
     public int confused;
 
     [Header("Default Stats")]
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float maxProficiency;
-    [SerializeField] private float maxAttackMultiplier;
-    [SerializeField] private float maxDamageMultiplier;
+    [SerializeField] protected float maxHealth;
+    [SerializeField] protected float maxSpeed;
+    [SerializeField] protected float maxProficiency;
+    [SerializeField] protected float maxAttackMultiplier;
+    [SerializeField] protected float maxDamageMultiplier;
 
     [Header("Orientation")]
     public Vector2 orientation;
@@ -53,7 +53,7 @@ public class EntityManager : MonoBehaviour
     }
 
     /* Combat */
-    public void ApplyDamage(float amount, bool ignoreArmor, float multiplier)
+    public virtual void ApplyDamage(float amount, bool ignoreArmor, float multiplier)
     {
         if (armor > 0 && !ignoreArmor)
         {
@@ -105,7 +105,7 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    public void ApplyHeal(float amount)
+    public virtual void ApplyHeal(float amount)
     {
         health = Mathf.Min(maxHealth, health + amount * decayed);
     }

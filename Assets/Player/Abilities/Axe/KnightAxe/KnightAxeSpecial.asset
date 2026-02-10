@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Knight Axe Special
   abilities:
-  - {fileID: 11400000, guid: d1e9fc18ea82c4a0e903071cde89fa34, type: 2}
-  cooldownTime: 10
+  - {fileID: 11400000, guid: c08bb334e9c384dbca515fccf82c837c, type: 2}
+  - {fileID: 11400000, guid: 8daae9b692ce142c490d68d078ca037e, type: 2}
+  cooldownTime: 0

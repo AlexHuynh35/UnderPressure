@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45c9f3aebad964784860a7a36d5fb89d, type: 3}
-  m_Name: KnightAxeAttackSpecial
+  m_Name: KnightAxeAttackSwitchOne
   m_EditorClassIdentifier: 
-  name: Knight Axe Attack Special
+  name: Knight Axe Attack Switch One
   maxChargeTime: 0
   windUpTime: 0
   activeTime: 2

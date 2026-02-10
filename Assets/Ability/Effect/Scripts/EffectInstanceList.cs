@@ -12,9 +12,19 @@ public class EffectInstanceList
 
     public void Update(EntityManager self, float deltaTime)
     {
+        for (int i = instances.Count - 1; i > 0; i--)
+        {
+            var effect = instances[i];
+            effect.OnTick(self, deltaTime, true);
+            if (effect.IsExpired())
+            {
+                instances.RemoveAt(i);
+            }
+        }
+
         if (instances.Count > 0)
         {
-            instances[0].OnTick(self, deltaTime);
+            instances[0].OnTick(self, deltaTime, false);
             if (instances[0].IsExpired())
             {
                 instances[0].Revert(self);
@@ -23,15 +33,6 @@ public class EffectInstanceList
                     instances[1].Apply(self);
                 }
                 instances.RemoveAt(0);
-            }
-        }
-
-        for (int i = instances.Count - 1; i >= 0; i--)
-        {
-            var effect = instances[i];
-            if (effect.IsExpired())
-            {
-                instances.RemoveAt(i);
             }
         }
     }

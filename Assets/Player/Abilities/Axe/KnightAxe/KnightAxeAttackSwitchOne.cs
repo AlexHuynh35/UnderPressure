@@ -1,18 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "KnightAxeAttackTwo", menuName = "Abilities/Justine/Axe/KnightAxe/KnightAxeAttackTwo")]
-public class KnightAxeAttackTwo : Ability
+[CreateAssetMenu(fileName = "KnightAxeAttackSwitchOne", menuName = "Abilities/Justine/Axe/KnightAxe/KnightAxeAttackSwitchOne")]
+public class KnightAxeAttackSwitchOne : Ability
 {
     [Header("Ability Stats")]
     public float damage;
     public bool piercing;
-    public float stunLength;
-    public float internalizedLength;
 
     [Header("Hitboxes")]
     public float radius;
-    public float angle;
+    public float rate;
+    public float speed;
     public GameObject hitboxPrefab;
 
     public override void OnRelease(EntityManager caster, Vector2 direction)
@@ -26,26 +25,23 @@ public class KnightAxeAttackTwo : Ability
         List<Effect> effects = new List<Effect>()
         {
             new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
-            new StunStatusEffect(rate: 1f, duration: stunLength, source: caster, allowedTags: EntityTag.Soldier),
+            new DamageAreaEffect(damage: damage, piercing: piercing, rate: rate, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
         };
-        HitboxShape shape = new ConeShape(radius: radius, angle: angle, direction: caster.orientation);
-        HitboxMovement movement = new FollowMovement(following: caster, offset: Vector2.zero);
-        HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.identity).GetComponent<HitboxManager>();
+        HitboxShape shape = new CircleShape(radius: radius);
+        HitboxMovement movement = new BoomerangMovement(speed: speed, time: activeTime, direction: caster.orientation);
+        HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(caster.orientation.y, caster.orientation.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
         attack.Initialize
         (
             owner: caster.gameObject,
             effects: effects,
             shape: shape,
             movement: movement,
-            lifetime: 0.25f,
+            lifetime: activeTime,
             targetSelf: false,
             destroyOnHit: false
         );
-
-        Effect internalizedEffect = new InternalizedStatusEffect(rate: internalizedLength, duration: internalizedLength, source: caster, allowedTags: EntityTag.Player);
-        internalizedEffect.OnEnter(caster);
     }
-
+    
     public override void EndActive(EntityManager caster)
     {
         Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);

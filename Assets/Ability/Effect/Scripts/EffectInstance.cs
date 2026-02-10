@@ -11,7 +11,7 @@ public abstract class EffectInstance
 
     public virtual void Apply(EntityManager target) { }
 
-    public virtual void OnTick(EntityManager target, float deltaTime) { }
+    public virtual void OnTick(EntityManager target, float deltaTime, bool tickTimeOnly) { }
 
     public virtual void Tick(EntityManager target) { }
 
@@ -32,12 +32,12 @@ public abstract class AreaEffectInstance : EffectInstance
         timeUntilTick = rate;
     }
 
-    public override void OnTick(EntityManager target, float deltaTime)
+    public override void OnTick(EntityManager target, float deltaTime, bool tickTimeOnly)
     {
         timeUntilTick -= deltaTime;
         if (timeUntilTick <= 0)
         {
-            Tick(target);
+            if (!tickTimeOnly) Tick(target);
             timeUntilTick = rate;
         }
     }
@@ -67,13 +67,13 @@ public abstract class StatusEffectInstance : EffectInstance
         timeUntilTick = rate;
     }
 
-    public override void OnTick(EntityManager target, float deltaTime)
+    public override void OnTick(EntityManager target, float deltaTime, bool tickTimeOnly)
     {
         elapsedTime += deltaTime;
         timeUntilTick -= deltaTime;
         if (timeUntilTick <= 0)
         {
-            Tick(target);
+            if (!tickTimeOnly) Tick(target);
             timeUntilTick = rate;
         }
     }

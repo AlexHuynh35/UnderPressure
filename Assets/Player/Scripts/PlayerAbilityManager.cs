@@ -234,11 +234,13 @@ public class PlayerAbilityManager : AbilityManager
         {
             case AbilityState.Charge:
                 slot.OnRelease(caster, Vector2.zero);
+                slot.EndActive(caster);
                 timer.state = AbilityState.Cooldown;
                 timer.cooldownTimer = slots[index].group.cooldownTime;
                 break;
 
             case AbilityState.WindUp:
+                slot.EndActive(caster);
                 timer.state = AbilityState.Cooldown;
                 timer.cooldownTimer = slots[index].group.cooldownTime;
                 break;

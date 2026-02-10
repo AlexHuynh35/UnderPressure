@@ -350,8 +350,8 @@ MonoBehaviour:
   dropPrefab: {fileID: 5692608284684714028, guid: c6b7c6819ffc3485599c7c8ced5c0205, type: 3}
   potionInfo: {fileID: 11400000, guid: 3a905c726970d4e83998cd13b3613108, type: 2}
   potionAmount: 0
-  weaponOneInfo: {fileID: 11400000, guid: 90220762cdb9c477eba9fa10ffd34890, type: 2}
-  weaponTwoInfo: {fileID: 11400000, guid: 6af3282b0d615401baaaefdbce2ffa64, type: 2}
+  weaponOneInfo: {fileID: 11400000, guid: 2d9a32c3951874f649c2201267dffbd5, type: 2}
+  weaponTwoInfo: {fileID: 11400000, guid: 90220762cdb9c477eba9fa10ffd34890, type: 2}
   arrow:
     item: {fileID: 0}
     amount: 0
@@ -401,12 +401,15 @@ MonoBehaviour:
   maxDamageMultiplier: 1
   orientation: {x: 1, y: 0}
   movementDirection: {x: 0, y: 0}
+  shieldManager: {fileID: 724955922}
   stamina: 3
   staminaRate: 2
+  invincibilityFrames: 0.5
+  internalized: 0
+  internalizedDamage: 0
   maxStamina: 3
   maxStaminaRate: 2
-  frames: 0.5
-  shieldManager: {fileID: 724955922}
+  maxInternalizedDamageRate: 0.5
 --- !u!1 &140567163
 GameObject:
   m_ObjectHideFlags: 0
