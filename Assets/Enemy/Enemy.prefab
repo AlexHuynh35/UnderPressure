@@ -200,7 +200,6 @@ GameObject:
   - component: {fileID: 7322336534200392657}
   - component: {fileID: 5563520921933283120}
   - component: {fileID: 2204053694205192017}
-  - component: {fileID: -3908186198005491613}
   - component: {fileID: 2832746682566783224}
   - component: {fileID: 2910776450205393004}
   - component: {fileID: 8655781532648497118}
@@ -265,7 +264,7 @@ MonoBehaviour:
   maxAttackMultiplier: 1
   maxDamageMultiplier: 1
   orientation: {x: 1, y: 0}
-  movementOrientation: {x: 0, y: 0}
+  movementDirection: {x: 0, y: 0}
 --- !u!114 &5563520921933283120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,19 +293,6 @@ MonoBehaviour:
   cardinalOnly: 1
   detectionRange: 5
   timeBetweenAttack: 1
---- !u!114 &-3908186198005491613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5765182413864872287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 299dcb09e1ce240df9da2e86c952ec71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pattern: {fileID: 0}
 --- !u!114 &2832746682566783224
 MonoBehaviour:
   m_ObjectHideFlags: 0

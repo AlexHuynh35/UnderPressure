@@ -1,10 +1,43 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "KnightMovementPattern", menuName = "MovementPattern/KnightMovementPattern")]
-public class KnightMovementPattern : MovementPattern
+public class KnightEnemyMovement : EnemyMovement
 {
+    [Header("Knight Movement Stats")]
     public float startRange;
     public float endRange;
+
+    void Update()
+    {
+        SetOrientation(enemy);
+
+        if (moving)
+        {
+            if (activeTimer > 0)
+            {
+                activeTimer -= Time.deltaTime;
+                MoveBody(enemy);
+            }
+            else
+            {
+                if (Random.value < 0.5) moving = false;
+                activeTimer = activeTime;
+                cooldownTimer = cooldownTime;
+            }
+        }
+        else
+        {
+            if (cooldownTimer > 0)
+            {
+                cooldownTimer -= Time.deltaTime;
+            }
+            else
+            {
+                if (Random.value < 0.75) moving = true;
+                cooldownTimer = activeTime;
+                cooldownTimer = cooldownTime;
+            }
+        }
+    }
 
     public override void SetOrientation(EntityManager entity)
     {
