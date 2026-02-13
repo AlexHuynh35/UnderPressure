@@ -265,6 +265,7 @@ MonoBehaviour:
   maxDamageMultiplier: 1
   orientation: {x: 1, y: 0}
   movementDirection: {x: 0, y: 0}
+  rotate: 0
 --- !u!114 &5563520921933283120
 MonoBehaviour:
   m_ObjectHideFlags: 0

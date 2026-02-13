@@ -8,14 +8,20 @@ public class KnightEnemyMovement : EnemyMovement
 
     void Update()
     {
-        SetOrientation(enemy);
+        SetOrientation();
+
+        if (enemy.rotate)
+        {
+            MoveBody();
+            return;
+        }
 
         if (moving)
         {
             if (activeTimer > 0)
             {
                 activeTimer -= Time.deltaTime;
-                MoveBody(enemy);
+                MoveBody();
             }
             else
             {
@@ -39,48 +45,62 @@ public class KnightEnemyMovement : EnemyMovement
         }
     }
 
-    public override void SetOrientation(EntityManager entity)
+    public override void SetOrientation()
     {
-        var distance = Vector2.Distance(entity.transform.position, PlayerData.Player.transform.position);
-        Vector2 direction = AbilityHelper.GetDirection(entity.transform.position, PlayerData.Player.transform.position);
+        var distance = Vector2.Distance(enemy.transform.position, PlayerData.Player.transform.position);
+        Vector2 direction = AbilityHelper.GetDirection(enemy.transform.position, PlayerData.Player.transform.position);
+        Vector2 newOrientation;
+        Vector2 newMovementDirection;
         if (distance > endRange)
         {
             if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
             {
-                entity.orientation = direction.x > 0 ? Vector2.right : Vector2.left;
-                entity.movementDirection = entity.orientation;
+                newOrientation = direction.x > 0 ? Vector2.right : Vector2.left;
+                newMovementDirection = newOrientation;
             }
             else
             {
-                entity.orientation = direction.y > 0 ? Vector2.up : Vector2.down;
-                entity.movementDirection = entity.orientation;
+                newOrientation = direction.y > 0 ? Vector2.up : Vector2.down;
+                newMovementDirection = newOrientation;
             }
         }
         else
         {
             if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
             {
-                entity.orientation = direction.x > 0 ? Vector2.right : Vector2.left;
-                entity.movementDirection = direction.y > 0 ? Vector2.up : Vector2.down;
+                newOrientation = direction.x > 0 ? Vector2.right : Vector2.left;
+                newMovementDirection = direction.y > 0 ? Vector2.up : Vector2.down;
             }
             else
             {
-                entity.orientation = direction.y > 0 ? Vector2.up : Vector2.down;
-                entity.movementDirection = direction.x > 0 ? Vector2.right : Vector2.left;
+                newOrientation = direction.y > 0 ? Vector2.up : Vector2.down;
+                newMovementDirection = direction.x > 0 ? Vector2.right : Vector2.left;
             }
+        }
+
+        enemy.ChangeOrientation(newOrientation);
+        if (!enemy.rotate)
+        {
+            enemy.ChangeMovementDirection(newMovementDirection);
+        }
+        else
+        {
+            float currentAngle = Mathf.Atan2(enemy.movementDirection.y, enemy.movementDirection.x) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(newMovementDirection.y, newMovementDirection.x) * Mathf.Rad2Deg;
+            float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, enemy.speed * Time.fixedDeltaTime) * Mathf.Deg2Rad;
+            enemy.ChangeMovementDirection(new Vector2(Mathf.Cos(newAngle), Mathf.Sin(newAngle)).normalized);
         }
     }
 
-    public override void MoveBody(EntityManager entity)
+    public override void MoveBody()
     {
-        var distance = Vector2.Distance(entity.transform.position, PlayerData.Player.transform.position);
-        Vector2 difference = AbilityHelper.GetDifference(entity.transform.position, PlayerData.Player.transform.position);
+        var distance = Vector2.Distance(enemy.transform.position, PlayerData.Player.transform.position);
+        Vector2 difference = AbilityHelper.GetDifference(enemy.transform.position, PlayerData.Player.transform.position);
         if (distance < startRange)
         {
             if (distance > endRange || (Mathf.Abs(difference.x) > 0.5f && Mathf.Abs(difference.y) > 0.5f))
             {
-                entity.rb.AddForce(entity.movementDirection * entity.speed * entity.stunned, ForceMode2D.Force);
-                return;
+                enemy.rb.AddForce(enemy.movementDirection * enemy.speed * enemy.stunned, ForceMode2D.Force);
             }
         }
     }

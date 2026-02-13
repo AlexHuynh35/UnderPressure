@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!InputManager.Instance.receivingInputs) return;
-        
-        Vector2 movementVector = GetMovementDirection();
+
+        Vector2 movementVector = GetMovementDirection() * player.speed * player.stunned;
         player.rb.AddForce(movementVector, ForceMode2D.Force);
     }
 
@@ -25,15 +25,29 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             {
-                player.orientation = input.x > 0 ? Vector2.right : Vector2.left;
+                player.ChangeOrientation(input.x > 0 ? Vector2.right : Vector2.left);
             }
             else
             {
-                player.orientation = input.y > 0 ? Vector2.up : Vector2.down;
+                player.ChangeOrientation(input.y > 0 ? Vector2.up : Vector2.down);
             }
         }
 
-        Vector2 movementDirection = input.normalized;
-        return movementDirection * player.speed * player.stunned;
+        if (!player.rotate)
+        {
+            return input.normalized;
+        }
+        else
+        {
+            if (input != Vector2.zero)
+            {
+                float currentAngle = Mathf.Atan2(player.movementDirection.y, player.movementDirection.x) * Mathf.Rad2Deg;
+                float targetAngle = Mathf.Atan2(input.normalized.y, input.normalized.x) * Mathf.Rad2Deg;
+                float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, player.speed * Time.fixedDeltaTime) * Mathf.Deg2Rad;
+                player.ChangeMovementDirection(new Vector2(Mathf.Cos(newAngle), Mathf.Sin(newAngle)).normalized);
+            }
+
+            return player.movementDirection;
+        }
     }
 }

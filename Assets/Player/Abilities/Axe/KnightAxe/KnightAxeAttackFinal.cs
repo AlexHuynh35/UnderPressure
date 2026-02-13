@@ -7,10 +7,11 @@ public class KnightAxeAttackFinal : Ability
     [Header("Ability Stats")]
     public float damage;
     public bool piercing;
+    public float rate;
+    public float movementDebuff;
 
     [Header("Hitboxes")]
     public float radius;
-    public float lifetime;
     public GameObject hitboxPrefab;
 
     public override void OnPress(EntityManager caster, Vector2 direction)
@@ -21,7 +22,9 @@ public class KnightAxeAttackFinal : Ability
 
     public override void OnRelease(EntityManager caster, Vector2 direction)
     {
-        Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);
+        caster.ToggleRotate(true);
+
+        Effect movementEffect = new MovementEffect(boost: movementDebuff, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }
 
@@ -29,7 +32,7 @@ public class KnightAxeAttackFinal : Ability
     {
         List<Effect> effects = new List<Effect>()
         {
-            new DamageAreaEffect(damage: damage, piercing: piercing, rate: 0.25f, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy)
+            new DamageAreaEffect(damage: damage * Mathf.Max(chargeTime, 1), piercing: piercing, rate: rate, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy)
         };
         HitboxShape shape = new CircleShape(radius: radius);
         HitboxMovement movement = new FollowMovement(following: caster, offset: Vector2.zero);
@@ -40,9 +43,17 @@ public class KnightAxeAttackFinal : Ability
             effects: effects,
             shape: shape,
             movement: movement,
-            lifetime: lifetime * Mathf.Max(chargeTime, 1),
+            lifetime: activeTime,
             targetSelf: false,
             destroyOnHit: false
         );
+    }
+
+    public override void EndActive(EntityManager caster)
+    {
+        caster.ToggleRotate(false);
+        
+        Effect movementEffect = new MovementEffect(boost: 1f, source: caster, allowedTags: EntityTag.Player);
+        movementEffect.OnEnter(caster);
     }
 }

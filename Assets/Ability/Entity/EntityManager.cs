@@ -36,6 +36,7 @@ public class EntityManager : MonoBehaviour
     [Header("Orientation")]
     public Vector2 orientation;
     public Vector2 movementDirection;
+    public bool rotate;
 
     /* Lifecycle */
     void Start()
@@ -50,6 +51,23 @@ public class EntityManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    /* Orientation */
+    public void ChangeOrientation(Vector2 orientation)
+    {
+        this.orientation = orientation;
+    }
+
+    public void ChangeMovementDirection(Vector2 movementDirection)
+    {
+        this.movementDirection = movementDirection;
+    }
+
+    public void ToggleRotate(bool rotate)
+    {
+        movementDirection = orientation;
+        this.rotate = rotate;
     }
 
     /* Combat */

@@ -95,6 +95,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeTime: 2
-  cooldownTime: 2
+  cooldownTime: 0
   startRange: 8
   endRange: 4

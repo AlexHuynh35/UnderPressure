@@ -401,6 +401,7 @@ MonoBehaviour:
   maxDamageMultiplier: 1
   orientation: {x: 1, y: 0}
   movementDirection: {x: 0, y: 0}
+  rotate: 0
   shieldManager: {fileID: 724955922}
   stamina: 3
   staminaRate: 2

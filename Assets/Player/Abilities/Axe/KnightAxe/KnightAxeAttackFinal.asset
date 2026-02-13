@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Knight Axe Attack Final
   maxChargeTime: 4
-  windupTime: 0
+  windUpTime: 0.25
   activeTime: 2
+  windDownTime: 0.5
   sustainSpeed: 0
   castSpeed: 0
   range: 0
-  damage: 5
+  damage: 2
   piercing: 0
+  rate: 0.25
+  movementDebuff: 0.75
   radius: 2
-  lifetime: 0.5
   hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}

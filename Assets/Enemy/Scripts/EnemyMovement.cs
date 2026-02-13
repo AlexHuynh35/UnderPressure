@@ -30,11 +30,11 @@ public class EnemyMovement : MonoBehaviour
         
     }
 
-    public virtual void SetOrientation(EntityManager entity)
+    public virtual void SetOrientation()
     {
         
     }
-    public virtual void MoveBody(EntityManager entity)
+    public virtual void MoveBody()
     {
         
     }
