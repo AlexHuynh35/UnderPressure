@@ -81,13 +81,13 @@ public class KnightEnemyMovement : EnemyMovement
         enemy.ChangeOrientation(newOrientation);
         if (!enemy.rotate)
         {
-            enemy.ChangeMovementDirection(newMovementDirection);
+            enemy.ChangeMovementDirection(newMovementDirection.normalized);
         }
         else
         {
             float currentAngle = Mathf.Atan2(enemy.movementDirection.y, enemy.movementDirection.x) * Mathf.Rad2Deg;
             float targetAngle = Mathf.Atan2(newMovementDirection.y, newMovementDirection.x) * Mathf.Rad2Deg;
-            float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, enemy.speed * Time.fixedDeltaTime) * Mathf.Deg2Rad;
+            float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, enemy.rotateSpeed * Time.fixedDeltaTime) * Mathf.Deg2Rad;
             enemy.ChangeMovementDirection(new Vector2(Mathf.Cos(newAngle), Mathf.Sin(newAngle)).normalized);
         }
     }

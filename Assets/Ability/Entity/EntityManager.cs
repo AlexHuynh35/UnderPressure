@@ -37,6 +37,7 @@ public class EntityManager : MonoBehaviour
     public Vector2 orientation;
     public Vector2 movementDirection;
     public bool rotate;
+    public float rotateSpeed;
 
     /* Lifecycle */
     void Start()

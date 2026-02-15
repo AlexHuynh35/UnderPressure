@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2204053694205192017, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
       propertyPath: slots.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2204053694205192017, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
       propertyPath: timeBetweenAttack
@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: slots.Array.data[0].group
       value: 
       objectReference: {fileID: 11400000, guid: b856887880df64954833070d1f018153, type: 2}
+    - target: {fileID: 2204053694205192017, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
+      propertyPath: slots.Array.data[1].group
+      value: 
+      objectReference: {fileID: 11400000, guid: bcf2fc27d4d9a4a169fe7bacf34f4811, type: 2}
     - target: {fileID: 5765182413864872287, guid: 9c1d7ef83c6f242fca9d380fa433f8d9, type: 3}
       propertyPath: m_Name
       value: Warrior
