@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class ChestInventory : Inventory
 {
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Sprite open;
     public bool opened;
 
     void Start()
@@ -22,6 +24,7 @@ public class ChestInventory : Inventory
         {
             DropItem();
             opened = true;
+            sprite.sprite = open;
         }
     }
 

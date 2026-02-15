@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 265553843831883821, guid: 89586680c963a4889afbd66dc3b7afd2, type: 3}
       propertyPath: m_Name
-      value: BaseRoom
+      value: CenterRoom1
       objectReference: {fileID: 0}
     - target: {fileID: 6992642477665985988, guid: 89586680c963a4889afbd66dc3b7afd2, type: 3}
       propertyPath: m_LocalPosition.x

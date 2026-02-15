@@ -52,6 +52,8 @@ MonoBehaviour:
   arrowAmount: 0
   inventorySpace: 5
   dropPrefab: {fileID: 5692608284684714028, guid: c6b7c6819ffc3485599c7c8ced5c0205, type: 3}
+  sprite: {fileID: 8412716604226911890}
+  open: {fileID: -1371658833590593248, guid: b4227f2a2f74645d69fe66f58de54ff8, type: 3}
   opened: 0
 --- !u!50 &-4464175911442135700
 Rigidbody2D:
@@ -124,7 +126,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &5101401118261937541
 GameObject:
@@ -202,7 +204,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -3908550685238193833, guid: b4227f2a2f74645d69fe66f58de54ff8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
