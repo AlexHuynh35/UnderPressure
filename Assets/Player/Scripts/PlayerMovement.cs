@@ -3,18 +3,21 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private EntityManager player;
+    private Rigidbody rb;
 
     void Start()
     {
         player = GetComponent<EntityManager>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
         if (!InputManager.Instance.receivingInputs) return;
 
-        Vector2 movementVector = GetMovementDirection() * player.speed * player.stunned;
-        player.rb.AddForce(movementVector, ForceMode2D.Force);
+        Vector2 movementDirection = GetMovementDirection();
+        Vector3 movementVector = new Vector3(movementDirection.x, 0, movementDirection.y) * player.speed * player.stunned;
+        rb.AddForce(movementVector, ForceMode.Force);
     }
 
     private Vector2 GetMovementDirection()
@@ -25,11 +28,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             {
-                player.ChangeOrientation(input.x > 0 ? Vector2.right : Vector2.left);
+                player.ChangeOrientation(input.x > 0 ? Vector3.right : Vector3.left);
             }
             else
             {
-                player.ChangeOrientation(input.y > 0 ? Vector2.up : Vector2.down);
+                player.ChangeOrientation(input.y > 0 ? Vector3.up : Vector3.down);
             }
         }
 
