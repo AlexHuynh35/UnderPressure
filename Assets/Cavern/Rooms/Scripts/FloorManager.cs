@@ -71,6 +71,7 @@ public class FloorManager : MonoBehaviour
         HUDManager.Instance.SetMap(rows, columns, floor);
 
         roomManagers[0].gameObject.SetActive(true);
+        roomManagers[0].EnterEntranceRoom();
     }
 
     void Update()
@@ -209,7 +210,7 @@ public class FloorManager : MonoBehaviour
             if (roomStructure.Value.id == 0)
             {
                 GameObject roomPrefab = database.entranceRoom;
-                RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity, transform).GetComponent<RoomManager>();
+                RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform).GetComponent<RoomManager>();
                 roomManagers[roomStructure.Key] = room;
                 room.InitializeEntranceRoom(roomStructure.Value);
                 room.gameObject.SetActive(false);
@@ -218,7 +219,7 @@ public class FloorManager : MonoBehaviour
             {
                 List<GameObject> roomPrefabs = database.GetFittingRooms(roomStructure.Value.rooms[Direction.Up] >= 0, roomStructure.Value.rooms[Direction.Down] >= 0, roomStructure.Value.rooms[Direction.Left] >= 0, roomStructure.Value.rooms[Direction.Right] >= 0);
                 GameObject roomPrefab = roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Count)];
-                RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 1), Quaternion.identity, transform).GetComponent<RoomManager>();
+                RoomManager room = Instantiate(roomPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform).GetComponent<RoomManager>();
                 roomManagers[roomStructure.Key] = room;
                 room.InitializeRoom(roomStructure.Value, allRules[UnityEngine.Random.Range(0, allRules.Count)]);
                 room.gameObject.SetActive(false);

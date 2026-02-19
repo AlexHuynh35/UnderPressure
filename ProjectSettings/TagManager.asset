@@ -44,6 +44,9 @@ TagManager:
   - name: Shadow
     uniqueID: 3945578415
     locked: 0
+  - name: Decoration
+    uniqueID: 3733577871
+    locked: 0
   - name: Object
     uniqueID: 3852222003
     locked: 0
