@@ -87,7 +87,7 @@ public class FloorManager : MonoBehaviour
         currentRoomManager.gameObject.SetActive(false);
         nextRoomManager.gameObject.SetActive(true);
         nextRoomManager.EnterRoom(DirectionDatabase.GetOpposite(direction));
-        entity.transform.position = new Vector2(nextRoomManager.doorDict[DirectionDatabase.GetOpposite(direction)].transform.position.x + DirectionDatabase.directionToPosition[direction].Item1 * 1.5f, nextRoomManager.doorDict[DirectionDatabase.GetOpposite(direction)].transform.position.y + DirectionDatabase.directionToPosition[direction].Item2 * 1.5f);
+        entity.transform.position = new Vector3(nextRoomManager.doorDict[DirectionDatabase.GetOpposite(direction)].transform.position.x + DirectionDatabase.directionToPosition[direction].Item1 * 1.5f, entity.transform.position.y, nextRoomManager.doorDict[DirectionDatabase.GetOpposite(direction)].transform.position.z + DirectionDatabase.directionToPosition[direction].Item2 * 1.5f);
         HUDManager.Instance.ChangePlayerLocation(currentRoomID, currentRoomStructure.rooms[direction]);
     }
 

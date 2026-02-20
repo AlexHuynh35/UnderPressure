@@ -17,7 +17,7 @@ public class ChestInventory : Inventory
         
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         EntityManager entity = other.gameObject.GetComponent<EntityManager>();
         if (entity != null && (entity.tags & EntityTag.Player) != 0 && !opened)

@@ -20,10 +20,10 @@ public class DoorManager : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         EntityManager entity = other.gameObject.GetComponent<EntityManager>();
-        if ((entity.tags & EntityTag.Player) != 0)
+        if (entity != null && (entity.tags & EntityTag.Player) != 0)
         {
             FloorManager.Instance.LoadNextRoom(entity, direction, roomID);
         }
@@ -32,7 +32,7 @@ public class DoorManager : MonoBehaviour
     public void InitializeDoor(int roomID)
     {
         this.roomID = roomID;
-        door.transform.position = new Vector2(blockage.transform.position.x + DirectionDatabase.directionToPosition[direction].Item1 * 1.5f, blockage.transform.position.y + DirectionDatabase.directionToPosition[direction].Item2 * 1.5f);
+        door.transform.position = new Vector3(transform.position.x + DirectionDatabase.directionToPosition[direction].Item1 * 1f, transform.position.y, transform.position.z + DirectionDatabase.directionToPosition[direction].Item2 * 1f);
     }
 
     public void Enter()

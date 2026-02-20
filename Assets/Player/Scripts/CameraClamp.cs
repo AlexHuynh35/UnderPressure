@@ -38,6 +38,6 @@ public class CameraClamp : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, 0.2f);
         */
 
-        transform.position = new Vector3(targetPos.x, targetPos.y + 15, targetPos.z - 10);
+        transform.position = new Vector3(targetPos.x, targetPos.y + 10, targetPos.z - 10);
     }
 }

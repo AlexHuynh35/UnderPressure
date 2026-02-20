@@ -213,7 +213,7 @@ public class RoomManager : MonoBehaviour
 
     private void GiveReward()
     {
-        chest = Instantiate(rules.chestPrefab, Vector2.zero, Quaternion.identity, transform).GetComponent<ChestInventory>();
+        chest = Instantiate(rules.chestPrefab, new Vector3(0, 1, 0), Quaternion.identity, transform).GetComponent<ChestInventory>();
         chest.Initialize(dropHolder);
         for (int i = 0; i < rules.averageNumberRewardTypes; i++)
         {
@@ -260,6 +260,7 @@ public class RoomManager : MonoBehaviour
 
     private void SetMapObjects()
     {
+        MapObjectPool.Instance.ResetWalls();
         MapObjectPool.Instance.UseFloor(new Vector3(center.x, transform.position.y - 0.5f, center.z), new Vector3(width, 1, height));
 
         visitedGrid = new bool[width, height];

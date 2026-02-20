@@ -43,6 +43,7 @@ public class MapObjectPool : MonoBehaviour
         {
             walls[nextAvailableWall].transform.position = position;
             walls[nextAvailableWall].transform.localScale = size;
+            walls[nextAvailableWall].SetActive(true);
             nextAvailableWall++;
         }
     }
@@ -51,6 +52,7 @@ public class MapObjectPool : MonoBehaviour
     {
         GameObject newWall = Instantiate(wallPrefab, position, Quaternion.identity, transform);
         newWall.transform.localScale = size;
+        newWall.SetActive(true);
         walls.Add(newWall);
     }
 
