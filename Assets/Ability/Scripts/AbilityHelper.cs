@@ -26,8 +26,8 @@ public static class AbilityHelper
         return endingPoint - startingPoint;
     }
 
-    public static Vector2 OffsetLocation(Vector2 location, float offset)
+    public static Vector3 OffsetLocation(Vector3 location, float offset)
     {
-        return new Vector2(location.x + Random.Range(-offset, offset), location.y + Random.Range(-offset, offset));
+        return new Vector3(location.x + Random.Range(-offset, offset), location.y, location.z + Random.Range(-offset, offset));
     }
 }

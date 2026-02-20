@@ -9,7 +9,7 @@ public class ItemDrop : MonoBehaviour
         this.itemStack = itemStack;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         EntityManager target = other.GetComponent<EntityManager>();
         if (target != null && target.tags == EntityTag.Player)
