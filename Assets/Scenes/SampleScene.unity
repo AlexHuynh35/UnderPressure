@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: 1
-  rb: {fileID: 0}
+  rb: {fileID: 64923308}
   abilityManager: {fileID: 64923302}
   effectManager: {fileID: 64923301}
   spriteManager: {fileID: 524369155}
@@ -326,8 +326,8 @@ MonoBehaviour:
   maxProficiency: 1
   maxAttackMultiplier: 1
   maxDamageMultiplier: 1
-  orientation: {x: 1, y: 0}
-  movementDirection: {x: 0, y: 0}
+  orientation: {x: 1, y: 0, z: 0}
+  movementDirection: {x: 0, y: 0, z: 0}
   rotate: 0
   rotateSpeed: 150
   shieldManager: {fileID: 724955922}
@@ -369,7 +369,7 @@ Rigidbody:
   m_GameObject: {fileID: 64923295}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 15
+  m_Drag: 12
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

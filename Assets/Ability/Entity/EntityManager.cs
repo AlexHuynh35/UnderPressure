@@ -6,7 +6,7 @@ public class EntityManager : MonoBehaviour
     public EntityTag tags;
 
     [Header("Cached Components")]
-    public Rigidbody2D rb;
+    public Rigidbody rb;
     public AbilityManager abilityManager;
     public EffectManager effectManager;
     public SpriteManager spriteManager;
@@ -34,8 +34,8 @@ public class EntityManager : MonoBehaviour
     [SerializeField] protected float maxDamageMultiplier;
 
     [Header("Orientation")]
-    public Vector2 orientation;
-    public Vector2 movementDirection;
+    public Vector3 orientation;
+    public Vector3 movementDirection;
     public bool rotate;
     public float rotateSpeed;
 
@@ -55,12 +55,12 @@ public class EntityManager : MonoBehaviour
     }
 
     /* Orientation */
-    public void ChangeOrientation(Vector2 orientation)
+    public void ChangeOrientation(Vector3 orientation)
     {
         this.orientation = orientation;
     }
 
-    public void ChangeMovementDirection(Vector2 movementDirection)
+    public void ChangeMovementDirection(Vector3 movementDirection)
     {
         this.movementDirection = movementDirection;
     }
@@ -116,11 +116,11 @@ public class EntityManager : MonoBehaviour
 
     protected virtual void OnHurt() { }
 
-    public void ApplyKnockback(Vector2 direction, float force)
+    public void ApplyKnockback(Vector3 direction, float force)
     {
         if (rb != null)
         {
-            rb.AddForce(direction * force, ForceMode2D.Impulse);
+            rb.AddForce(direction * force, ForceMode.Impulse);
         }
     }
 

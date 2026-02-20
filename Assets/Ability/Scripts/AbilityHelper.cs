@@ -2,28 +2,29 @@ using UnityEngine;
 
 public static class AbilityHelper
 {
-    public static Vector2 AddOffset(Vector2 direction, float angle, float index)
+    public static Vector3 AddOffset(Vector3 direction, float angle, float index)
     {
         float rad = angle * index * Mathf.Deg2Rad;
         float cos = Mathf.Cos(rad);
         float sin = Mathf.Sin(rad);
 
-        Vector2 newDir = new Vector2(
-            direction.x * cos - direction.y * sin,
-            direction.x * sin + direction.y * cos
-        );
+        Vector3 newDir = new Vector3(direction.x * cos - direction.z * sin, 0, direction.x * sin + direction.z * cos);
 
         return newDir.normalized;
     }
 
-    public static Vector2 GetDirection(Vector2 startingPoint, Vector2 endingPoint)
+    public static Vector3 GetDirection(Vector3 startingPoint, Vector3 endingPoint)
     {
-        return (endingPoint - startingPoint).normalized;
+        Vector3 difference = endingPoint - startingPoint;
+        difference.y = 0;
+        return difference.normalized;
     }
 
-    public static Vector2 GetDifference(Vector2 startingPoint, Vector2 endingPoint)
+    public static Vector3 GetDifference(Vector3 startingPoint, Vector3 endingPoint)
     {
-        return endingPoint - startingPoint;
+        Vector3 difference = endingPoint - startingPoint;
+        difference.y = 0;
+        return difference;
     }
 
     public static Vector3 OffsetLocation(Vector3 location, float offset)

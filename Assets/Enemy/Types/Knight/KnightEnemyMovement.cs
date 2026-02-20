@@ -47,34 +47,36 @@ public class KnightEnemyMovement : EnemyMovement
 
     public override void SetOrientation()
     {
-        var distance = Vector2.Distance(enemy.transform.position, PlayerData.Player.transform.position);
-        Vector2 direction = AbilityHelper.GetDirection(enemy.transform.position, PlayerData.Player.transform.position);
-        Vector2 newOrientation;
-        Vector2 newMovementDirection;
+        Vector3 enemyTransform = new Vector3(enemy.transform.position.x, 0, enemy.transform.position.z);
+        Vector3 playerTransform = new Vector3(PlayerData.Player.transform.position.x, 0, PlayerData.Player.transform.position.z);
+        var distance = Vector3.Distance(enemyTransform, playerTransform);
+        Vector3 direction = AbilityHelper.GetDirection(enemyTransform, playerTransform);
+        Vector3 newOrientation;
+        Vector3 newMovementDirection;
         if (distance > endRange)
         {
-            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
             {
-                newOrientation = direction.x > 0 ? Vector2.right : Vector2.left;
+                newOrientation = direction.x > 0 ? Vector3.right : Vector3.left;
                 newMovementDirection = newOrientation;
             }
             else
             {
-                newOrientation = direction.y > 0 ? Vector2.up : Vector2.down;
+                newOrientation = direction.z > 0 ? Vector3.forward : Vector3.back;
                 newMovementDirection = newOrientation;
             }
         }
         else
         {
-            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
             {
-                newOrientation = direction.x > 0 ? Vector2.right : Vector2.left;
-                newMovementDirection = direction.y > 0 ? Vector2.up : Vector2.down;
+                newOrientation = direction.x > 0 ? Vector3.right : Vector3.left;
+                newMovementDirection = direction.z > 0 ? Vector3.forward : Vector3.back;
             }
             else
             {
-                newOrientation = direction.y > 0 ? Vector2.up : Vector2.down;
-                newMovementDirection = direction.x > 0 ? Vector2.right : Vector2.left;
+                newOrientation = direction.z > 0 ? Vector3.forward : Vector3.back;
+                newMovementDirection = direction.x > 0 ? Vector3.right : Vector3.left;
             }
         }
 
@@ -85,22 +87,24 @@ public class KnightEnemyMovement : EnemyMovement
         }
         else
         {
-            float currentAngle = Mathf.Atan2(enemy.movementDirection.y, enemy.movementDirection.x) * Mathf.Rad2Deg;
-            float targetAngle = Mathf.Atan2(newMovementDirection.y, newMovementDirection.x) * Mathf.Rad2Deg;
+            float currentAngle = Mathf.Atan2(enemy.movementDirection.z, enemy.movementDirection.x) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(newMovementDirection.z, newMovementDirection.x) * Mathf.Rad2Deg;
             float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, enemy.rotateSpeed * Time.fixedDeltaTime) * Mathf.Deg2Rad;
-            enemy.ChangeMovementDirection(new Vector2(Mathf.Cos(newAngle), Mathf.Sin(newAngle)).normalized);
+            enemy.ChangeMovementDirection(new Vector3(Mathf.Cos(newAngle), 0, Mathf.Sin(newAngle)).normalized);
         }
     }
 
     public override void MoveBody()
     {
-        var distance = Vector2.Distance(enemy.transform.position, PlayerData.Player.transform.position);
-        Vector2 difference = AbilityHelper.GetDifference(enemy.transform.position, PlayerData.Player.transform.position);
+        Vector3 enemyTransform = new Vector3(enemy.transform.position.x, 0, enemy.transform.position.z);
+        Vector3 playerTransform = new Vector3(PlayerData.Player.transform.position.x, 0, PlayerData.Player.transform.position.z);
+        var distance = Vector3.Distance(enemyTransform, playerTransform);
+        Vector3 difference = AbilityHelper.GetDifference(enemyTransform, playerTransform);
         if (distance < startRange)
         {
-            if (distance > endRange || (Mathf.Abs(difference.x) > 0.5f && Mathf.Abs(difference.y) > 0.5f))
+            if (distance > endRange || (Mathf.Abs(difference.x) > 0.5f && Mathf.Abs(difference.z) > 0.5f))
             {
-                enemy.rb.AddForce(enemy.movementDirection * enemy.speed * enemy.stunned, ForceMode2D.Force);
+                enemy.rb.AddForce(enemy.movementDirection * enemy.speed * enemy.stunned, ForceMode.Force);
             }
         }
     }
