@@ -23,5 +23,6 @@ MonoBehaviour:
   damage: 10
   piercing: 0
   width: 2
-  height: 1
+  height: 2
+  length: 1
   hitboxPrefab: {fileID: 4936989231642616266, guid: 88071dc73489f4b3e8cbefb36cb19beb, type: 3}

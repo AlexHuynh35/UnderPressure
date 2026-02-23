@@ -25,8 +25,9 @@ MonoBehaviour:
   rate: 0.5
   duration: 2
   radius: 1
+  height: 1
   angle: 180
   number: 3
   speed: 5
   lifetime: 1
-  hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}
+  hitboxPrefab: {fileID: 1750552988360241588, guid: 4d0a1387ba54a47c587fd9632ac1426d, type: 3}

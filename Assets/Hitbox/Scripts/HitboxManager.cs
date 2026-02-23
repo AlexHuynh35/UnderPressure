@@ -28,7 +28,7 @@ public class HitboxManager : MonoBehaviour
     void Start()
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
-        shape.SetShape(GetComponent<Collider2D>(), sprite);
+        shape.SetShape(GetComponent<Collider>(), sprite);
     }
 
     void Update()
@@ -47,7 +47,7 @@ public class HitboxManager : MonoBehaviour
             movement?.Move(this, Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         EntityManager target = other.GetComponent<EntityManager>();
         if (target == null || (!targetSelf && target.gameObject == owner) || !shape.IsWithin(transform.position, other.transform.position)) return;
@@ -66,7 +66,7 @@ public class HitboxManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
         EntityManager target = other.GetComponent<EntityManager>();
         if (target == null || (!targetSelf && target.gameObject == owner) || !shape.IsWithin(transform.position, other.transform.position)) return;

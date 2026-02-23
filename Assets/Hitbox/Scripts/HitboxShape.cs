@@ -4,29 +4,29 @@ public abstract class HitboxShape
 {
     public HitboxShape() { }
 
-    public virtual void SetShape(Collider2D collider, SpriteRenderer renderer) { }
+    public virtual void SetShape(Collider collider, SpriteRenderer renderer) { }
 
-    public virtual bool IsWithin(Vector2 hitboxPos, Vector2 targetPos)
+    public virtual bool IsWithin(Vector3 hitboxPos, Vector3 targetPos)
     {
         return true;
     }
 }
 
-public class CircleShape : HitboxShape
+public class SphereShape : HitboxShape
 {
     public float radius;
 
-    public CircleShape(float radius) : base()
+    public SphereShape(float radius) : base()
     {
         this.radius = radius;
     }
 
-    public override void SetShape(Collider2D collider, SpriteRenderer renderer)
+    public override void SetShape(Collider collider, SpriteRenderer renderer)
     {
-        var circle = collider as CircleCollider2D;
-        if (circle != null)
+        var sphere = collider as SphereCollider;
+        if (sphere != null)
         {
-            circle.radius = radius;
+            sphere.radius = radius;
         }
         if (renderer != null)
         {
@@ -34,7 +34,7 @@ public class CircleShape : HitboxShape
         }
     }
 
-    public override bool IsWithin(Vector2 hitboxPos, Vector2 targetPos)
+    public override bool IsWithin(Vector3 hitboxPos, Vector3 targetPos)
     {
         return true;
     }
@@ -44,68 +44,99 @@ public class BoxShape : HitboxShape
 {
     public float x;
     public float y;
+    public float z;
 
-    public BoxShape(float x, float y) : base()
+    public BoxShape(float x, float y, float z) : base()
     {
         this.x = x;
         this.y = y;
+        this.z = z;
     }
 
-    public override void SetShape(Collider2D collider, SpriteRenderer renderer)
+    public override void SetShape(Collider collider, SpriteRenderer renderer)
     {
-        var box = collider as BoxCollider2D;
+        var box = collider as BoxCollider;
         if (box != null)
         {
-            box.size = new Vector2(x, y);
+            box.size = new Vector3(x, y, z);
         }
         if (renderer != null)
         {
-            renderer.transform.localScale = new Vector2(x, y);
+            renderer.transform.localScale = new Vector2(x, z);
         }
     }
 
-    public override bool IsWithin(Vector2 hitboxPos, Vector2 targetPos)
+    public override bool IsWithin(Vector3 hitboxPos, Vector3 targetPos)
     {
         return true;
+    }
+}
+
+public class DiskShape : HitboxShape
+{
+    public float radius;
+    public float height;
+
+    public DiskShape(float radius, float height) : base()
+    {
+        this.radius = radius;
+        this.height = height;
+    }
+
+    public override void SetShape(Collider collider, SpriteRenderer renderer)
+    {
+        var disk = collider as CapsuleCollider;
+        if (disk != null)
+        {
+            disk.radius = radius;
+            disk.height = height + radius * 2f;
+        }
+        if (renderer != null)
+        {
+            renderer.transform.localScale = new Vector2(radius * 2f, radius * 2f);
+        }
+    }
+
+    public override bool IsWithin(Vector3 hitboxPos, Vector3 targetPos)
+    {
+        return Mathf.Abs(hitboxPos.y - targetPos.y) < height / 2f;
     }
 }
 
 public class ConeShape : HitboxShape
 {
     public float radius;
+    public float height;
     public float angle;
-    public Vector2 direction;
+    public Vector3 direction;
 
-    public ConeShape(float radius, float angle, Vector2 direction) : base()
+    public ConeShape(float radius, float height, float angle, Vector3 direction) : base()
     {
         this.radius = radius;
+        this.height = height;
         this.angle = angle;
         this.direction = direction;
     }
 
-    public override void SetShape(Collider2D collider, SpriteRenderer renderer)
+    public override void SetShape(Collider collider, SpriteRenderer renderer)
     {
-        var circle = collider as CircleCollider2D;
-        if (circle != null)
+        var disk = collider as CapsuleCollider;
+        if (disk != null)
         {
-            circle.radius = radius;
+            disk.radius = radius;
         }
         if (renderer != null)
         {
             renderer.transform.localScale = new Vector2(radius * 2f, radius * 2f);
         }
-        else
-        {
-            Debug.LogError("ConeShape needs a CircleCollider2D!");
-        }
     }
 
-    public override bool IsWithin(Vector2 hitboxPos, Vector2 targetPos)
+    public override bool IsWithin(Vector3 hitboxPos, Vector3 targetPos)
     {
-        Vector2 dirHitboxToEnemy = targetPos - hitboxPos;
-        float angleHitboxToEnemy = Mathf.Atan2(dirHitboxToEnemy.y, dirHitboxToEnemy.x) * Mathf.Rad2Deg;
-        float angleDirection = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector3 dirHitboxToEnemy = targetPos - hitboxPos;
+        float angleHitboxToEnemy = Mathf.Atan2(dirHitboxToEnemy.z, dirHitboxToEnemy.x) * Mathf.Rad2Deg;
+        float angleDirection = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
 
-        return angleHitboxToEnemy < angleDirection + angle / 2 && angleHitboxToEnemy > angleDirection - angle / 2;
+        return Mathf.Abs(hitboxPos.y - targetPos.y) < height / 2f && Mathf.Abs(angleHitboxToEnemy - angleDirection) < angle / 2f;
     }
 }

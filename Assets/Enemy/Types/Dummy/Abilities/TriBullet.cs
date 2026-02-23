@@ -15,13 +15,13 @@ public class TriBullet : Ability
     public float lifetime;
     public GameObject hitboxPrefab;
 
-    public override void OnRelease(EntityManager caster, Vector2 direction)
+    public override void OnRelease(EntityManager caster, Vector3 aimLocation)
     {
         Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Enemy);
         movementEffect.OnEnter(caster);
     }
 
-    public override void StartActive(EntityManager caster, Vector2 direction, float chargeTime)
+    public override void StartActive(EntityManager caster, Vector3 aimLocation, float chargeTime)
     {
         for (int i = -1; i <= 1; i++)
         {
@@ -29,10 +29,10 @@ public class TriBullet : Ability
             {
                 new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Player),
             };
-            HitboxShape shape = new CircleShape(radius: radius);
-            Vector2 directionOffset = AbilityHelper.AddOffset(AbilityHelper.GetDirection(caster.transform.position, direction), angle, i);
+            HitboxShape shape = new SphereShape(radius: radius);
+            Vector3 directionOffset = AbilityHelper.AddOffset(AbilityHelper.GetDirection(caster.transform.position, aimLocation), angle, i);
             HitboxMovement movement = new StraightMovement(speed: speed, direction: directionOffset);
-            HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+            HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, Mathf.Atan2(directionOffset.z, directionOffset.x) * Mathf.Rad2Deg, 0)).GetComponent<HitboxManager>();
             attack.Initialize
             (
                 owner: caster.gameObject,

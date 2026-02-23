@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "Consumable", menuName = "Abilities/Justine/Consumable")]
 public class Consumable : Ability
 {
-    public override void OnPress(EntityManager caster, Vector2 direction)
+    public override void OnPress(EntityManager caster, Vector3 aimLocation)
     {
         if (caster.inventory is PlayerInventory inventory)
         {

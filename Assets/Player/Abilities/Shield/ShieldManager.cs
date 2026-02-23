@@ -71,7 +71,7 @@ public class ShieldManager : MonoBehaviour
                 {
                     new StunStatusEffect(rate: 1f, duration: magnitude, source: entityManager, allowedTags: EntityTag.Enemy)
                 };
-                HitboxShape shape = new CircleShape(radius: radius);
+                HitboxShape shape = new SphereShape(radius: radius);
                 HitboxMovement movement = new FollowMovement(following: entityManager, offset: Vector3.zero);
                 HitboxManager attack = Instantiate(hitboxPrefab, entityManager.transform.position, Quaternion.identity).GetComponent<HitboxManager>();
                 attack.Initialize

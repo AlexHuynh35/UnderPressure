@@ -20,10 +20,10 @@ public class Ability : ScriptableObject
     {
         return true;
     }
-    public virtual void OnPress(EntityManager caster, Vector2 direction) { }
-    public virtual void WhileHold(EntityManager caster, Vector2 direction) { }
-    public virtual void OnRelease(EntityManager caster, Vector2 direction) { }
-    public virtual void StartActive(EntityManager caster, Vector2 direction, float chargeTime) { }
-    public virtual void WhileActive(EntityManager caster, Vector2 direction, float chargeTime) { }
+    public virtual void OnPress(EntityManager caster, Vector3 aimLocation) { }
+    public virtual void WhileHold(EntityManager caster, Vector3 aimLocation) { }
+    public virtual void OnRelease(EntityManager caster, Vector3 aimLocation) { }
+    public virtual void StartActive(EntityManager caster, Vector3 aimLocation, float chargeTime) { }
+    public virtual void WhileActive(EntityManager caster, Vector3 aimLocation, float chargeTime) { }
     public virtual void EndActive(EntityManager caster) { }
 }

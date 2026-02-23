@@ -41,8 +41,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (input != Vector3.zero)
             {
-                float currentAngle = Mathf.Atan2(player.movementDirection.y, player.movementDirection.x) * Mathf.Rad2Deg;
-                float targetAngle = Mathf.Atan2(input.normalized.y, input.normalized.x) * Mathf.Rad2Deg;
+                float currentAngle = Mathf.Atan2(player.movementDirection.z, player.movementDirection.x) * Mathf.Rad2Deg;
+                float targetAngle = Mathf.Atan2(input.normalized.z, input.normalized.x) * Mathf.Rad2Deg;
                 float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, player.rotateSpeed * Time.fixedDeltaTime) * Mathf.Deg2Rad;
                 player.ChangeMovementDirection(new Vector3(Mathf.Cos(newAngle), 0, Mathf.Sin(newAngle)).normalized);
             }

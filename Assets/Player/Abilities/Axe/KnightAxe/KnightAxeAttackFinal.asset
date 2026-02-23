@@ -25,4 +25,5 @@ MonoBehaviour:
   rate: 0.25
   movementDebuff: 0.75
   radius: 2
-  hitboxPrefab: {fileID: 1750552988360241588, guid: b037952511e904208a76dbab12abffcf, type: 3}
+  height: 1
+  hitboxPrefab: {fileID: 1750552988360241588, guid: 4d0a1387ba54a47c587fd9632ac1426d, type: 3}

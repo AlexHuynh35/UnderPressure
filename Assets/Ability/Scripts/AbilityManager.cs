@@ -36,8 +36,8 @@ public class AbilityManager : MonoBehaviour
     protected List<AbilityTimer> timers;
     protected EntityManager caster;
     protected int numSlots;
-    protected Vector2 aimLocation;
-    protected Vector2 lockedAimLocation;
+    protected Vector3 aimLocation;
+    protected Vector3 lockedAimLocation;
 
     private void Awake()
     {

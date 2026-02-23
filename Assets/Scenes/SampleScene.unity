@@ -278,7 +278,7 @@ MonoBehaviour:
   potionInfo: {fileID: 11400000, guid: 3a905c726970d4e83998cd13b3613108, type: 2}
   potionAmount: 0
   weaponOneInfo: {fileID: 11400000, guid: 2d9a32c3951874f649c2201267dffbd5, type: 2}
-  weaponTwoInfo: {fileID: 11400000, guid: 90220762cdb9c477eba9fa10ffd34890, type: 2}
+  weaponTwoInfo: {fileID: 11400000, guid: 6af3282b0d615401baaaefdbce2ffa64, type: 2}
   arrow:
     item: {fileID: 0}
     amount: 0
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1025476336}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1281,7 +1281,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2512,7 +2512,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 979253049}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.97875
+  m_Size: 0.97875005
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

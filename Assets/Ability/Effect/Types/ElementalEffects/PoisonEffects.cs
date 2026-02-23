@@ -56,7 +56,7 @@ public class DrainStatusEffect : StatusEffect
         (
             effects: new List<Effect>() { new HealEffect(heal: heal, source: source, allowedTags: EntityTag.Player) },
             hitboxPrefab: hitboxPrefab,
-            shape: new CircleShape(radius: 0.25f),
+            shape: new SphereShape(radius: 0.25f),
             movement: new StationaryMovement(),
             lifetime: lifetime,
             targetSelf: true,

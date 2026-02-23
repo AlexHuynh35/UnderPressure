@@ -12,12 +12,13 @@ public class KnightAxeAttackSpecial : Ability
     [Header("Hitboxes")]
     public float width;
     public float height;
+    public float length;
     public float lifetime;
     public float speed;
     public bool flipped;
     public GameObject hitboxPrefab;
 
-    public override void OnPress(EntityManager caster, Vector2 direction)
+    public override void OnPress(EntityManager caster, Vector3 aimLocation)
     {
         if (caster.effectManager.CountEffects(typeof(InternalizedStatusEffectInstance)) > 0)
         {
@@ -31,7 +32,7 @@ public class KnightAxeAttackSpecial : Ability
         }
     }
 
-    public override void StartActive(EntityManager caster, Vector2 direction, float chargeTime)
+    public override void StartActive(EntityManager caster, Vector3 aimLocation, float chargeTime)
     {
         if (caster.effectManager.CountEffects(typeof(InternalizedStatusEffectInstance)) > 0)
         {
@@ -39,10 +40,10 @@ public class KnightAxeAttackSpecial : Ability
             {
                 new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
             };
-            HitboxShape shape = new BoxShape(x: width, y: height);
+            HitboxShape shape = new BoxShape(x: width, y: height, z: length);
             HitboxMovement movement = new AccelerateMovement(speed: speed, acceleration: -speed, direction: caster.orientation);
-            Vector2 directionOffset = new Vector2(caster.orientation.x == 0 ? flipped ? 1 : -1 : caster.orientation.x, caster.orientation.y == 0 ? flipped ? 1 : -1 : caster.orientation.y);
-            HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+            Vector3 directionOffset = new Vector3(caster.orientation.x == 0 ? flipped ? 1 : -1 : caster.orientation.x, 0, caster.orientation.z == 0 ? flipped ? 1 : -1 : caster.orientation.y);
+            HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, Mathf.Atan2(directionOffset.z, directionOffset.x) * Mathf.Rad2Deg, 0)).GetComponent<HitboxManager>();
             attack.Initialize
             (
                 owner: caster.gameObject,

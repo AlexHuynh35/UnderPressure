@@ -16,13 +16,13 @@ public class KnightBowAttackSpecial : Ability
     public float lifetime;
     public GameObject hitboxPrefab;
 
-    public override void OnPress(EntityManager caster, Vector2 direction)
+    public override void OnPress(EntityManager caster, Vector3 aimLocation)
     {
         Effect movementEffect = new MovementEffect(boost: 0f, source: caster, allowedTags: EntityTag.Player);
         movementEffect.OnEnter(caster);
     }
 
-    public override void StartActive(EntityManager caster, Vector2 direction, float chargeTime)
+    public override void StartActive(EntityManager caster, Vector3 aimLocation, float chargeTime)
     {
         if (caster.inventory is PlayerInventory inventory)
         {
@@ -39,7 +39,7 @@ public class KnightBowAttackSpecial : Ability
                     (
                         effects: arrowEffects,
                         hitboxPrefab: hitboxPrefab,
-                        shape: new CircleShape(radius: radius),
+                        shape: new SphereShape(radius: radius),
                         movement: new StationaryMovement(),
                         lifetime: 0.25f,
                         targetSelf: false,
@@ -50,10 +50,10 @@ public class KnightBowAttackSpecial : Ability
                     {
                         new SpawnOnExpireEffect(data: data, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
                     };
-                    HitboxShape shape = new CircleShape(radius: 0.25f);
-                    Vector2 locationOffset = AbilityHelper.OffsetLocation(direction, width);
+                    HitboxShape shape = new SphereShape(radius: 0.25f);
+                    Vector2 locationOffset = AbilityHelper.OffsetLocation(aimLocation, width);
                     HitboxMovement movement = new ArchMovement(speed: Vector2.Distance(caster.transform.position, locationOffset) / lifetime, height: height, startLocation: caster.transform.position, endLocation: locationOffset);
-                    HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(caster.orientation.y, caster.orientation.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+                    HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, Mathf.Atan2(caster.orientation.z, caster.orientation.x) * Mathf.Rad2Deg, 0)).GetComponent<HitboxManager>();
                     attack.Initialize
                     (
                         owner: caster.gameObject,

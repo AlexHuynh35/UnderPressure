@@ -7,7 +7,7 @@ public class Dash : Ability
     [Header("Ability Stats")]
     public float charge;
 
-    public override void OnPress(EntityManager caster, Vector2 direction)
+    public override void OnPress(EntityManager caster, Vector3 aimLocation)
     {
         if (caster is PlayerEntityManager player)
         {

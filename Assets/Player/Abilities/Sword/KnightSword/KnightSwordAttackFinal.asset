@@ -26,5 +26,6 @@ MonoBehaviour:
   charge: 5
   width: 3
   height: 2
+  length: 2
   speed: 15
   hitboxPrefab: {fileID: 4936989231642616266, guid: 88071dc73489f4b3e8cbefb36cb19beb, type: 3}

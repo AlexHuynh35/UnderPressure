@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "Shield", menuName = "Abilities/Justine/Shield")]
 public class Shield : Ability
 {
-    public override void OnPress(EntityManager caster, Vector2 direction)
+    public override void OnPress(EntityManager caster, Vector3 aimLocation)
     {
         if (caster is PlayerEntityManager player)
         {
@@ -15,7 +15,7 @@ public class Shield : Ability
         }
     }
 
-    public override void OnRelease(EntityManager caster, Vector2 direction)
+    public override void OnRelease(EntityManager caster, Vector3 aimLocation)
     {
         if (caster is PlayerEntityManager player)
         {

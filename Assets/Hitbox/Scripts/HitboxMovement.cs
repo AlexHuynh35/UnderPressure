@@ -15,9 +15,9 @@ public class StationaryMovement : HitboxMovement
 public class StraightMovement : HitboxMovement
 {
     private float speed;
-    private Vector2 direction;
+    private Vector3 direction;
 
-    public StraightMovement(float speed, Vector2 direction) : base()
+    public StraightMovement(float speed, Vector3 direction) : base()
     {
         this.speed = speed;
         this.direction = direction;
@@ -25,7 +25,7 @@ public class StraightMovement : HitboxMovement
 
     public override void Move(HitboxManager manager, float deltaTime)
     {
-        manager.transform.position += (Vector3)(direction * speed * deltaTime);
+        manager.transform.position += direction * speed * deltaTime;
     }
 
     public void FlipDirection()
@@ -38,9 +38,9 @@ public class AccelerateMovement : HitboxMovement
 {
     private float speed;
     private float acceleration;
-    private Vector2 direction;
+    private Vector3 direction;
 
-    public AccelerateMovement(float speed, float acceleration, Vector2 direction) : base()
+    public AccelerateMovement(float speed, float acceleration, Vector3 direction) : base()
     {
         this.speed = speed;
         this.acceleration = acceleration;
@@ -50,7 +50,7 @@ public class AccelerateMovement : HitboxMovement
     public override void Move(HitboxManager manager, float deltaTime)
     {
         speed += acceleration * deltaTime;
-        manager.transform.position += (Vector3)(direction * speed * deltaTime);
+        manager.transform.position += direction * speed * deltaTime;
     }
 }
 
@@ -58,9 +58,9 @@ public class BoomerangMovement : HitboxMovement
 {
     private float speed;
     private float acceleration;
-    private Vector2 direction;
+    private Vector3 direction;
 
-    public BoomerangMovement(float speed, float time, Vector2 direction) : base()
+    public BoomerangMovement(float speed, float time, Vector3 direction) : base()
     {
         this.speed = speed;
         this.direction = direction;
@@ -71,7 +71,7 @@ public class BoomerangMovement : HitboxMovement
     public override void Move(HitboxManager manager, float deltaTime)
     {
         speed -= acceleration * deltaTime;
-        manager.transform.position += (Vector3)(direction * speed * deltaTime);
+        manager.transform.position += direction * speed * deltaTime;
     }
 }
 
@@ -79,10 +79,10 @@ public class FixedMovement : HitboxMovement
 {
     private float speed;
     private float rate;
-    private Vector2 direction;
+    private Vector3 direction;
     private float timer;
 
-    public FixedMovement(float speed, float rate, Vector2 direction) : base()
+    public FixedMovement(float speed, float rate, Vector3 direction) : base()
     {
         this.speed = speed;
         this.rate = rate;
@@ -95,7 +95,7 @@ public class FixedMovement : HitboxMovement
         timer -= deltaTime;
         if (timer < 0)
         {
-            manager.transform.position += (Vector3)(direction * speed);
+            manager.transform.position += direction * speed;
             timer = rate;
         }
     }
@@ -104,9 +104,9 @@ public class FixedMovement : HitboxMovement
 public class FollowMovement : HitboxMovement
 {
     public EntityManager following;
-    private Vector2 offset;
+    private Vector3 offset;
 
-    public FollowMovement(EntityManager following, Vector2 offset) : base()
+    public FollowMovement(EntityManager following, Vector3 offset) : base()
     {
         this.following = following;
         this.offset = offset;
@@ -120,7 +120,7 @@ public class FollowMovement : HitboxMovement
             return;
         }
         
-        manager.transform.position = (Vector2)following.transform.position + offset;
+        manager.transform.position = following.transform.position + offset;
     }
 }
 
@@ -147,7 +147,7 @@ public class OrbitMovement : HitboxMovement
         }
 
         angle += deltaTime * speed;
-        Vector3 offset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
+        Vector3 offset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
         manager.transform.position = following.transform.position + offset;
     }
 }
@@ -157,21 +157,23 @@ public class ArchMovement : HitboxMovement
     private float speed;
     private float height;
     private float distance;
-    private Vector2 endLocation;
-    private Vector2 direction;
+    private Vector3 endLocation;
+    private Vector3 direction;
 
-    public ArchMovement(float speed, float height, Vector2 startLocation, Vector2 endLocation) : base()
+    public ArchMovement(float speed, float height, Vector3 startLocation, Vector3 endLocation) : base()
     {
         this.speed = speed;
         this.height = height;
-        this.endLocation = endLocation;
-        distance = Vector2.Distance(startLocation, endLocation);
-        direction = AbilityHelper.GetDirection(startLocation, endLocation).normalized;
+        Vector3 adjustedStartLocation = new Vector3(startLocation.x, 0, startLocation.z);
+        Vector3 adjustedEndLocation = new Vector3(endLocation.x, 0, endLocation.z);
+        this.endLocation = adjustedEndLocation;
+        distance = Vector3.Distance(adjustedStartLocation, adjustedEndLocation);
+        direction = AbilityHelper.GetDirection(adjustedStartLocation, adjustedEndLocation).normalized;
     }
 
     public override void Move(HitboxManager manager, float deltaTime)
     {
-        manager.transform.position += (Vector3)(direction * speed * deltaTime);
-        manager.sprite.transform.position = new Vector3(manager.transform.position.x, manager.transform.position.y + Mathf.Sin(180 * Mathf.Deg2Rad * Vector2.Distance(manager.transform.position, endLocation) / distance) * height, manager.transform.position.z);
+        Vector3 positionAdjustment = direction * speed * deltaTime;
+        manager.transform.position = new Vector3(manager.transform.position.x + positionAdjustment.x, manager.transform.position.y + Mathf.Sin(180 * Mathf.Deg2Rad * Vector2.Distance(manager.transform.position, endLocation) / distance) * height, manager.transform.position.z + positionAdjustment.z);
     }
 }

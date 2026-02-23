@@ -12,9 +12,10 @@ public class KnightSwordAttackSpecial : Ability
     [Header("Hitboxes")]
     public float width;
     public float height;
+    public float length;
     public GameObject hitboxPrefab;
 
-    public override void StartActive(EntityManager caster, Vector2 direction, float chargeTime)
+    public override void StartActive(EntityManager caster, Vector3 aimLocation, float chargeTime)
     {
         if (caster is PlayerEntityManager player)
         {
@@ -30,9 +31,9 @@ public class KnightSwordAttackSpecial : Ability
                 {
                     new DamageEffect(damage: damage, piercing: piercing, source: caster, allowedTags: EntityTag.Breakable | EntityTag.Enemy),
                 };
-                HitboxShape shape = new BoxShape(x: width, y: height);
+                HitboxShape shape = new BoxShape(x: width, y: height, z: length);
                 HitboxMovement movement = new FollowMovement(following: caster, offset: Vector2.zero);
-                HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(caster.orientation.y, caster.orientation.x) * Mathf.Rad2Deg)).GetComponent<HitboxManager>();
+                HitboxManager attack = Instantiate(hitboxPrefab, caster.transform.position, Quaternion.Euler(0, Mathf.Atan2(caster.orientation.z, caster.orientation.x) * Mathf.Rad2Deg, 0)).GetComponent<HitboxManager>();
                 attack.Initialize
                 (
                     owner: caster.gameObject,
