@@ -41,5 +41,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 2631970593
+    locked: 0
+  - name: Shadow
+    uniqueID: 264971297
+    locked: 0
+  - name: Object
+    uniqueID: 191298687
+    locked: 0
   m_RenderingLayers:
   - Default
